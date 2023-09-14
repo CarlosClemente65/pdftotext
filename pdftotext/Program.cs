@@ -72,7 +72,7 @@ namespace pdftotext
                 {
                     parametroOk = true;
                     opcion = "-l";
-                    if (debug = true)
+                    if (debug)
                     {
                         //Ruta fija para las pruebas
                         string folderpath = @"c:\borrar\pdftotext";
