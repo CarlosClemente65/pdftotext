@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "pdftotext": {
+      "commandName": "Project",
+      "commandLineArgs": "-l ",
+      "workingDirectory": "D:\\Programacion\\C#\\pdftotext\\pdftotext\\bin\\Debug\\net6.0"
+    }
+  }
+}
