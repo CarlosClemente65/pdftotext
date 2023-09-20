@@ -12,19 +12,31 @@ namespace pdftotext
 {
     internal class procesos
     {
+
         public string filePath = "";
-        public string[] filesPDF = new string[0];
+        public string[] filesPDF;
         public int firstpage = 0;
         public int lastpage = 0;
         //La variable parametroOk sirve para controlar que se ha puesto al menos un parametro correcto
         public bool parametroOk = false;
         public string opcion = "-f";
 
-
-        public void leerFicheros(string[] argumentos)
+        public procesos()
         {
+            filesPDF = new string[0];
+        }
+
+        public void leerFicheros(string[] parametros)
+        {
+            string folderPath = string.Empty;
+            if (Program.debug)
+            {
+                //Ruta fija para las pruebas
+                folderPath = @"c:\borrar\pdftotext";
+            }
+
             //Si el argumento es -l almacena el nombre de todos los PDF de la carpeta
-            switch (argumentos[0])
+            switch (parametros[0])
             {
                 case "-l":
                     {
@@ -32,9 +44,7 @@ namespace pdftotext
                         opcion = "-l";
                         if (Program.debug)
                         {
-                            //Ruta fija para las pruebas
-                            string folderpath = @"c:\borrar\pdftotext";
-                            filesPDF = Directory.GetFiles(folderpath, "*.pdf");
+                            filesPDF = Directory.GetFiles(folderPath, "*.pdf");
                         }
                         else
                         {
@@ -53,7 +63,8 @@ namespace pdftotext
                 default:
                     {
                         //Almacena el nombre del fichero a procesar (primer parametro)
-                        filePath = argumentos[0];
+                        filePath = parametros[0];
+                        filePath = Path.Combine(folderPath, filePath);
                         if (!filePath.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
                         {
                             filePath += ".pdf";
@@ -67,7 +78,7 @@ namespace pdftotext
                             return;
                         }
                         //Chequeo que el fichero pasado es un PDF
-                        if (Path.GetExtension(filePath) != ".pdf")
+                        if (string.Equals(Path.GetExtension(filePath) != ".pdf", StringComparison.OrdinalIgnoreCase))
                         {
                             Console.Clear();
                             Console.WriteLine("El archivo debe ser de tipo PDF.\nPulse una tecla para salir");
@@ -76,6 +87,8 @@ namespace pdftotext
                         }
 
                         //Como el argumento no es procesar todos los ficheros, se almacena el fichero pasado como parametro en la variable que procesa el array de ficheros
+                        
+                        filesPDF = new string[1];
                         filesPDF[0] = filePath;
 
                         break;
@@ -413,9 +426,9 @@ namespace pdftotext
             Console.Clear();
             //Console.WriteLine();
             Console.WriteLine(mensaje);
-            Console.WriteLine("\nUso:\tpdftotext fichero.pdf [-f | -m] [-l procesa todos los ficheros .pdf de la carpeta] [-p pagina o intervalo de paginas separadas por un guion]");
-            Console.WriteLine("\t-l   Si es el primer parametro, se procesan todos los ficheros .PDF de la carpeta");
-            Console.WriteLine("\t-f   Genera texto completo del PDF (si se omite sera la opcion por defecto)");
+            Console.WriteLine("\nUso:\tpdftotext fichero.pdf [-f | -m] [-l] [-p pagina o intervalo de paginas separadas por un guion]");
+            Console.WriteLine("\t-l   Si se utiliza, debe pasarse como primer parametro, y se procesaran todos los ficheros .PDF de la carpeta de ejecucion de la aplicacion");
+            Console.WriteLine("\t-f   Genera texto completo del PDF");
             Console.WriteLine("\t-m   Genera un fichero con los datos principales del modelo de Hacienda");
             Console.WriteLine("\t     Las opciones -f y -m son incompatibles entre si");
             Console.WriteLine("\t-p   Especifica la pagina o intervalo de paginas a extraer:");
