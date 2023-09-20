@@ -1,6 +1,6 @@
 ﻿namespace pdftotext
 {
-    public class inicializaVariables
+    public class InicializaVariables
     {
         public string textoCsv=string.Empty;
         public int indexCsv;
@@ -10,15 +10,12 @@
 
         public void InicializarCSV()
         {
-            textoCsv = "";
+            textoCsv = string.Empty;
             indexCsv = 1;
             foundCsv = false;
-            Csv = "";
-            justificante = "";
+            Csv = string.Empty;
+            justificante = string.Empty;
         }
-        public void InicializarJustificante()
-        {
-
-        }
+       
     }
 }
