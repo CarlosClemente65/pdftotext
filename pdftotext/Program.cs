@@ -55,12 +55,7 @@ namespace pdftotext
 
 
             //Proceso de todos los ficheros (en el paso anterior se ha podido almacenar el unico fichero pasado como parametro
-
             proceso.generarFicheroTexto();
-            
-
         }
-
-
     }
 }

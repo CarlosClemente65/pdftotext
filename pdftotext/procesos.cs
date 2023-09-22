@@ -1,18 +1,12 @@
 ﻿using iText.Kernel.Pdf.Canvas.Parser.Listener;
 using iText.Kernel.Pdf.Canvas.Parser;
 using iText.Kernel.Pdf;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace pdftotext
 {
     internal class procesos
     {
-
         public string filePath = "";
         public string[] filesPDF;
         public int firstpage = 0;
@@ -221,6 +215,8 @@ namespace pdftotext
                     {
                         lastpage = pdfDoc.GetNumberOfPages();
                     }
+
+                    //Graba las paginas del PDF en el fichero de texto
                     for (int i = firstpage; i <= lastpage; i++)
                     {
                         if (Program.debug == true)
@@ -239,6 +235,7 @@ namespace pdftotext
                             extractedText.Append(PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(i), extractionStrategy));
                         }
                     }
+
                     //Pone a cero las paginas por si se procesan varios ficheros
                     firstpage = 0;
                     lastpage = 0;
@@ -247,175 +244,6 @@ namespace pdftotext
                     if (opcion == "-f" || opcion == "-l")
                     {
                         File.WriteAllText(outputFilePath, extractedText.ToString());
-                    }
-                    //Localizar y grabar los valores individuales en el fichero
-                    else if (opcion == "-m")
-                    {
-                        File.WriteAllText(outputFilePath, extractedText.ToString());
-                        InicializaVariables variables = new InicializaVariables();
-                        using (StreamWriter writer = new StreamWriter(outputFilePath))
-                        {
-                            string textoCompleto = extractedText.ToString().Trim();
-
-                            //Extraer el CSV
-                            string textoCsv = "Verificación ";
-                            int indexCsv = textoCompleto.IndexOf(textoCsv);
-                            bool foundCsv = false;
-                            string Csv = "";
-                            while (indexCsv >= 0 && !foundCsv)
-                            {
-                                int inicioCsv = indexCsv + textoCsv.Length;
-                                int largoCsv = textoCompleto.IndexOf("\n", inicioCsv) - inicioCsv;
-                                if (largoCsv <= 0)
-                                {
-                                    largoCsv = textoCompleto.Length - inicioCsv;
-                                }
-                                Csv = textoCompleto.Substring(inicioCsv, 16).Trim();
-                                if (Csv.Length > 0)
-                                {
-                                    foundCsv = true;
-                                    writer.WriteLine($"CSV: {Csv}");
-                                }
-                                indexCsv = textoCompleto.IndexOf(textoCsv, indexCsv + 1);
-                            }
-                            if (foundCsv == false)
-                            {
-                                writer.WriteLine($"CSV no encontrado");
-                            }
-                            variables.InicializarCSV();
-
-                            // Extraer el expediente
-                            string Expediente = "";
-                            string textoExpediente = Csv;
-                            int indexExpediente = textoCompleto.IndexOf(textoExpediente);
-                            bool foundExpediente = false;
-                            while (indexExpediente >= 0 && !foundExpediente)
-                            {
-                                int inicioExpediente = indexExpediente - textoExpediente.Length - 1;
-                                int largoExpediente = textoCompleto.IndexOf("\n", inicioExpediente) - inicioExpediente;
-                                if (largoExpediente <= 0)
-                                {
-                                    largoExpediente = textoCompleto.Length - inicioExpediente;
-                                }
-                                Expediente = textoCompleto.Substring(inicioExpediente, 16).Trim();
-                                if (Expediente.Length > 0)
-                                {
-                                    foundExpediente = true;
-                                    writer.WriteLine($"Expediente: {Expediente}");
-                                }
-                                indexExpediente = textoCompleto.IndexOf(textoExpediente, indexExpediente + 1);
-                            }
-                            if (foundExpediente == false)
-                            {
-                                writer.WriteLine($"Expediente no encontrado");
-                            }
-                            variables.InicializarCSV();
-
-                            //Extraer el numero de justificante
-                            string justificante = "";
-                            string textoJustificante = "justificante: ";
-                            int indexJustificante = textoCompleto.IndexOf(textoJustificante);
-                            bool foundJustificante = false;
-                            while (indexJustificante >= 0 && !foundJustificante)
-                            {
-                                int inicioJustificante = indexJustificante + textoJustificante.Length;
-                                int largoJustificante = textoCompleto.IndexOf("\n", inicioJustificante) - inicioJustificante;
-                                if (largoJustificante <= 0)
-                                {
-                                    largoJustificante = textoCompleto.Length - inicioJustificante;
-                                }
-                                justificante = textoCompleto.Substring(inicioJustificante, largoJustificante).Trim();
-                                if (justificante.Length > 0)
-                                {
-                                    foundJustificante = true;
-                                    writer.WriteLine($"Justificante: {justificante}");
-                                }
-                                indexJustificante = textoCompleto.IndexOf(textoJustificante, indexJustificante + 1);
-                            }
-
-                            //Extraer NIF
-                            string Nif = "";
-                            string textoNif = Csv;
-                            int indexNif = textoCompleto.IndexOf(textoNif);
-                            bool foundNif = false;
-                            while (indexNif >= 0 && !foundNif)
-                            {
-                                int inicioNif = indexNif + textoNif.Length + 1;
-                                int largoNif = textoCompleto.IndexOf("\n", inicioNif) - inicioNif;
-                                if (largoNif <= 0)
-                                {
-                                    largoNif = textoCompleto.Length - inicioNif;
-                                }
-                                Nif = textoCompleto.Substring(inicioNif, largoNif);
-                                if (Nif.Length > 0)
-                                {
-                                    foundNif = true;
-                                    writer.WriteLine($"NIF: {Nif}");
-                                }
-                                indexNif = textoCompleto.IndexOf(textoNif, indexNif + 1);
-                            }
-                            if (foundNif == false)
-                            {
-                                writer.WriteLine($"NIF no encontrado");
-                            }
-
-                            //Extraer Nombre
-                            string Nombre = "";
-                            string textoNombre = Nif;
-                            int indexNombre = textoCompleto.IndexOf(textoNombre);
-                            bool foundNombre = false;
-                            while (indexNombre >= 0 && !foundNombre)
-                            {
-                                int inicioNombre = indexNombre + textoNombre.Length + 1;
-                                int largoNombre = textoCompleto.IndexOf("\n", inicioNombre) - inicioNombre;
-                                if (largoNombre <= 0)
-                                {
-                                    largoNombre = textoCompleto.Length - inicioNombre;
-                                }
-                                Nombre = textoCompleto.Substring(inicioNombre, largoNombre);
-                                if (Nombre.Length > 0)
-                                {
-                                    foundNombre = true;
-                                    writer.WriteLine($"Nombre: {Nombre}");
-                                }
-                                indexNombre = textoCompleto.IndexOf(textoNombre, indexNombre + 1);
-                            }
-                            if (foundNombre == false)
-                            {
-                                writer.WriteLine($"Nombre no encontrado");
-                            }
-
-                            //Extraer ejercicio
-                            string ejercicio = Expediente.Substring(0, 4);
-                            writer.WriteLine($"Ejercicio: {ejercicio}");
-
-                            //Extraer periodo
-                            string periodo = "";
-
-
-                            //Extraer modelo
-                            string modelo = Expediente.Substring(4, 3);
-                            //string modelo = "";
-                            //string textoModelo= "justificante:";
-                            //int indexModelo= textoCompleto.IndexOf(textoModelo);
-                            //bool foundModelo = false;
-                            //while (indexModelo>= 0 && !foundModelo)
-                            //{
-                            //    int inicioModelo = indexModelo+ textoModelo.Length;
-                            //    int largoModelo = textoCompleto.IndexOf("\n", inicioModelo) - inicioModelo;
-                            //    if (largoModelo <= 0)
-                            //    {
-                            //        largoModelo= textoCompleto.Length - inicioModelo;
-                            //    }
-                            //    modelo= textoCompleto.Substring(inicioModelo, largoModelo).Trim();
-                            //    if (modelo.Length > 0)
-                            //    {
-                            //        foundModelo= true;
-                            writer.WriteLine($"Modelo: {modelo}");
-                            //    }
-                            //    indexModelo= textoCompleto.IndexOf(textoModelo, indexModelo + 1);
-                        }
-
                     }
                 }
             }
@@ -427,9 +255,9 @@ namespace pdftotext
             //Console.WriteLine();
             Console.WriteLine(mensaje);
             Console.WriteLine("\nUso:\tpdftotext fichero.pdf [-f | -m] [-l] [-p pagina o intervalo de paginas separadas por un guion]");
-            Console.WriteLine("\t-l   Si se utiliza, debe pasarse como primer parametro, y se procesaran todos los ficheros .PDF de la carpeta de ejecucion de la aplicacion");
-            Console.WriteLine("\t-f   Genera texto completo del PDF");
+            Console.WriteLine("\t-f   Genera texto completo del PDF que se pase como argumento");
             Console.WriteLine("\t-m   Genera un fichero con los datos principales del modelo de Hacienda");
+            Console.WriteLine("\t-l   Si se utiliza, debe pasarse como primer parametro, y se procesaran todos los ficheros .PDF de la carpeta de ejecucion de la aplicacion");
             Console.WriteLine("\t     Las opciones -f y -m son incompatibles entre si");
             Console.WriteLine("\t-p   Especifica la pagina o intervalo de paginas a extraer:");
             Console.WriteLine("\t     3 = pagina 3, 2-4 = paginas 2 a 4");
