@@ -10,6 +10,8 @@
 
         public void InicializarCSV()
         {
+            //Nota: no tengo claro porque hay que inicializar variables y he creado una clase; ver si es necesario inicializarlas por algun motivo, y si es asi, hay que ponerlas en el propio metodo buscar antes de devolver el resultado.
+
             textoCsv = string.Empty;
             indexCsv = 1;
             foundCsv = false;

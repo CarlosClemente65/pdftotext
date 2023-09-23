@@ -1,12 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using iText.Kernel.Pdf;
-using iText.Kernel.Pdf.Canvas.Parser;
-using iText.Kernel.Pdf.Canvas.Parser.Listener;
-using Org.BouncyCastle.Bcpg;
-
-namespace pdftotext
+﻿namespace pdftotext
 {
 
     public class inicializaVariables
@@ -31,12 +23,13 @@ namespace pdftotext
     }
     class Program
     {
-        public static bool debug = true;
+        public static bool debug = false;
         
         static void Main(string[] args)
         {
             //Instanciacion de la clase procesos para acceder a los metodos definidos en ella
             procesos proceso = new procesos();
+
 
             //Si no se pasan parametros muestra un error
             if (args.Length == 0)
@@ -55,7 +48,7 @@ namespace pdftotext
 
 
             //Proceso de todos los ficheros (en el paso anterior se ha podido almacenar el unico fichero pasado como parametro
-            proceso.generarFicheroTexto();
+            proceso.grabarFichero();
         }
     }
 }

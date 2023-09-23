@@ -2,7 +2,7 @@
   "profiles": {
     "pdftotext": {
       "commandName": "Project",
-      "commandLineArgs": "\"Alfonso Spitzer 111 4T-18.PDF\"",
+      "commandLineArgs": "\"Alfonso Spitzer 111 4T-18.PDF\" -m",
       "workingDirectory": "D:\\Programacion\\C#\\pdftotext\\pdftotext\\bin\\Debug\\net6.0"
     }
   }
