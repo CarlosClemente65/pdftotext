@@ -17,6 +17,14 @@ namespace pdftotext
         public string opcion = "-f";
         public string outputFilePath = "";
         StringBuilder extractedText = new StringBuilder();
+        public string csvPDF = string.Empty;
+        public string expedientePDF = string.Empty;
+        public string justificantePDF = string.Empty;
+        public string nifPDF = string.Empty;
+        public string nombrePDF = string.Empty;
+        public string ejercicioPDF = string.Empty;
+        public string modeloPDF = string.Empty;
+        public string periodoPDF = string.Empty;
 
         public procesos()
         {
@@ -67,7 +75,7 @@ namespace pdftotext
                         }
                         else
                         {
-                            filesPDF = Directory.GetFiles(".", "*.pdf");
+                            filesPDF = Directory.GetFiles(folderPath, "*.pdf");
                         }
 
                         //Mensaje si no hay ningun fichero PDF
@@ -279,6 +287,7 @@ namespace pdftotext
                         extraeDatosModelo();
                     }
                 }
+                inicializaVariables ();
             }
         }
 
@@ -292,7 +301,7 @@ namespace pdftotext
                 string textoCompleto = extractedText.ToString().Trim();
 
                 //Obtener el CSV del PDF
-                string csvPDF = busca.csv(textoCompleto);
+                csvPDF = busca.csv(textoCompleto);
                 string textoCSV = string.Empty;
                 if (csvPDF.Length == 16)
                 {
@@ -305,7 +314,7 @@ namespace pdftotext
                 writer.WriteLine(textoCSV);
 
                 //Obtener expediente del PDF
-                string expedientePDF = busca.expediente(textoCompleto, csvPDF);
+                expedientePDF = busca.expediente(textoCompleto, csvPDF);
                 string textoExpediente = string.Empty;
                 if (expedientePDF.Length > 0)
                 {
@@ -318,7 +327,7 @@ namespace pdftotext
                 writer.WriteLine(textoExpediente);
 
                 //Obtener numero de justificante
-                string justificantePDF = busca.justificante(textoCompleto);
+                justificantePDF = busca.justificante(textoCompleto);
                 string textoJustificante = string.Empty;
                 if (justificantePDF.Length > 0)
                 {
@@ -331,7 +340,7 @@ namespace pdftotext
                 writer.WriteLine(textoJustificante);
 
                 //Obtener NIF
-                string nifPDF = busca.Nif(textoCompleto, csvPDF);
+                nifPDF = busca.Nif(textoCompleto, csvPDF);
                 string textoNif = string.Empty;
                 if (nifPDF.Length > 0)
                 {
@@ -344,7 +353,7 @@ namespace pdftotext
                 writer.WriteLine(textoNif);
 
                 //Obtener Nombre
-                string nombrePDF = busca.nombre(textoCompleto, nifPDF);
+                nombrePDF = busca.nombre(textoCompleto, nifPDF);
                 string textoNombre = string.Empty;
                 if (nombrePDF.Length > 0)
                 {
@@ -357,7 +366,7 @@ namespace pdftotext
                 writer.WriteLine(textoNombre);
 
                 //Obtener ejercicio
-                string ejercicioPDF = busca.ejercicio(expedientePDF);
+                ejercicioPDF = busca.ejercicio(expedientePDF);
                 string textoEjercicio = string.Empty;
                 if (ejercicioPDF.Length > 0)
                 {
@@ -371,7 +380,7 @@ namespace pdftotext
 
 
                 //Obtener modelo
-                string modeloPDF = busca.modelo(expedientePDF);
+                modeloPDF = busca.modelo(expedientePDF);
                 string textoModelo = string.Empty;
                 if (modeloPDF.Length > 0)
                 {
@@ -385,11 +394,26 @@ namespace pdftotext
                 writer.WriteLine(textoModelo);
 
                 //Obtener periodo
-                string periodoPDF = busca.periodo();
+                periodoPDF = busca.periodo();
                 writer.WriteLine(periodoPDF);
             }
 
         }
 
+
+        public void inicializaVariables()
+        {
+
+            //Borra los datos de las variables que se han obtenido en cada procesado de los ficheros.
+            csvPDF = string.Empty;
+            expedientePDF = string.Empty;
+            justificantePDF = string.Empty;
+            nifPDF = string.Empty;
+            nombrePDF = string.Empty;
+            ejercicioPDF = string.Empty;
+            modeloPDF = string.Empty;
+            periodoPDF = string.Empty;
+            extractedText.Clear();
+        }
     }
 }

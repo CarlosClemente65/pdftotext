@@ -32,9 +32,7 @@ namespace pdftotext
             {
                 Csv = string.Empty;
             }
-
-            //InicializaVariables variables = new InicializaVariables();
-            //variables.InicializarCSV();
+            
             return Csv;
         }
 
@@ -66,8 +64,6 @@ namespace pdftotext
                 Expediente = string.Empty;
             }
 
-            //InicializaVariables variables = new InicializaVariables();
-            //variables.InicializarCSV();
             return Expediente;
         }
 
