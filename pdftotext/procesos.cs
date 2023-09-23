@@ -35,13 +35,15 @@ namespace pdftotext
             Console.Clear();
             //Console.WriteLine();
             Console.WriteLine(mensaje);
-            Console.WriteLine("\nUso:\tpdftotext fichero.pdf [-f | -m] [-l] [-p pagina o intervalo de paginas separadas por un guion]");
-            Console.WriteLine("\t-f   Genera texto completo del PDF que se pase como argumento");
-            Console.WriteLine("\t-m   Genera un fichero con los datos principales del modelo de Hacienda");
-            Console.WriteLine("\t-l   Si se utiliza, debe pasarse como primer parametro, y se procesaran todos los ficheros .PDF de la carpeta de ejecucion de la aplicacion");
-            Console.WriteLine("\t     Las opciones -f y -m son incompatibles entre si");
-            Console.WriteLine("\t-p   Especifica la pagina o intervalo de paginas a extraer:");
-            Console.WriteLine("\t     3 = pagina 3, 2-4 = paginas 2 a 4");
+            Console.WriteLine("\nUso:\tpdftotext [-h] <-f <archivo.pdf> | -l> <-r <ruta del archivo>> [-m] [-p [desde]-[hasta]]");
+            Console.WriteLine("\n  Parametros:");
+            Console.WriteLine("  -h\t(opcional)\tEsta ayuda");
+            Console.WriteLine("  -f\t(obligatorio)\tNombre del fichero a procesar (si tiene espacios debe ir entre comillas dobles).\n\t\t\tEs incompatible con el parametro -l");
+            Console.WriteLine("  -l\t(obligatorio)\tSe procesaran todos los ficheros que se encuentre en la ruta indicada con el parametro -r.\n\t\t\tEs incompatible con el parametro -f");
+            Console.WriteLine("  -r\t(obligatorio)\tRuta donde estan ubicados los ficheros y donde se dejaran los resultados");
+            Console.WriteLine("  -m\t(opcional)\tGenera un fichero con los datos principales del modelo de Hacienda\n");
+            Console.WriteLine("  -p\t(opcional)\tIntervalo de paginas a extraer.\n\t\t\tPuede omitirse cualquiera de los dos y si no se indica el parametro se extraeran todas las paginas");
+            Console.WriteLine("  \t\t\tEjemplo: -p 3 = pagina 3, -p 2-4 = paginas 2 a 4, -p -6 = paginas 1 a 6");
             Console.WriteLine("");
             Console.WriteLine("Pulse una tecla para continuar...");
             Console.ReadKey();
@@ -123,47 +125,53 @@ namespace pdftotext
             }
         }
 
-        public void gestionArgumentos(string[] parametros)
+        public bool gestionArgumentos(string[] parametros)
         {
-            //Las variables fOption y mOption sirven para chequear que no se pasan los dos parametros
+            //Las variables fOption y lOpcion sirven para chequear que no se pasan los dos parametros
             bool fOption = false;
-            bool mOption = false;
+            bool lOpcion = false;
 
             //Proceso de los parametros pasados
-            for (int i = 1; i < parametros.Length; i++)
+            for (int i = 0; i < parametros.Length; i++)
             {
                 string parametro = parametros[i].ToLower();
                 switch (parametro)
                 {
+                    case "-h":
+                        MensajeParametros("");
+                        parametroOk = true;
+                        opcion = "-h";
+                        break;
+
                     case "-f":
-                        if (mOption)
+                        if (lOpcion)
                         {
-                            MensajeParametros("Las opciones -f y -m son incompatibles entre si");
+                            MensajeParametros("Las opciones -f y -l son incompatibles entre si");
                         }
                         opcion = "-f";
                         fOption = true;
                         parametroOk = true;
                         break;
 
-                    case "-m":
+                    case "-l":
                         if (fOption)
                         {
-                            MensajeParametros("Las opciones -f y -m son incompatibles entre si");
+                            MensajeParametros("Las opciones -f y -l son incompatibles entre si");
                         }
-                        opcion = "-m";
-                        mOption = true;
+                        opcion = "-l";
+                        lOpcion = true;
                         parametroOk = true;
                         break;
 
                     case "-p":
                         //Control de que se pasan las paginas inicio y fin separadas con un guion
+                        opcion = "-p";
                         int pageIndex;
                         if (parametros.Length > Array.IndexOf(parametros, parametro) + 1 && int.TryParse(parametros[Array.IndexOf(parametros, parametro) + 1], out pageIndex))
                         {
                             if (pageIndex < 0)
                             {
                                 MensajeParametros("No se puede indicar un numero de pagina negativo");
-                                return;
                             }
                             firstpage = lastpage = pageIndex;
                             parametroOk = true;
@@ -176,7 +184,6 @@ namespace pdftotext
                                 if (!int.TryParse(rangePages[0], out lastpage) || lastpage < 1)
                                 {
                                     MensajeParametros($"El argumento {parametro} debe estar seguido de un numero entero positivo");
-                                    return;
                                 }
                                 firstpage = lastpage;
                             }
@@ -185,35 +192,46 @@ namespace pdftotext
                                 if (!int.TryParse(rangePages[0], out firstpage) || firstpage < 1)
                                 {
                                     MensajeParametros($"El argumento {parametro} debe estar seguido de dos números enteros positivos separados por un guión (-)");
-                                    return;
                                 }
                                 if (!int.TryParse(rangePages[1], out lastpage) || lastpage < 1)
                                 {
                                     MensajeParametros($"El argumento {parametro} debe estar seguido de dos números enteros positivos separados por un guión (-)");
-                                    return;
                                 }
                             }
                             else
                             {
                                 MensajeParametros($"El argumento {parametro} debe estar seguido de dos números enteros positivos separados por un guión (-) o de un número entero positivo.");
-                                return;
                             }
                             parametroOk = true;
                         }
                         else
                         {
                             MensajeParametros($"El argumento {parametro} debe estar seguido de dos números enteros positivos separados por un guión (-) o de un número entero positivo.");
-                            return;
                         }
+                        break;
+
+                    case "-m":
+                        opcion = "-m";
+                        parametroOk = true;
+                        break;
+
+                    case "-r":
+                        opcion = "-r";
+                        parametroOk = true;
                         break;
                 }
             }
             //Chequea si los parametros pasados son correctos.
             if (!parametroOk)
             {
-                MensajeParametros("Algún parametro es incorrecto");
-                return;
+                MensajeParametros("Parametros incorrectos");
             }
+
+            if (opcion == "-h")
+            {
+                parametroOk = false;
+            }
+            return parametroOk;
         }
 
         public void grabarFichero()
@@ -287,7 +305,7 @@ namespace pdftotext
                         extraeDatosModelo();
                     }
                 }
-                inicializaVariables ();
+                inicializaVariables();
             }
         }
 
