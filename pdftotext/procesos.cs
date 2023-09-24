@@ -3,6 +3,7 @@ using iText.Kernel.Pdf.Canvas.Parser;
 using iText.Kernel.Pdf;
 using System.Text;
 using System.Security.Cryptography.X509Certificates;
+using Org.BouncyCastle.Bcpg;
 
 namespace pdftotext
 {
@@ -14,8 +15,9 @@ namespace pdftotext
         public int lastpage = 0;
         //La variable parametroOk sirve para controlar que se ha puesto al menos un parametro correcto
         public bool parametroOk = false;
-        public string opcion = "-f";
+        //public string opcion = "-f";
         public string outputFilePath = "";
+        string folderPath = string.Empty;
         StringBuilder extractedText = new StringBuilder();
         public string csvPDF = string.Empty;
         public string expedientePDF = string.Empty;
@@ -25,6 +27,13 @@ namespace pdftotext
         public string ejercicioPDF = string.Empty;
         public string modeloPDF = string.Empty;
         public string periodoPDF = string.Empty;
+
+        //Control de los parametros que se han pasado, para chequear los obligatorios o si son incompatibles (-f y -l). Tambien permite validar la ruta (-r) o si la salida sera con las variables de Hacienda (-m)
+        bool fOption = false;
+        bool lOpcion = false;
+        bool rOpcion = false;
+        bool mOpcion = false;
+        bool hOpcion = false;
 
         public procesos()
         {
@@ -51,86 +60,43 @@ namespace pdftotext
 
         public void leerFicheros(string[] parametros)
         {
-            string folderPath = string.Empty;
-            if (Program.debug)
+            string filePDF = Path.Combine(folderPath, filePath);//Almacena la ruta completa si es un solo fichero
+            if (lOpcion)
             {
-                //Ruta fija para las pruebas
-                folderPath = @"c:\borrar\pdftotext";
+                //Si el argumento es -l almacena el nombre de todos los PDF de la carpeta
+                if (Program.debug)
+                {
+                    //Ruta fija para las pruebas
+                    folderPath = @"c:\borrar\pdftotext";
+                }
+                filesPDF = Directory.GetFiles(folderPath, "*.pdf");
             }
             else
             {
-                //Quitar esta linea cuando acabe el debug y poner la otra
-                folderPath = @"c:\borrar\pdftotext";
-                //folderPath = Directory.GetCurrentDirectory();
+                //Chequea que el fichero pasado con el parametro -f existe
+                if (!File.Exists(filePDF))
+                {
+                    Console.Clear();
+                    Console.WriteLine($"El fichero {filePath}.pdf no existe.\nPulse una tecla para salir");
+                    Console.ReadKey();
+                    Environment.Exit(1);
+                }
+
+                //Como el argumento no es procesar todos los ficheros, se almacena el fichero pasado como parametro en la variable que procesa el array de ficheros
+                filesPDF = new string[1];
+                filesPDF[0] = filePDF;
             }
 
-            switch (parametros[0])
+            //Mensaje si no hay ningun fichero PDF
+            if (filesPDF.Length == 0)
             {
-                //Si el argumento es -l almacena el nombre de todos los PDF de la carpeta
-                case "-l":
-                    {
-                        parametroOk = true;
-                        opcion = "-l";
-                        if (Program.debug)
-                        {
-                            filesPDF = Directory.GetFiles(folderPath, "*.pdf");
-                        }
-                        else
-                        {
-                            filesPDF = Directory.GetFiles(folderPath, "*.pdf");
-                        }
-
-                        //Mensaje si no hay ningun fichero PDF
-                        if (filesPDF.Length == 0)
-                        {
-                            Console.WriteLine("No hay ningun fichero PDF para procesar");
-                            return;
-                        }
-                        break;
-                    }
-
-                default:
-                    {
-                        //Almacena el nombre del fichero a procesar (primer parametro)
-                        filePath = parametros[0];
-                        filePath = Path.Combine(folderPath, filePath);
-                        if (!filePath.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
-                        {
-                            filePath += ".pdf";
-                        }
-                        //Chequea que el fichero pasado existe
-                        if (!File.Exists(filePath))
-                        {
-                            Console.Clear();
-                            Console.WriteLine($"El fichero {filePath}.pdf no existe.\nPulse una tecla para salir");
-                            Console.ReadKey();
-                            Environment.Exit(1);
-                        }
-                        //Chequeo que el fichero pasado es un PDF
-                        if (string.Equals(Path.GetExtension(filePath) != ".pdf", StringComparison.OrdinalIgnoreCase))
-                        {
-                            Console.Clear();
-                            Console.WriteLine("El archivo debe ser de tipo PDF.\nPulse una tecla para salir");
-                            Console.ReadKey();
-                            return;
-                        }
-
-                        //Como el argumento no es procesar todos los ficheros, se almacena el fichero pasado como parametro en la variable que procesa el array de ficheros
-
-                        filesPDF = new string[1];
-                        filesPDF[0] = filePath;
-
-                        break;
-                    }
+                Console.WriteLine("No hay ningun fichero PDF para procesar");
+                return;
             }
         }
 
         public bool gestionArgumentos(string[] parametros)
         {
-            //Las variables fOption y lOpcion sirven para chequear que no se pasan los dos parametros
-            bool fOption = false;
-            bool lOpcion = false;
-
             //Proceso de los parametros pasados
             for (int i = 0; i < parametros.Length; i++)
             {
@@ -139,8 +105,7 @@ namespace pdftotext
                 {
                     case "-h":
                         MensajeParametros("");
-                        parametroOk = true;
-                        opcion = "-h";
+                        parametroOk = true; //Se pone a true para evitar el mensaje de parametros incorrectos
                         break;
 
                     case "-f":
@@ -148,8 +113,14 @@ namespace pdftotext
                         {
                             MensajeParametros("Las opciones -f y -l son incompatibles entre si");
                         }
-                        opcion = "-f";
                         fOption = true;
+
+                        //Almacena el nombre del fichero a procesar
+                        filePath = parametros[i + 1];
+                        if (!filePath.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                        {
+                            filePath += ".pdf";
+                        }
                         parametroOk = true;
                         break;
 
@@ -158,14 +129,12 @@ namespace pdftotext
                         {
                             MensajeParametros("Las opciones -f y -l son incompatibles entre si");
                         }
-                        opcion = "-l";
                         lOpcion = true;
                         parametroOk = true;
                         break;
 
                     case "-p":
                         //Control de que se pasan las paginas inicio y fin separadas con un guion
-                        opcion = "-p";
                         int pageIndex;
                         if (parametros.Length > Array.IndexOf(parametros, parametro) + 1 && int.TryParse(parametros[Array.IndexOf(parametros, parametro) + 1], out pageIndex))
                         {
@@ -211,12 +180,17 @@ namespace pdftotext
                         break;
 
                     case "-m":
-                        opcion = "-m";
+                        mOpcion = true;
                         parametroOk = true;
                         break;
 
                     case "-r":
-                        opcion = "-r";
+                        folderPath = parametros[i + 1];
+                        if (!Directory.Exists(folderPath))
+                        {
+                            MensajeParametros("Error. La ruta especificada no existe");
+                            Environment.Exit(1);
+                        }
                         parametroOk = true;
                         break;
                 }
@@ -226,11 +200,22 @@ namespace pdftotext
             {
                 MensajeParametros("Parametros incorrectos");
             }
-
-            if (opcion == "-h")
+            else
             {
-                parametroOk = false;
+                //Si se ha pasado el parametro de ayuda, se devuelve falso para evitar que se ejecute el resto
+                if (hOpcion)
+                {
+                    parametroOk = false;
+                }
+                else
+                //Si falta algun parametro obligatorio, se muestra un mensaje y se devuelve falso para evitar que se ejecute el resto
+                if (!fOption && !lOpcion && !rOpcion)
+                {
+                    MensajeParametros("Faltan parametros obligatorios");
+                    parametroOk = false;
+                }
             }
+
             return parametroOk;
         }
 
@@ -293,17 +278,14 @@ namespace pdftotext
                     firstpage = 0;
                     lastpage = 0;
 
-                    //Graba el fichero completo si el parametro es -f o -l
-                    if (opcion == "-f" || opcion == "-l")
-                    {
-                        File.WriteAllText(outputFilePath, extractedText.ToString());
-                    }
-
-                    else if (opcion == "-m")
+                    if (mOpcion)
                     {
                         //Extraer datos del modelo
                         extraeDatosModelo();
                     }
+                    else
+                        //Graba el fichero completo si no se ha pasado como parametro generar las variables del modelo de Hacienda
+                        File.WriteAllText(outputFilePath, extractedText.ToString());
                 }
                 inicializaVariables();
             }
@@ -321,7 +303,7 @@ namespace pdftotext
                 //Obtener el CSV del PDF
                 csvPDF = busca.csv(textoCompleto);
                 string textoCSV = string.Empty;
-                if (csvPDF.Length == 16)
+                if (csvPDF != string.Empty)
                 {
                     textoCSV = $"CSV: {csvPDF}";
                 }

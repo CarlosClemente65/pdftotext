@@ -2,7 +2,7 @@
   "profiles": {
     "pdftotext": {
       "commandName": "Project",
-      "commandLineArgs": "-h",
+      "commandLineArgs": "-f \"Ana Clemente Soria 303 1T-23.pdf\" -r \"C:\\Borrar\\pdftotext\" -m",
       "workingDirectory": "D:\\Programacion\\C#\\pdftotext\\pdftotext\\bin\\Debug\\net6.0"
     }
   }

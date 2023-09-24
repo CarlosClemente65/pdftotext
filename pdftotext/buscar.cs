@@ -15,7 +15,7 @@ namespace pdftotext
             while (indexCsv >= 0 && !foundCsv) //Se ejecuta mientras no se encuentre el CSV 
             {
                 int inicioCsv = indexCsv + textoCsv.Length;
-                int largoCsv = textoCompleto.IndexOf("\n", inicioCsv) - inicioCsv;
+                int largoCsv = textoCompleto.IndexOf("\n", inicioCsv) - inicioCsv; //Para localizar el texto, se eliminan los saltos de linea
                 if (largoCsv <= 0)
                 {
                     largoCsv = textoCompleto.Length - inicioCsv;
@@ -40,18 +40,18 @@ namespace pdftotext
         {
             // Extraer el expediente
             string Expediente = string.Empty;
-            string textoExpediente = csvEncontrado;
+            string textoExpediente = "Expediente/Referencia";
             int indexExpediente = textoCompleto.IndexOf(textoExpediente);
             bool foundExpediente = false;
 
             while (indexExpediente >= 0 && !foundExpediente)
             {
-                int inicioExpediente = indexExpediente - textoExpediente.Length - 1;
-                int largoExpediente = textoCompleto.IndexOf("\n", inicioExpediente) - inicioExpediente;
-                if (largoExpediente <= 0)
-                {
-                    largoExpediente = textoCompleto.Length - inicioExpediente;
-                }
+                int inicioExpediente = textoCompleto.IndexOf("): ", (indexExpediente + textoExpediente.Length))+3;
+                //int largoExpediente = textoCompleto.IndexOf("\n", inicioExpediente) - inicioExpediente;
+                //if (largoExpediente <= 0)
+                //{
+                //    largoExpediente = textoCompleto.Length - inicioExpediente;
+                //}
                 Expediente = textoCompleto.Substring(inicioExpediente, 16).Trim();
                 if (Expediente.Length > 0)
                 {
@@ -78,12 +78,12 @@ namespace pdftotext
             while (indexJustificante >= 0 && !foundJustificante)
             {
                 int inicioJustificante = indexJustificante + textoJustificante.Length;
-                int largoJustificante = textoCompleto.IndexOf("\n", inicioJustificante) - inicioJustificante;
-                if (largoJustificante <= 0)
-                {
-                    largoJustificante = textoCompleto.Length - inicioJustificante;
-                }
-                justificante = textoCompleto.Substring(inicioJustificante, largoJustificante).Trim();
+                //int largoJustificante = textoCompleto.IndexOf("\n", inicioJustificante) - inicioJustificante;
+                //if (largoJustificante <= 0)
+                //{
+                //    largoJustificante = textoCompleto.Length - inicioJustificante;
+                //}
+                justificante = textoCompleto.Substring(inicioJustificante, 13).Trim();
                 if (justificante.Length > 0)
                 {
                     foundJustificante = true;
