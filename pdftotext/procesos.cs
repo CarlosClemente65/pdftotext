@@ -2,8 +2,6 @@
 using iText.Kernel.Pdf.Canvas.Parser;
 using iText.Kernel.Pdf;
 using System.Text;
-using System.Security.Cryptography.X509Certificates;
-using Org.BouncyCastle.Bcpg;
 
 namespace pdftotext
 {
