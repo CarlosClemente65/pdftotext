@@ -2,7 +2,7 @@
 
 namespace pdftotext
 {
-    public class buscar
+    public class buscar_anterior
     {
         public string csv(string textoCompleto)
         {

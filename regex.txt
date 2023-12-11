@@ -1,0 +1,24 @@
+Si se busca primero el justificante, los 3 primeros digitos seran el modelo
+	buscar justificante: \b[0-9\d]{13}\b
+	
+Una vez buscado el justificante se puede puede buscar el expediente que siempre sera el año seguido del modelo
+	buscar expediente (este obliga a que haya letras y numeros pero no siempre es asi): (?=.*[A-Z])(?=.*\d)^20\d{2}111[A-Z\d].*	
+	buscar expediente (el 100 es el modelo que hay que poner): 20\d{2}100[A-Z\d].*
+	
+El ejercicio se puede sacar el expediente (4 primeros digitos)
+
+El csv tiene 16 digitos (letras y numeros) pero nunca empezara con el año y modelo; en el ejemplo solo he puesto el año
+	buscar csv: (?=.*[A-Z])(?=.*\d)\b(?!20\d{2})[A-Z\d]{16}\b
+
+El NIF hay que hacer algo porque esta el del titular y el presentador
+	Buscar NIF: (?=.*[A-Z])\b[A-Z0-9]\d{7}[A-Z0-9]\b
+	Buscar NIF (con el nombre y apellido): (?=.*[A-Z])\b[A-Z0-9]\d{7}[A-Z0-9]\b(?:[^\r\n]+\w+){3,}
+	Buscar NIF (con el nombre en varias lineas): (?=.*[A-Z])\b[A-Z0-9]\d{7}[A-Z0-9]\b(?:\s*\S+[ \t]*){0,4}
+	
+El nombre veo que siempre aparece en el siguiente orden: CSV, NIF, nombre
+
+El periodo se puede buscar:
+	En general viene el año y luego el periodo: 20\d{2}\s\d[\d|T]
+	Trimestral: [\dT]
+	Para los modelos anuales poner fijo 0A
+	Mensuales: 

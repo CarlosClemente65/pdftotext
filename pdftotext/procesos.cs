@@ -2,21 +2,31 @@
 using iText.Kernel.Pdf.Canvas.Parser;
 using iText.Kernel.Pdf;
 using System.Text;
+using iText.Layout.Element;
 
 namespace pdftotext
 {
     internal class procesos
     {
+        //Variables para la gestion de ficheros
         public string filePath = string.Empty;
         public string[] filesPDF;
-        public int firstpage = 0;
-        public int lastpage = 0;
-        //La variable parametroOk sirve para controlar que se ha puesto al menos un parametro correcto
-        public bool parametroOk = false;
-        //public string opcion = "-f";
         public string outputFilePath = "";
         string folderPath = string.Empty;
+
+        //Variables para la gestion de paginas del PDF
+        public int firstpage = 0;
+        public int lastpage = 0;
+
+        //La variable parametroOk sirve para controlar que se ha puesto al menos un parametro correcto
+        public bool parametroOk = false;
+
+        //Variables para la extraccion de los datos del PDF
         StringBuilder extractedText = new StringBuilder();
+        List<string> paginasPDF = new List<string>();
+        string textoCompleto = string.Empty;
+
+        //Variables para los valores extraidos
         public string csvPDF = string.Empty;
         public string expedientePDF = string.Empty;
         public string justificantePDF = string.Empty;
@@ -40,7 +50,6 @@ namespace pdftotext
         public void MensajeParametros(string mensaje)
         {
             Console.Clear();
-            //Console.WriteLine();
             Console.WriteLine(mensaje);
             Console.WriteLine("\nUso:\tpdftotext [-h] <-f <archivo.pdf> | -l> <-r <ruta del archivo>> [-m] [-p [desde]-[hasta]]");
             Console.WriteLine("\n  Parametros:");
@@ -183,6 +192,7 @@ namespace pdftotext
                         break;
 
                     case "-r":
+                        rOpcion = true;
                         folderPath = parametros[i + 1];
                         if (!Directory.Exists(folderPath))
                         {
@@ -207,7 +217,7 @@ namespace pdftotext
                 }
                 else
                 //Si falta algun parametro obligatorio, se muestra un mensaje y se devuelve falso para evitar que se ejecute el resto
-                if (!fOption && !lOpcion && !rOpcion)
+                if (!fOption && !lOpcion || !rOpcion)
                 {
                     MensajeParametros("Faltan parametros obligatorios");
                     parametroOk = false;
@@ -228,9 +238,6 @@ namespace pdftotext
 
                 using (PdfDocument pdfDoc = new PdfDocument(new PdfReader(filePath)))
                 {
-                    SimpleTextExtractionStrategy extractionStrategy = new SimpleTextExtractionStrategy();
-                    //Almacena el contenido del PDF
-
                     //Controla si los numeros de pagina indicados estan en el intervalo de paginas del fichero
                     if (firstpage > pdfDoc.GetNumberOfPages() || lastpage > pdfDoc.GetNumberOfPages())
                     {
@@ -254,12 +261,15 @@ namespace pdftotext
                     //Extrae el texto de las paginas del PDF y lo almacena en la variable extractedText
                     for (int i = firstpage; i <= lastpage; i++)
                     {
+                        ITextExtractionStrategy extractionStrategy = new SimpleTextExtractionStrategy();
+                        string pageText = PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(i), extractionStrategy);
+                        paginasPDF.Add(pageText);
                         //Si se activa la variable debug, el fichero de salida se le añade el numero de linea para facilitar las busquedas.
                         if (Program.debug == true)
                         {
                             int lineNumber = 1;
                             //Extrae el texto de la pagina y le añade el numero de linea
-                            string pageText = PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(i), extractionStrategy);
+
                             foreach (string line in pageText.Split('\n'))
                             {
                                 extractedText.AppendLine($"Linea {lineNumber++}: {line.Trim()}"); // Agrega el número de línea al principio de cada línea
@@ -268,6 +278,7 @@ namespace pdftotext
                         else
                         {
                             //Extrae el texto completo de la pagina
+                            extractedText.Append($"\nPagina {i}\n");
                             extractedText.Append(PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(i), extractionStrategy));
                         }
                     }
@@ -291,111 +302,23 @@ namespace pdftotext
 
         public void extraeDatosModelo()
         {
-            buscar busca = new buscar();
-
             //Si se pasa como parametro '-m' se generan todos las busquedas de los datos del modelo
             using (StreamWriter writer = new StreamWriter(outputFilePath)) //Crea el StreamWriter para grabar en el fichero a traves de un using para liberar recursos cuando acabe.
             {
-                string textoCompleto = extractedText.ToString().Trim();
+                textoCompleto = extractedText.ToString().Trim();
+                busqueda buscar = new busqueda(textoCompleto, paginasPDF);
 
-                //Obtener el CSV del PDF
-                csvPDF = busca.csv(textoCompleto);
-                string textoCSV = string.Empty;
-                if (csvPDF != string.Empty)
-                {
-                    textoCSV = $"CSV: {csvPDF}";
-                }
-                else
-                {
-                    textoCSV = "CSV no encontrado";
-                }
-                writer.WriteLine(textoCSV);
-
-                //Obtener expediente del PDF
-                expedientePDF = busca.expediente(textoCompleto, csvPDF);
-                string textoExpediente = string.Empty;
-                if (expedientePDF.Length > 0)
-                {
-                    textoExpediente = $"Expediente: {expedientePDF}";
-                }
-                else
-                {
-                    textoExpediente = "Expediente no encontrado";
-                }
-                writer.WriteLine(textoExpediente);
-
-                //Obtener numero de justificante
-                justificantePDF = busca.justificante(textoCompleto);
-                string textoJustificante = string.Empty;
-                if (justificantePDF.Length > 0)
-                {
-                    textoJustificante = $"Justificante: {justificantePDF}";
-                }
-                else
-                {
-                    textoJustificante = "Justificante no encontrado";
-                }
-                writer.WriteLine(textoJustificante);
-
-                //Obtener NIF
-                nifPDF = busca.Nif(textoCompleto, csvPDF);
-                string textoNif = string.Empty;
-                if (nifPDF.Length > 0)
-                {
-                    textoNif = $"NIF: {nifPDF}";
-                }
-                else
-                {
-                    textoNif = "NIF no encontrado";
-                }
-                writer.WriteLine(textoNif);
-
-                //Obtener Nombre
-                nombrePDF = busca.nombre(textoCompleto, nifPDF);
-                string textoNombre = string.Empty;
-                if (nombrePDF.Length > 0)
-                {
-                    textoNombre = $"Nombre: {nombrePDF}";
-                }
-                else
-                {
-                    textoNombre = "Nombre no encontrado";
-                }
-                writer.WriteLine(textoNombre);
-
-                //Obtener ejercicio
-                ejercicioPDF = busca.ejercicio(expedientePDF);
-                string textoEjercicio = string.Empty;
-                if (ejercicioPDF.Length > 0)
-                {
-                    textoEjercicio = $"Ejercicio: {ejercicioPDF}";
-                }
-                else
-                {
-                    textoEjercicio = "Ejercicio no encontrado";
-                }
-                writer.WriteLine(textoEjercicio);
-
-
-                //Obtener modelo
-                modeloPDF = busca.modelo(expedientePDF);
-                string textoModelo = string.Empty;
-                if (modeloPDF.Length > 0)
-                {
-                    textoModelo = $"Modelo: {modeloPDF}";
-                }
-                else
-                {
-                    textoModelo = "Modelo no encontrado";
-                }
-
-                writer.WriteLine(textoModelo);
-
-                //Obtener periodo
-                periodoPDF = busca.periodo();
-                writer.WriteLine(periodoPDF);
+                buscar.buscarDatos();
+                //Grabamos los datos en el fichero
+                writer.WriteLine($"NIF: {buscar.Nif}");
+                writer.WriteLine($"Nombre: {buscar.Nombre}");
+                writer.WriteLine($"Modelo: {buscar.Modelo}");
+                writer.WriteLine($"Ejercicio: {buscar.Ejercicio}");
+                writer.WriteLine($"Periodo: {buscar.Periodo}");
+                writer.WriteLine($"Justificante: {buscar.Justificante}");
+                writer.WriteLine($"CSV: {buscar.Csv}");
+                writer.WriteLine($"Expediente: {buscar.Expediente}");
             }
-
         }
 
 
@@ -412,6 +335,8 @@ namespace pdftotext
             modeloPDF = string.Empty;
             periodoPDF = string.Empty;
             extractedText.Clear();
+            paginasPDF.Clear();
+            textoCompleto = string.Empty;
         }
     }
 }
