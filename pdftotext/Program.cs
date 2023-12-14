@@ -15,8 +15,12 @@
             //Instanciacion de la clase procesosPDF para acceder a los metodos definidos en ella
             procesosPDF proceso = new procesosPDF();
 
-            //Proceso de los parametros que se pasan
-            continuar = proceso.gestionParametros(args);
+            if (args.Length == 3)
+            {
+                //Proceso de los parametros que se pasan
+                continuar = proceso.gestionParametros(args);
+            }
+            
 
             if (continuar)
             {

@@ -2,7 +2,6 @@
   "profiles": {
     "pdftotext": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Borrar\\pdftotext\\M.Luz Cebrian 303 1T-23.pdf\" \"C:\\Borrar\\pdftotext\\datosModelo303-1t.txt\" \"C:\\Borrar\\pdftotext\\textoModelo303-1t.txt\"",
       "workingDirectory": "D:\\Programacion\\C#\\pdftotext\\pdftotext\\bin\\Debug\\net6.0"
     }
   }
