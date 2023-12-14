@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 
 [assembly: AssemblyTitle("Extrae en formato texto los datos de los modelos de Hacienda en PDF")]
-[assembly: AssemblyProduct("dse_datosModelos")]
+[assembly: AssemblyProduct("dsedatosmodelos")]
 [assembly: AssemblyDescription("Extrae en formato texto los datos de los modelos de Hacienda en PDF")]
 [assembly: AssemblyCompany("Diagram Software Europa S.L.")]
 [assembly: AssemblyCopyright("© 2023 - Diagram Software Europa S.L.")]
