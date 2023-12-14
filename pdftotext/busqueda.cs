@@ -7,12 +7,12 @@ namespace pdftotext
         //Definicion de variables a nivel de clase con sus metodos get y set
         private string textoCompleto; //Almacena el texto completo del PDF
         private List<string> paginasPDF; //Almacena cada una de las paginas del PDF
+        private string modelo036 = string.Empty; //Se utiliza en el justificante del modelo 036
         public string Justificante { get; private set; }
         public string Modelo { get; private set; }
         public string Expediente { get; private set; }
         public string Ejercicio { get; private set; }
         public string Csv { get; private set; }
-        public string Nombre { get; private set; } //Necesario para que no de error la clase procesos_anterior
         public string Nif { get; private set; }
         public string NifConyuge { get; private set; } //Necesario para la renta
         public bool TributacionConjunta { get; private set; } //Necesario para la renta
@@ -22,18 +22,22 @@ namespace pdftotext
         //Lista de modelos anuales
         List<string> modelosAnuales = new List<string>
         {
-        "100",
-        "180",
-        "182",
-        "184",
-        "187",
-        "190",
-        "193",
-        "200",
-        "296",
-        "347",
-        "390",
-        "714"
+            "036",
+            "100",
+            "180",
+            "182",
+            "184",
+            "187",
+            "190",
+            "193",
+            "200",
+            "232",
+            "296",
+            "347",
+            "390",
+            "714",
+            "720",
+            "840"
         };
 
         //Lista de periodos validos
@@ -65,6 +69,7 @@ namespace pdftotext
         List<string> modelosValidos = new List<string>
         {
             "036",
+            "037",
             "100",
             "102",
             "111",
@@ -80,7 +85,10 @@ namespace pdftotext
             "193",
             "200",
             "202",
+            "210",
+            "211",
             "216",
+            "218",
             "232",
             "296",
             "303",
@@ -90,9 +98,11 @@ namespace pdftotext
             "349",
             "353",
             "390",
+            "569",
             "583",
             "714",
-            "720"
+            "720",
+            "840"
         };
 
 
@@ -118,6 +128,13 @@ namespace pdftotext
 
             //El modelo siempre son los 3 primeros digitos del justificante
             Modelo = Justificante.Substring(0, 3);
+            switch (Modelo)
+            {
+                case "890":
+                case "893":
+                    Modelo = "840";
+                    break;
+            }
 
             //Valida que el modelo encontrado esta en la lista de modelos validos
             if (!modelosValidos.Contains(Modelo))
@@ -172,7 +189,13 @@ namespace pdftotext
             try
             {
                 //El expediente es una cadena que empieza por el año, le sigue el modelo y el resto son letras mayusculas o numeros hasta el final de la linea, por eso se asigna al ejercicio los 4 primeros digitos
-                string patronRegex = "20\\d{2}" + Modelo + "[A-Z\\d].*";
+
+                //En el modelo 036 el codigo de modelo del expediente es C36
+                if (Modelo == "036")
+                {
+                    modelo036 = "C36";
+                }
+                string patronRegex = "20\\d{2}" + modelo036 + "[A-Z\\d].*";
                 Expediente = ExtraeTexto(patronRegex, 1);
                 Ejercicio = Expediente.Substring(0, 4);
             }
@@ -188,8 +211,31 @@ namespace pdftotext
             try
             {
                 //El periodo suele estar siempre a continuacion del ejecicio y puede estar en la misma linea o en la siguiente.
-                string patronRegex = @"20\d{2}\s\d[\d|T]";
-                Periodo = ExtraeTexto(patronRegex, 2).Substring(5, 2);
+                //string patronRegex = @"\b20\d{2}[\s]\d[\d|T]"; Modificada por la siguiente expresion ya que esta no localiza el periodo si esta en una segunda linea
+
+                string patronRegex = string.Empty;
+                switch (Modelo)
+                {
+                    //El modelo 210 el periodo viene antes del año
+                    case "210":
+                        patronRegex = @"\b(\d[0-9A-Z])(\s)20\d{2}\b";
+                        Periodo = ExtraeTexto(patronRegex, 2).Substring(0, 2);
+                        break;
+
+                    //El modelo 349 el periodo va detras del justificante
+                    case "349":
+                        patronRegex = @"\b[0-9\d]{13}\b\s\d[0-9A-Z]\b";
+                        Periodo = ExtraeTexto(patronRegex, 2);
+                        Periodo = Periodo.Substring(Periodo.Length - 2);
+                        break;
+
+                    default:
+                        patronRegex = @"\b20\d{2}(\s)(\d[0-9A-Z])\b";
+                        Periodo = ExtraeTexto(patronRegex, 2).Substring(5, 2);
+                        break;
+
+                }
+
                 if (!periodosValidos.Contains(Periodo))
                 {
                     Periodo = "Periodo no encontrado";
@@ -206,8 +252,11 @@ namespace pdftotext
             try
             {
                 //El csv siempre es una cadena de 16 caracteres formada por letras mayusculas y numeros, y se excluyen las cadenas que tengan un numero de 4 digitos que empieze por 20 para evitar que se confunda con el expediente que puede tener la misma longitud
-                string patronRegex = @"(?=.*[A-Z])(?=.*\d)\b(?!20\d{2})[A-Z\d]{16}\b";
+
+                //string patronRegex = @"(?=.*[A-Z])(?=.*\d)\b(?!20\d{2})[A-Z\d]{16}\b"; //Esta expresion no localiza siempre el numero, con la siguiente si que suele acertar
+                string patronRegex = @"Verificación(\s|:\s)[A-Z\d]{16}\b";
                 Csv = ExtraeTexto(patronRegex, 1);
+                Csv = Csv.Substring(Csv.Length - 16, 16);
             }
             catch
             {
@@ -240,7 +289,7 @@ namespace pdftotext
                 Regex regex;
                 MatchCollection matches;
 
-                //Busca si se trata de una renta conjunta en todo el texto ya que en la pagina 2 solo hay las equis de las casillas pero no se puede saber cual corresponde, por eso se busca el texto de la casilla 0461 en la liquidacion y si existe es porque ha aplicado la reduccion y por lo tanto es conjunta.
+                //Busca si se trata de una renta conjunta en todo el texto ya que en la pagina 2 solo estan las equis de las casillas pero no se puede saber cual corresponde, por eso se busca el texto de la casilla 0461 en la liquidacion y si existe es porque ha aplicado la reduccion y por lo tanto es conjunta.
                 patronRegex = "Reducción por tributación conjunta";
                 regex = new Regex(patronRegex);
                 matches = regex.Matches(textoCompleto);
@@ -249,7 +298,7 @@ namespace pdftotext
                     TributacionConjunta = true;
                 }
 
-                //Busca el NIF y nombre del mismo modo que se hace en el metodo BuscarNif (las paginas en la lista comienzan desde la 0 por eso se coje la 1 que realmente corresponde a la 2
+                //Busca el NIF del mismo modo que se hace en el metodo BuscarNif (las paginas en la lista comienzan desde la 0 por eso se coje la 1 que realmente corresponde a la 2
                 patronRegex = @"(?=.*[A-Z])\b[A-Z0-9]\d{7}[A-Z0-9]\b(?:\s*\S+[ \t]*){0,4}";
                 regex = new Regex(patronRegex);
                 matches = regex.Matches(paginasPDF[1]);

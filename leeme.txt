@@ -1,0 +1,4 @@
+
+Uso:
+	dse_datosModelos fichero.pdf salidaDatos.txt salidaTexto.txt
+	Nota: el segundo parametro es el fichero con los campos localizados y el tercero es el texto completo

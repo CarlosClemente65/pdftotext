@@ -1,8 +1,26 @@
-﻿namespace pdftotext
+﻿using System.Reflection;
+
+[assembly: AssemblyTitle("Extrae en formato texto los datos de los modelos de Hacienda en PDF")]
+[assembly: AssemblyProduct("dse_datosModelos")]
+[assembly: AssemblyDescription("Extrae en formato texto los datos de los modelos de Hacienda en PDF")]
+[assembly: AssemblyCompany("Diagram Software Europa S.L.")]
+[assembly: AssemblyCopyright("© 2023 - Diagram Software Europa S.L.")]
+[assembly: AssemblyVersion("1.1.0.0")]
+[assembly: AssemblyFileVersion("1.1.0.0")]
+
+
+namespace pdftotext
 {
-    //La clase "buscar_anterior" se desarrollo en la version v1.0 para buscar los datos teniendo en cuenta las lineas
-    //Con la version v1.1 las busquedas se hacen mediante expresiones regulares y se usan mas parametros para otro tipo de gestion.
-    //Con la ultima version v2.0 (la actual) solo se pasan 3 parametros con el fichero a procesar y los ficheros de salida
+    /*
+     Aplicacion para la busqueda de campos de los modelos en PDF de Hacienda para archivarlos en el GAD.
+    Desarrollada por Carlos Clemente - 12/2023
+    
+    Uso:
+        dse_datosModelos fichero.pdf salidaDatos.txt salidaTexto.txt
+        Nota: el segundo parametro es el fichero con los campos localizados y el tercero es el texto completo
+        
+
+    */
 
     class Program
     {
