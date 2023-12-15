@@ -74,7 +74,7 @@ namespace pdftotext
                     else
                     {
                         //Extrae el texto completo de la pagina
-                        extractedText.Append($"\nPagina {i}\n");
+                        //extractedText.Append($"\nPagina {i}\n");
                         extractedText.Append(pageText);
                     }
                 }
@@ -120,6 +120,10 @@ namespace pdftotext
                 writer.WriteLine($"Justificante: {buscar.Justificante}");
                 writer.WriteLine($"CSV: {buscar.Csv}");
                 writer.WriteLine($"Expediente: {buscar.Expediente}");
+                if (buscar.complementaria != "")
+                {
+                    writer.WriteLine($"complementaria: {buscar.complementaria}");
+                }
             }
         }
     }
