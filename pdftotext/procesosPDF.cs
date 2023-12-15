@@ -120,9 +120,13 @@ namespace pdftotext
                 writer.WriteLine($"Justificante: {buscar.Justificante}");
                 writer.WriteLine($"CSV: {buscar.Csv}");
                 writer.WriteLine($"Expediente: {buscar.Expediente}");
-                if (buscar.complementaria != "")
+                if (!string.IsNullOrEmpty(buscar.fecha036))
                 {
-                    writer.WriteLine($"complementaria: {buscar.complementaria}");
+                    writer.WriteLine($"Fecha presentacion 036/037: {buscar.fecha036}");
+                }
+                if (buscar.complementaria)
+                {
+                    writer.WriteLine($"Complementaria: SI");
                 }
             }
         }

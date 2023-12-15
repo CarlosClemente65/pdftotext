@@ -4,11 +4,11 @@ namespace pdftotext
 {
     public class busqueda
     {
-        //Definicion de variables a nivel de clase con sus metodos get y set
+        //Definicion de variables necesarias para procesar datos
         private string textoCompleto; //Almacena el texto completo del PDF
         private List<string> paginasPDF; //Almacena cada una de las paginas del PDF
-        private string modelo036 = string.Empty; //Se utiliza en el justificante del modelo 036
 
+        //Definicion de variables a nivel de clase con sus metodos get y set
         public string Justificante { get; private set; }
         public string Modelo { get; private set; }
         public string Expediente { get; private set; }
@@ -19,8 +19,34 @@ namespace pdftotext
         public bool TributacionConjunta { get; private set; } //Necesario para la renta
         public string Periodo { get; private set; }
         public string fecha036 { get; private set; }
+        public bool complementaria { get; private set; }
 
-        public string complementaria { get; private set; }
+        #region patrones de busqueda
+        //Definicion de patrones de busqueda de datos
+        private string patronJustificante = @"\b[0-9\d]{13}\b";
+
+        private string patronExpediente = string.Empty; //Este patron se define en el metodo porque cambia si el modelo es el 036
+        
+        private string patronPeriodo = string.Empty; //Este patron se define en el metodo porque cambia segun el modelo
+
+        //El csv siempre es una cadena de 16 caracteres formada por letras mayusculas y numeros, y se excluyen las cadenas que tengan un numero de 4 digitos que empieze por 20 para evitar que se confunda con el expediente que puede tener la misma longitud
+        //string patronRegex = @"(?=.*[A-Z])(?=.*\d)\b(?!20\d{2})[A-Z\d]{16}\b"; //Esta expresion no localiza siempre el numero, con la siguiente si que suele acertar
+        string patronCsv = @"Verificación(\s|:\s)[A-Z\d]{16}\b";
+
+        //El NIF suele estar seguido del nombre y se busca siempre en la pagina 2 porque en la pagina 1 esta el presentador que puede ser distinto. La expresion se asegura que haya alguna letra mayuscula, la primera palabra debe ser el NIF (empieza por letra o numero, le siguen 7 numeros y termina con letra o numero), y la segunda parte busca hasta un total de 4 palabras que se supone que es el nombre; en todo caso el nombre luego no se usa.
+        string patronNif = @"(?=.*[A-Z])\b[A-Z0-9]\d{7}[A-Z0-9]\b(?:\s*\S+[ \t]*){0,4}";
+
+        //Busca si se trata de una renta conjunta en todo el texto ya que en la pagina 2 solo estan las equis de las casillas pero no se puede saber cual corresponde, por eso se busca el texto de la casilla 0461 en la liquidacion y si existe es porque ha aplicado la reduccion y por lo tanto es conjunta.
+        string patronRentaConjunta = "Reducción por tributación conjunta";
+
+        string patronNifRenta = @"(?=.*[A-Z])\b[A-Z0-9]\d{7}[A-Z0-9]\b(?:\s*\S+[ \t]*){0,4}";
+
+        string patronFecha036 = @"[0-9]{2}.[0-9]{2}.[0-9]{4} a las [0-9]{2}.[0-9]{2}.[0-9]{2}";
+
+        #endregion
+
+
+       
 
         //Lista de modelos anuales
         List<string> modelosAnuales = new List<string>
@@ -184,8 +210,7 @@ namespace pdftotext
             try
             {
                 //El justificante siempre es una cadena de 13 numeros
-                string patronRegex = "\\b[0-9\\d]{13}\\b";
-                Justificante = ExtraeTexto(patronRegex, 1);
+                Justificante = ExtraeTexto(patronJustificante, 1);
             }
             catch
             {
@@ -202,10 +227,17 @@ namespace pdftotext
                 //En el modelo 036 el codigo de modelo del expediente es C36
                 if (Modelo == "036")
                 {
-                    modelo036 = "C36";
+                    string modelo036 = "C36";
+                    patronExpediente = "20\\d{2}" + modelo036 + "[A-Z\\d].*";
                 }
-                string patronRegex = "20\\d{2}" + modelo036 + "[A-Z\\d].*";
-                Expediente = ExtraeTexto(patronRegex, 1);
+                else
+                {
+                    patronExpediente = "20\\d{2}" + Modelo + "[A-Z\\d].*";
+                }
+
+                //string parametroExpediente = "20\\d{2}" + modelo036 + "[A-Z\\d].*";
+                
+                Expediente = ExtraeTexto(patronExpediente, 1);
                 Ejercicio = Expediente.Substring(0, 4);
             }
             catch
@@ -222,25 +254,25 @@ namespace pdftotext
                 //El periodo suele estar siempre a continuacion del ejecicio y puede estar en la misma linea o en la siguiente.
                 //string patronRegex = @"\b20\d{2}[\s]\d[\d|T]"; Modificada por la siguiente expresion ya que esta no localiza el periodo si esta en una segunda linea
 
-                string patronRegex = string.Empty;
+                
                 switch (Modelo)
                 {
                     //El modelo 210 el periodo viene antes del año
                     case "210":
-                        patronRegex = @"\b(\d[0-9A-Z])(\s)20\d{2}\b";
-                        Periodo = ExtraeTexto(patronRegex, 2).Substring(0, 2);
+                        patronPeriodo = @"\b(\d[0-9A-Z])(\s)20\d{2}\b";
+                        Periodo = ExtraeTexto(patronPeriodo, 2).Substring(0, 2);
                         break;
 
                     //El modelo 349 el periodo va detras del justificante
                     case "349":
-                        patronRegex = @"\b[0-9\d]{13}\b\s\d[0-9A-Z]\b";
-                        Periodo = ExtraeTexto(patronRegex, 2);
+                        patronPeriodo = @"\b[0-9\d]{13}\b\s\d[0-9A-Z]\b";
+                        Periodo = ExtraeTexto(patronPeriodo, 2);
                         Periodo = Periodo.Substring(Periodo.Length - 2);
                         break;
 
                     default:
-                        patronRegex = @"\b20\d{2}(\s)(\d[0-9A-Z])\b";
-                        Periodo = ExtraeTexto(patronRegex, 2).Substring(5, 2);
+                        patronPeriodo = @"\b20\d{2}(\s)(\d[0-9A-Z])\b";
+                        Periodo = ExtraeTexto(patronPeriodo, 2).Substring(5, 2);
                         break;
 
                 }
@@ -260,11 +292,7 @@ namespace pdftotext
         {
             try
             {
-                //El csv siempre es una cadena de 16 caracteres formada por letras mayusculas y numeros, y se excluyen las cadenas que tengan un numero de 4 digitos que empieze por 20 para evitar que se confunda con el expediente que puede tener la misma longitud
-
-                //string patronRegex = @"(?=.*[A-Z])(?=.*\d)\b(?!20\d{2})[A-Z\d]{16}\b"; //Esta expresion no localiza siempre el numero, con la siguiente si que suele acertar
-                string patronRegex = @"Verificación(\s|:\s)[A-Z\d]{16}\b";
-                Csv = ExtraeTexto(patronRegex, 1);
+                Csv = ExtraeTexto(patronCsv, 1);
                 Csv = Csv.Substring(Csv.Length - 16, 16);
             }
             catch
@@ -278,9 +306,7 @@ namespace pdftotext
             //Busca el NIF siempre que no se trate de una renta
             try
             {
-                //El NIF suele estar seguido del nombre y se busca siempre en la pagina 2 porque en la pagina 1 esta el presentador que puede ser distinto. La expresion se asegura que haya alguna letra mayuscula, la primera palabra debe ser el NIF (empieza por letra o numero, le siguen 7 numeros y termina con letra o numero), y la segunda parte busca hasta un total de 4 palabras que se supone que es el nombre; en todo caso el nombre luego no se usa.
-                string patronRegex = @"(?=.*[A-Z])\b[A-Z0-9]\d{7}[A-Z0-9]\b(?:\s*\S+[ \t]*){0,4}";
-                string NifNombre = ExtraeTexto(patronRegex, 2);
+                string NifNombre = ExtraeTexto(patronNif, 2);
                 NifNombre = NifNombre.Replace("\r\n", " ").Replace("\n", " ").Replace("\r", " ");
                 Nif = NifNombre.Substring(0, 9);
             }
@@ -296,19 +322,15 @@ namespace pdftotext
             {
                 Regex regex;
                 MatchCollection matches;
-
-                //Busca si se trata de una renta conjunta en todo el texto ya que en la pagina 2 solo estan las equis de las casillas pero no se puede saber cual corresponde, por eso se busca el texto de la casilla 0461 en la liquidacion y si existe es porque ha aplicado la reduccion y por lo tanto es conjunta.
-                string patronRegex = "Reducción por tributación conjunta";
-                regex = new Regex(patronRegex);
+                regex = new Regex(patronRentaConjunta);
                 matches = regex.Matches(textoCompleto);
                 if (matches.Count > 0)
                 {
                     TributacionConjunta = true;
                 }
 
-                //Busca el NIF del mismo modo que se hace en el metodo BuscarNif (las paginas en la lista comienzan desde la 0 por eso se coje la 1 que realmente corresponde a la 2
-                patronRegex = @"(?=.*[A-Z])\b[A-Z0-9]\d{7}[A-Z0-9]\b(?:\s*\S+[ \t]*){0,4}";
-                regex = new Regex(patronRegex);
+                //En la renta el NIF del titular aparece en segundo lugar, y el del conyuge en primer lugar, por eso si la renta es conjunta se devuelve el segundo NIF encontrado (indice 1) para el titular y el del conyuge es el primero (indice 0)
+                regex = new Regex(patronNifRenta);
                 matches = regex.Matches(paginasPDF[1]);
 
                 //NIF del titular
@@ -331,8 +353,8 @@ namespace pdftotext
             //Busca la fecha de presentacion del modelo 036/037
             try
             {
-                string patronRegex = @"[0-9]{2}.[0-9]{2}.[0-9]{4} a las [0-9]{2}.[0-9]{2}.[0-9]{2}";
-                fecha036 = ExtraeTexto(patronRegex, 1);
+                
+                fecha036 = ExtraeTexto(patronFecha036, 1);
                 fecha036 = fecha036.Substring(0, 10);
             }
             catch
@@ -346,16 +368,37 @@ namespace pdftotext
         {
             try
             {
+                string justificanteComplementaria = string.Empty;
                 Regex regex;
                 MatchCollection matches;
-                string patronRegex = @"\b[0-9\d]{13}\b";
-                regex = new Regex(patronRegex);
-                matches = regex.Matches(paginasPDF[1].ToString());
-                if (matches.Count > 1)
+                //El patron es igual que el de la busqueda del justificante
+                regex = new Regex(patronJustificante);
+                matches = regex.Matches(textoCompleto.ToString());
+
+                switch (Modelo)
                 {
-                    complementaria = matches[1].Value;
+                    //En el modelo 200 el justificante de la complementaria aparece en segunda posicion (indice 1)
+                    case "200":
+                        if (matches.Count > 0)
+                        {
+                            justificanteComplementaria = matches[1].Value;
+                        }
+                        break;
+
+                    //En el resto de modelos el justificante de la complementaria aparece en tercera posicion (indice 2)
+                    default:
+                        if (matches.Count > 1)
+                        {
+                            justificanteComplementaria = matches[2].Value;
+                        }
+                        break;
                 }
 
+                //No es posible que el justificante de la complementaria sea igual al de la declaracion, por lo tanto ha debido haber un error al buscarlo y se deja vacio
+                if (justificanteComplementaria != Justificante)
+                {
+                    complementaria = true;
+                }
             }
             catch
             {
