@@ -2,7 +2,7 @@
   "profiles": {
     "pdftotext": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Borrar\\MODELOS\\revisar\\840-20.pdf\" \"C:\\Borrar\\MODELOS\\revisar\\datos840-20.txt\" \"C:\\Borrar\\MODELOS\\revisar\\texto840-20.txt\"",
+      "commandLineArgs": "\"C:\\Borrar\\MODELOS\\revisar\\COMPLEMENTARIAS\\202-22.pdf\" \"C:\\Borrar\\MODELOS\\revisar\\COMPLEMENTARIAS\\datos202-22.txt\" \"C:\\Borrar\\MODELOS\\revisar\\COMPLEMENTARIAS\\texto202-22.txt\"",
       "workingDirectory": "C:\\Programacion\\c#\\pdftotextxx\\pdftotext\\bin\\Debug\\net6.0"
     }
   }

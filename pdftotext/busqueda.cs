@@ -8,6 +8,7 @@ namespace pdftotext
         private string textoCompleto; //Almacena el texto completo del PDF
         private List<string> paginasPDF; //Almacena cada una de las paginas del PDF
         private string modelo036 = string.Empty; //Se utiliza en el justificante del modelo 036
+
         public string Justificante { get; private set; }
         public string Modelo { get; private set; }
         public string Expediente { get; private set; }
@@ -17,7 +18,9 @@ namespace pdftotext
         public string NifConyuge { get; private set; } //Necesario para la renta
         public bool TributacionConjunta { get; private set; } //Necesario para la renta
         public string Periodo { get; private set; }
-        //private bool anual; //Determina si se trata de un modelo anual
+        public string fecha036 { get; private set; }
+
+        public string complementaria { get; private set; }
 
         //Lista de modelos anuales
         List<string> modelosAnuales = new List<string>
@@ -157,11 +160,17 @@ namespace pdftotext
 
             BuscarExpediente();
             BuscarCsv();
+            BuscarComplementaria();
+
+            if (Modelo == "036" || Modelo == "037")
+            {
+                BuscarFecha036();
+            }
 
             //Si se trata de la renta, hay que buscar el tipo de tributacion y ademas devolver el NIF del conyuge
             if (Modelo == "100")
             {
-                buscarDatosRenta();
+                BuscarDatosRenta();
             }
             else
             {
@@ -281,16 +290,15 @@ namespace pdftotext
             }
         }
 
-        private void buscarDatosRenta()
+        private void BuscarDatosRenta()
         {
             try
             {
-                string patronRegex = string.Empty;
                 Regex regex;
                 MatchCollection matches;
 
                 //Busca si se trata de una renta conjunta en todo el texto ya que en la pagina 2 solo estan las equis de las casillas pero no se puede saber cual corresponde, por eso se busca el texto de la casilla 0461 en la liquidacion y si existe es porque ha aplicado la reduccion y por lo tanto es conjunta.
-                patronRegex = "Reducción por tributación conjunta";
+                string patronRegex = "Reducción por tributación conjunta";
                 regex = new Regex(patronRegex);
                 matches = regex.Matches(textoCompleto);
                 if (matches.Count > 0)
@@ -315,6 +323,43 @@ namespace pdftotext
             catch
             {
                 Nif = "No encontrado";
+            }
+        }
+
+        private void BuscarFecha036()
+        {
+            //Busca la fecha de presentacion del modelo 036/037
+            try
+            {
+                string patronRegex = @"[0-9]{2}.[0-9]{2}.[0-9]{4} a las [0-9]{2}.[0-9]{2}.[0-9]{2}";
+                fecha036 = ExtraeTexto(patronRegex, 1);
+                fecha036 = fecha036.Substring(0, 10);
+            }
+            catch
+            {
+                fecha036 = "Fecha presentacion no encontrada";
+            }
+
+        }
+
+        private void BuscarComplementaria()
+        {
+            try
+            {
+                Regex regex;
+                MatchCollection matches;
+                string patronRegex = @"\b[0-9\d]{13}\b";
+                regex = new Regex(patronRegex);
+                matches = regex.Matches(paginasPDF[1].ToString());
+                if (matches.Count > 1)
+                {
+                    complementaria = matches[1].Value;
+                }
+
+            }
+            catch
+            {
+                //Si hay algun error y no se encuentra la complementaria no hacemos nada.
             }
         }
 
