@@ -1,4 +1,7 @@
 
 Uso:
-	dse_datosModelos fichero.pdf salidaDatos.txt salidaTexto.txt
-	Nota: el segundo parametro es el fichero con los campos localizados y el tercero es el texto completo
+	dsedatosmodelos.exe fichero.pdf -m salidaDatosModelos.txt -t salidaTextoCompleto.txt
+
+Notas: 	1. El fichero.pdf y al menos uno de los dos parametros siguientes son obligatorios
+		2. El parametro -m extrae los datos del modelo y debe ir seguido de la ruta del fichero a grabar
+		3. El parametro -t graba el texto completo del PDF y debe ir seguido de la ruta del fichero a grabar

@@ -1,0 +1,8 @@
+NIF: 05196375P
+Modelo: 100
+Ejercicio: 2022
+Periodo: 0A
+Tributacion: individual
+Justificante: 1003986176365
+CSV: 79UV57EHTNCM4DTJ
+Expediente: 202210096370388L

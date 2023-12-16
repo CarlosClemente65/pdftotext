@@ -5,8 +5,8 @@
 [assembly: AssemblyDescription("Extrae en formato texto los datos de los modelos de Hacienda en PDF")]
 [assembly: AssemblyCompany("Diagram Software Europa S.L.")]
 [assembly: AssemblyCopyright("© 2023 - Diagram Software Europa S.L.")]
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: AssemblyVersion("1.1.1.0")]
+[assembly: AssemblyFileVersion("1.1.1.0")]
 
 
 namespace pdftotext
@@ -17,15 +17,13 @@ namespace pdftotext
     
     Uso:
         dse_datosModelos fichero.pdf salidaDatos.txt salidaTexto.txt
-        Nota: el segundo parametro es el fichero con los campos localizados y el tercero es el texto completo
+        Nota: el segundo parametro es el fichero con los campos localizados y el tercero y siguientes es la forma de extraccion (modelos, texto completo u otras formas que se puedan implementar en el futuro)
         
-
     */
 
     class Program
     {
         //La variable debug permite añadir el numero de linea al texto extraido
-        public static bool debug = false;
         public static bool continuar = false;
 
         static void Main(string[] args)
@@ -33,21 +31,30 @@ namespace pdftotext
             //Instanciacion de la clase procesosPDF para acceder a los metodos definidos en ella
             procesosPDF proceso = new procesosPDF();
 
-            if (args.Length == 3)
+            //Se deben pasar al menos 3 parametros: fichero PDF, tipo de proceso y fichero de salida
+            if (args.Length > 2)
             {
                 //Proceso de los parametros que se pasan
                 continuar = proceso.gestionParametros(args);
             }
-            
 
+            //Si los parametros pasados son correctos
             if (continuar)
             {
                 //Extrae el texto del PDF
                 proceso.extraeTextoPDF();
 
                 //Extrae datos del modelo
-                proceso.extraeDatosModelo();
+                if (proceso.procesaModelo)
+                {
+                    proceso.extraeDatosModelo();
+                }
 
+                //Graba el fichero con el texto completo
+                if (proceso.extraeTexto)
+                {
+                    File.WriteAllText(proceso.ficheroTexto, proceso.textoCompleto);
+                }
             }
         }
     }

@@ -7,82 +7,105 @@ namespace pdftotext
 {
     internal class procesosPDF
     {
-
         //Se definen las variables a nivel de clase para que esten accesibles
 
         //Variables para la gestion de ficheros
-        public string ficheroPDF;
-        public string ficheroDatos;
-        public string ficheroTexto;
+        public string ficheroPDF; //Fichero PDF a procesar
+        public string ficheroDatos; //Fichero de salida con los datos del modelo
+        public string ficheroTexto; //Fichero de salida con el texto completo
+
+        //Variables para la gestion de parametros
+        public bool procesaModelo = false; //Si se pasa el parametro -m se procesan los datos del modelo
+        public bool extraeTexto = false; //Si se pasa el parametro -t se graba el texto completo en un fichero
 
         //Variables para la gestion de paginas del PDF 
-        public int firstpage = 0;
-        public int lastpage = 0;
+        public int firstpage = 1;
+        public int lastpage = 1;
 
         //Variables para la extraccion de los datos del PDF
         StringBuilder extractedText = new StringBuilder();
-        List<string> paginasPDF = new List<string>();
-        string textoCompleto = string.Empty;
+        public List<string> paginasPDF = new List<string>();
+        public string textoCompleto = string.Empty;
 
         public bool gestionParametros(string[] parametros)
         {
+            int totalParametros = parametros.Length;
             ficheroPDF = parametros[0];
-            ficheroDatos = parametros[1];
-            ficheroTexto = parametros[2];
-
+            //Comprueba si existe el fichero PDF
             if (!File.Exists(ficheroPDF))
             {
                 File.WriteAllText("error_proceso.txt", "El fichero PDF no existe");
                 return false;
             }
 
-            return true;
+            //Procesado del resto de parametros
+            int controlParametros = 0;
+            for (int i = 1; i < totalParametros; i++)
+            {
+                switch (parametros[i])
+                {
+                    case "-m":
+                        //Procesado de modelos PDF. El nombre del fichero de salida debe venir a continuacion del parametro
+                        if (totalParametros > i + 1)
+                        {
+                            //El siguiente parametro debe ser el fichero de salida
+                            if (parametros[i + 1].Length > 2)
+                            {
+                                ficheroDatos = parametros[i + 1];
+                                procesaModelo = true;
+                                controlParametros++;
+                            }
+                        }
+                        break;
+
+                    case "-t":
+                        //Extraccion de texto completo del PDF. El nombre del fichero de salida debe venir a continuacion del parametro.
+                        if (totalParametros > i + 1)
+                        {
+                            //El siguiente parametro debe ser el fichero de salida
+                            if (parametros[i + 1].Length > 2)
+                            {
+                                ficheroTexto = parametros[i + 1];
+                                extraeTexto = true;
+                                controlParametros++;
+                            }
+                        }
+                        break;
+                }
+            }
+
+            //Control si los parametros pasados son correctos
+            if (controlParametros > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void extraeTextoPDF()
         {
             using (PdfDocument pdfDoc = new PdfDocument(new PdfReader(ficheroPDF)))
             {
-                //Si no se pasa la primera pagina se asigna la 1
-                if (firstpage == 0)
-                {
-                    firstpage = 1;
-                }
-                //Si no se pasa la ultima pagina, se asigna el total de paginas del fichero
-                if (lastpage == 0)
-                {
-                    lastpage = pdfDoc.GetNumberOfPages();
-                }
+                lastpage = pdfDoc.GetNumberOfPages();
 
                 //Extrae el texto de las paginas del PDF y lo almacena en la variable extractedText
                 for (int i = firstpage; i <= lastpage; i++)
                 {
                     ITextExtractionStrategy extractionStrategy = new SimpleTextExtractionStrategy();
                     string pageText = PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(i), extractionStrategy);
+
+                    //Se añade el texto de la pagina a la variable paginasPDF que es una lista con las paginas por separado
                     paginasPDF.Add(pageText);
-                    //Si se activa la variable debug, el fichero de salida se le añade el numero de linea para facilitar las busquedas.
-                    if (Program.debug == true)
-                    {
-                        int lineNumber = 1;
-                        //Extrae el texto de la pagina y le añade el numero de linea
 
-                        foreach (string line in pageText.Split('\n'))
-                        {
-                            extractedText.AppendLine($"Linea {lineNumber++}: {line.Trim()}"); // Agrega el número de línea al principio de cada línea
-                        }
-                    }
-                    else
-                    {
-                        //Extrae el texto completo de la pagina
-                        //extractedText.Append($"\nPagina {i}\n");
-                        extractedText.Append(pageText);
-                    }
+                    //Se añade el texto de la pagina a la variable extractedText que es un string con todo el texto del PDF
+                    extractedText.Append(pageText);
                 }
-                File.WriteAllText(ficheroTexto, extractedText.ToString());
 
-                //Pone a cero las paginas por si se procesan varios ficheros
-                firstpage = 0;
-                lastpage = 0;
+                //Se almacena el texto extraido para poder procesarlo
+                textoCompleto = extractedText.ToString().Trim();
             }
         }
 
@@ -91,7 +114,7 @@ namespace pdftotext
             //Crea el StreamWriter para grabar en el fichero a traves de un using para liberar recursos cuando acabe.
             using (StreamWriter writer = new StreamWriter(ficheroDatos))
             {
-                textoCompleto = extractedText.ToString().Trim();
+                //Instanciacion de la clase busqueda para usar los metodos
                 busqueda buscar = new busqueda(textoCompleto, paginasPDF);
 
                 //Hacemos la llamada al metodo buscarDatos para que se almacenen los datos del PDF
