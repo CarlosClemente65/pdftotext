@@ -1,7 +1,0 @@
-NIF: B53458527
-Modelo: 200
-Ejercicio: 2019
-Periodo: 0A
-Justificante: 2000435847830
-CSV: 3K22W496SY8FCR4M
-Expediente: 201920045850198Q

@@ -1,7 +1,0 @@
-NIF: 29026546V
-Modelo: 130
-Ejercicio: 2023
-Periodo: 3T
-Justificante: 1304290255624
-CSV: DUEN3XMJ5YRLXAUC
-Expediente: 202313026540325G

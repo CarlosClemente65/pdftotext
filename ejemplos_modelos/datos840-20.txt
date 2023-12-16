@@ -1,7 +1,0 @@
-NIF: F02309763
-Modelo: 840
-Ejercicio: 2020
-Periodo: 0A
-Justificante: 8938007555486
-CSV: 9FYGVG3BALUNTLU2
-Expediente: 202084030970001W

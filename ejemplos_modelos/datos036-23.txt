@@ -1,7 +1,0 @@
-NIF: B56386311
-Modelo: 036
-Ejercicio: 2023
-Periodo: 0A
-Justificante: 0364303452895
-CSV: BYXPD287XFGEGMV5
-Expediente: 2023C3638630323G

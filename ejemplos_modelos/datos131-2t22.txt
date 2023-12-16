@@ -1,7 +1,0 @@
-NIF: 28988581W
-Modelo: 131
-Ejercicio: 2022
-Periodo: 2T
-Justificante: 1313898985095
-CSV: 7FZ7RGPE72Q8KYH7
-Expediente: 202213188580044E

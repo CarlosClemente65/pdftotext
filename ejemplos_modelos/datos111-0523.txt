@@ -1,7 +1,0 @@
-NIF: B03277654
-Modelo: 111
-Ejercicio: 2023
-Periodo: 05
-Justificante: 1114254697613
-CSV: DZQH3ABDVML94A6C
-Expediente: 202311127760272Q

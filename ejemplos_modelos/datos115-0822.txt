@@ -1,7 +1,0 @@
-NIF: B03277654
-Modelo: 115
-Ejercicio: 2022
-Periodo: 08
-Justificante: 1153291902971
-CSV: FSXP3SQHYRUDC6KS
-Expediente: 202211527760191V

@@ -1,7 +1,0 @@
-NIF: X4481473S
-Modelo: 115
-Ejercicio: 2023
-Periodo: 1T
-Justificante: 1154839446905
-CSV: R7YN43GPR5HK7MDW
-Expediente: 202311581470006R

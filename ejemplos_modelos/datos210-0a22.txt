@@ -1,7 +1,0 @@
-NIF: X8578561K
-Modelo: 210
-Ejercicio: 2022
-Periodo: 0A
-Justificante: 2103734121090
-CSV: PTVDT29N7CZ6MQRK
-Expediente: 202221045710126E

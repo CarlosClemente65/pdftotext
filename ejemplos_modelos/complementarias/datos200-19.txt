@@ -1,8 +1,0 @@
-NIF: B02211217
-Modelo: 200
-Ejercicio: 2019
-Periodo: 0A
-Justificante: 2000224728056
-CSV: HJ8BRZGX2RBYM7SS
-Expediente: 201920021120197F
-Complementaria: 2000240009573

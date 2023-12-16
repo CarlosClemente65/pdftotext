@@ -1,7 +1,0 @@
-NIF: B03813425
-Modelo: 216
-Ejercicio: 2021
-Periodo: 4T
-Justificante: 2162803815891
-CSV: ES8Z4S8T27SBNDKT
-Expediente: 202121681340013T

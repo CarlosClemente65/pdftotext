@@ -1,7 +1,0 @@
-NIF: B19151000
-Modelo: 202
-Ejercicio: 2022
-Periodo: Periodo no encontrado
-Justificante: 2023191317393
-CSV: 7BWUX5B5W8Y6QUAV
-Expediente: 202220215100060A

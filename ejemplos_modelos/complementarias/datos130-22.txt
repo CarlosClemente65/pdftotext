@@ -1,8 +1,0 @@
-NIF: 05154076Y
-Modelo: 130
-Ejercicio: 2022
-Periodo: 3T
-Justificante: 1302097938592
-CSV: KEM95XQRMR55J4VS
-Expediente: 202213054070410M
-Complementaria: 1302092731012

@@ -1,7 +1,0 @@
-NIF: 54738283P
-Modelo: 111
-Ejercicio: 2022
-Periodo: 2T
-Justificante: 1113378156590
-CSV: KM5V93C7TYJRY8ZJ
-Expediente: 202211138280339V

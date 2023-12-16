@@ -1,7 +1,0 @@
-NIF: B19151000
-Modelo: 202
-Ejercicio: 2023
-Periodo: 1P
-Justificante: 2024131230563
-CSV: CQKBJ235LLWLJDRH
-Expediente: 202320215100001F

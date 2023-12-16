@@ -1,7 +1,0 @@
-NIF: B03813425
-Modelo: 216
-Ejercicio: 2022
-Periodo: 1T
-Justificante: 2163833205186
-CSV: M26NKDEFGB736Q5N
-Expediente: 202221681340001Y

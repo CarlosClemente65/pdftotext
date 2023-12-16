@@ -1,9 +1,0 @@
-NIF: 05036235V
-NIF conyuge: 05084971Q
-Modelo: 100
-Ejercicio: 2022
-Periodo: 0A
-Tributacion: conjunta
-Justificante: 1003319013051
-CSV: WHLNERGQ8T33A2GQ
-Expediente: 202210036230748M

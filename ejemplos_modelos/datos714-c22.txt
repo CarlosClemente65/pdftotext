@@ -1,7 +1,0 @@
-NIF: Y9027012D
-Modelo: 714
-Ejercicio: 2022
-Periodo: 0A
-Justificante: 7143229319554
-CSV: 2JAEX95Z4LDU4M6Z
-Expediente: 202271427010007G
