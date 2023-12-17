@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 
-[assembly: AssemblyTitle("Extrae en formato texto los datos de los modelos de Hacienda en PDF")]
-[assembly: AssemblyProduct("dsedatosmodelos")]
-[assembly: AssemblyDescription("Extrae en formato texto los datos de los modelos de Hacienda en PDF")]
+[assembly: AssemblyTitle("Convierte un PDF en texto y extrae los datos de los modelos de Hacienda")]
+[assembly: AssemblyProduct("dsepdfatexto")]
+[assembly: AssemblyDescription("Convierte un PDF en texto y extrae los datos de los modelos de Hacienda")]
 [assembly: AssemblyCompany("Diagram Software Europa S.L.")]
 [assembly: AssemblyCopyright("© 2023 - Diagram Software Europa S.L.")]
 [assembly: AssemblyVersion("1.1.1.0")]
@@ -12,18 +12,16 @@
 namespace pdftotext
 {
     /*
-     Aplicacion para la busqueda de campos de los modelos en PDF de Hacienda para archivarlos en el GAD.
+     Aplicacion para convertir a texto un PDF y buscar los datos de los modelos de Hacienda para archivarlos en el GAD.
     Desarrollada por Carlos Clemente - 12/2023
     
     Uso:
-        dse_datosModelos fichero.pdf salidaDatos.txt salidaTexto.txt
-        Nota: el segundo parametro es el fichero con los campos localizados y el tercero y siguientes es la forma de extraccion (modelos, texto completo u otras formas que se puedan implementar en el futuro)
-        
+        dsepdfatext fichero.pdf -m datosModelo.txt -t textoPDF.txt
+        Nota: el segundo parametro es el fichero con los campos localizados y el tercero es el texto completo del PDF. En un futuro podran implementarse mas
     */
 
     class Program
     {
-        //La variable debug permite añadir el numero de linea al texto extraido
         public static bool continuar = false;
 
         static void Main(string[] args)
@@ -38,7 +36,7 @@ namespace pdftotext
                 continuar = proceso.gestionParametros(args);
             }
 
-            //Si los parametros pasados son correctos
+            //Si los parametros pasados son correctos realiza los procesos que se hayan pasado como parametros
             if (continuar)
             {
                 //Extrae el texto del PDF

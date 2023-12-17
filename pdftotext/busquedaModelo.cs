@@ -2,7 +2,7 @@
 
 namespace pdftotext
 {
-    public class busqueda
+    public class busquedaModelo
     {
         //Definicion de variables necesarias para procesar datos
         private string textoCompleto; //Almacena el texto completo del PDF
@@ -135,7 +135,7 @@ namespace pdftotext
         };
 
 
-        public busqueda(string textoCompleto, List<string> paginasPDF)
+        public busquedaModelo(string textoCompleto, List<string> paginasPDF)
         {
             //Construcctor de la clase que inicializa las variables
             this.textoCompleto = textoCompleto;
@@ -159,11 +159,18 @@ namespace pdftotext
 
             //El modelo siempre son los 3 primeros digitos del justificante
             Modelo = Justificante.Substring(0, 3);
+            
+            //Bucle para procesos especificos segun el modelo 
             switch (Modelo)
             {
                 case "890":
                 case "893":
                     Modelo = "840";
+                    break;
+
+                case "036":
+                case "037":
+                    BuscarFecha036();
                     break;
             }
 
@@ -186,16 +193,7 @@ namespace pdftotext
                 }
             }
 
-            BuscarExpediente();
-            BuscarCsv();
-            BuscarComplementaria();
-
-            if (Modelo == "036" || Modelo == "037")
-            {
-                BuscarFecha036();
-            }
-
-            //Si se trata de la renta, hay que buscar el tipo de tributacion y ademas devolver el NIF del conyuge
+            //Si se trata de la renta, hay que buscar el tipo de tributacion y ademas devolver el NIF del conyuge, en otro caso se busca solo el NIF.
             if (Modelo == "100")
             {
                 BuscarDatosRenta();
@@ -204,6 +202,11 @@ namespace pdftotext
             {
                 BuscarNif();
             }
+
+            BuscarExpediente();
+            BuscarCsv();
+            BuscarComplementaria();
+
         }
 
 

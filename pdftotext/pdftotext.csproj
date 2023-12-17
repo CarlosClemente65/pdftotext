@@ -8,7 +8,7 @@
 		<IsPublishable>True</IsPublishable>
 		<StartupObject>pdftotext.Program</StartupObject>
 		<ApplicationIcon>dse.ico</ApplicationIcon>
-		<AssemblyName>dsedatosmodelos</AssemblyName>
+		<AssemblyName>dsepdfatexto</AssemblyName>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

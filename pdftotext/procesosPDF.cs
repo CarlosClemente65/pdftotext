@@ -2,6 +2,7 @@
 using iText.Kernel.Pdf.Canvas.Parser;
 using iText.Kernel.Pdf;
 using System.Text;
+using Microsoft.SqlServer.Server;
 
 namespace pdftotext
 {
@@ -17,6 +18,7 @@ namespace pdftotext
         //Variables para la gestion de parametros
         public bool procesaModelo = false; //Si se pasa el parametro -m se procesan los datos del modelo
         public bool extraeTexto = false; //Si se pasa el parametro -t se graba el texto completo en un fichero
+        //Añadir nuevas variables para otros usos en el futuro
 
         //Variables para la gestion de paginas del PDF 
         public int firstpage = 1;
@@ -111,47 +113,52 @@ namespace pdftotext
 
         public void extraeDatosModelo()
         {
-            //Crea el StreamWriter para grabar en el fichero a traves de un using para liberar recursos cuando acabe.
-            using (StreamWriter writer = new StreamWriter(ficheroDatos))
+            //Instanciacion de la clase busqueda para usar los metodos
+            busquedaModelo buscar = new busquedaModelo(textoCompleto, paginasPDF);
+
+            //Hacemos la llamada al metodo buscarDatos para que se almacenen los datos del PDF
+            buscar.buscarDatos();
+
+            //Almacena el texto a grabar en el fichero
+            string texto = string.Empty;
+            texto += ($"NIF: {buscar.Nif} \n");
+            if (buscar.NifConyuge != "")
             {
-                //Instanciacion de la clase busqueda para usar los metodos
-                busqueda buscar = new busqueda(textoCompleto, paginasPDF);
-
-                //Hacemos la llamada al metodo buscarDatos para que se almacenen los datos del PDF
-                buscar.buscarDatos();
-
-                //Grabamos los datos extraidos del PDF en el fichero
-                writer.WriteLine($"NIF: {buscar.Nif}");
-                if (buscar.NifConyuge != "")
+                texto += ($"NIF conyuge: {buscar.NifConyuge} \n");
+            }
+            texto += ($"Modelo: {buscar.Modelo} \n");
+            texto += ($"Ejercicio: {buscar.Ejercicio} \n");
+            texto += ($"Periodo: {buscar.Periodo} \n");
+            if (buscar.Modelo == "100")
+            {
+                if (buscar.TributacionConjunta)
                 {
-                    writer.WriteLine($"NIF conyuge: {buscar.NifConyuge}");
+                    texto += ("Tributacion: conjunta \n");
                 }
-                writer.WriteLine($"Modelo: {buscar.Modelo}");
-                writer.WriteLine($"Ejercicio: {buscar.Ejercicio}");
-                writer.WriteLine($"Periodo: {buscar.Periodo}");
-                if (buscar.Modelo == "100")
+                else
                 {
-                    if (buscar.TributacionConjunta)
-                    {
-                        writer.WriteLine("Tributacion: conjunta");
-                    }
-                    else
-                    {
-                        writer.WriteLine("Tributacion: individual");
-                    }
-                }
-                writer.WriteLine($"Justificante: {buscar.Justificante}");
-                writer.WriteLine($"CSV: {buscar.Csv}");
-                writer.WriteLine($"Expediente: {buscar.Expediente}");
-                if (!string.IsNullOrEmpty(buscar.fecha036))
-                {
-                    writer.WriteLine($"Fecha presentacion 036/037: {buscar.fecha036}");
-                }
-                if (buscar.complementaria)
-                {
-                    writer.WriteLine($"Complementaria: SI");
+                    texto += ("Tributacion: individual \n");
                 }
             }
+            texto += ($"Justificante: {buscar.Justificante} \n");
+            texto += ($"CSV: {buscar.Csv} \n");
+            texto += ($"Expediente: {buscar.Expediente} \n");
+            if (!string.IsNullOrEmpty(buscar.fecha036))
+            {
+                texto += ($"Fecha presentacion 036/037: {buscar.fecha036} \n");
+            }
+            if (buscar.complementaria)
+            {
+                texto += ($"Complementaria: SI \n");
+            }
+
+            //Graba el fichero de datos con el texto creado
+            File.WriteAllText(ficheroDatos, texto);
+        }
+
+        public void grabaFichero(string texto, string pathFichero)
+        {
+            File.WriteAllText(pathFichero, texto);
         }
     }
 }
