@@ -9,7 +9,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-ejemplos_modelos/
 
 
 # User-specific files (MonoDevelop/Xamarin Studio)
@@ -401,3 +400,4 @@ FodyWeavers.xsd
 
 #Exclusiones manuales
 /toDo.txt
+ejemplos_modelos/

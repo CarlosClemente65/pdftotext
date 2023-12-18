@@ -10,6 +10,7 @@
 		<ApplicationIcon>dse.ico</ApplicationIcon>
 		<AssemblyName>dsepdfatexto</AssemblyName>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<SignAssembly>False</SignAssembly>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 	  <GenerateAssemblyInfo>False</GenerateAssemblyInfo>

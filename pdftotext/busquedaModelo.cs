@@ -158,8 +158,11 @@ namespace pdftotext
             BuscarJustificante();
 
             //El modelo siempre son los 3 primeros digitos del justificante
-            Modelo = Justificante.Substring(0, 3);
-            
+            if (Justificante.Length >= 3)
+            {
+                Modelo = Justificante.Substring(0, 3);
+            }
+
             //Bucle para procesos especificos segun el modelo 
             switch (Modelo)
             {
@@ -216,6 +219,10 @@ namespace pdftotext
             try
             {
                 Justificante = ExtraeTexto(patronJustificante, 1);
+                if (Justificante == "")
+                {
+                    Justificante = "No encontrado";
+                }
             }
             catch
             {
@@ -240,7 +247,15 @@ namespace pdftotext
                 }
 
                 Expediente = ExtraeTexto(patronExpediente, 1);
-                Ejercicio = Expediente.Substring(0, 4);
+                if (Expediente.Length >= 4)
+                {
+                    Ejercicio = Expediente.Substring(0, 4);
+                }
+                else
+                {
+                    Expediente = "No encontrado";
+                    Ejercicio = "No encontrado";
+                }
             }
             catch
             {
@@ -262,30 +277,54 @@ namespace pdftotext
                     //En el modelo 210 el periodo viene antes del año
                     case "210":
                         patronPeriodo = @"\b(\d[0-9A-Z])(\s)20\d{2}\b";
-                        Periodo = ExtraeTexto(patronPeriodo, 2).Substring(0, 2);
+                        Periodo = ExtraeTexto(patronPeriodo, 2);
+                        if (Periodo.Length >= 7)
+                        {
+                            Periodo = Periodo.Substring(0, 2);
+                        }
+                        else
+                        {
+                            Periodo = "No encontrado";
+                        }
+
                         break;
 
                     //El modelo 349 el periodo va detras del justificante
                     case "349":
                         patronPeriodo = @"\b[0-9\d]{13}\b\s\d[0-9A-Z]\b";
                         Periodo = ExtraeTexto(patronPeriodo, 2);
-                        Periodo = Periodo.Substring(Periodo.Length - 2);
+                        if (Periodo.Length >= 16)
+                        {
+                            Periodo = Periodo.Substring(Periodo.Length - 2);
+                        }
+                        else
+                        {
+                            Periodo = "No encontrado";
+                        }
                         break;
 
                     default:
                         patronPeriodo = @"\b20\d{2}(\s)(\d[0-9A-Z])\b";
-                        Periodo = ExtraeTexto(patronPeriodo, 2).Substring(5, 2);
+                        Periodo = ExtraeTexto(patronPeriodo, 2);
+                        if (Periodo.Length >= 7)
+                        {
+                            Periodo = Periodo.Substring(5, 2);
+                        }
+                        else
+                        {
+                            Periodo = "No encontrado";
+                        }
                         break;
                 }
 
                 if (!periodosValidos.Contains(Periodo))
                 {
-                    Periodo = "Periodo no encontrado";
+                    Periodo = "No encontrado";
                 }
             }
             catch
             {
-                Periodo = "Periodo no encontrado";
+                Periodo = "No encontrado";
             }
         }
 
@@ -294,7 +333,14 @@ namespace pdftotext
             try
             {
                 Csv = ExtraeTexto(patronCsv, 1);
-                Csv = Csv.Substring(Csv.Length - 16, 16);
+                if (Csv.Length >= 16)
+                {
+                    Csv = Csv.Substring(Csv.Length - 16, 16);
+                }
+                else
+                {
+                    Csv = "No encontrado";
+                }
             }
             catch
             {
@@ -309,7 +355,14 @@ namespace pdftotext
             {
                 string NifNombre = ExtraeTexto(patronNif, 2);
                 NifNombre = NifNombre.Replace("\r\n", " ").Replace("\n", " ").Replace("\r", " ");
-                Nif = NifNombre.Substring(0, 9);
+                if (NifNombre.Length >= 9)
+                {
+                    Nif = NifNombre.Substring(0, 9);
+                }
+                else
+                {
+                    Nif = "No encontrado";
+                }
             }
             catch
             {
@@ -341,17 +394,34 @@ namespace pdftotext
                 if (matches2.Count >= 2)
                 {
                     //NIF del titular
-                    Nif = matches2[1].Value.Substring(0, 9);
+                    if (matches2[1].Value.Length >= 9)
+                    {
+                        Nif = matches2[1].Value.Substring(0, 9);
+                    }
+                    else
+                    {
+                        Nif = "No encontrado";
+                    }
 
                     //Si la tributacion es conjunta se almacena el Nif del conyuge
                     if (TributacionConjunta)
                     {
-                        NifConyuge = matches2[0].Value.Substring(0, 9);
+                        if (matches2[0].Value.Length >= 9)
+                        {
+                            NifConyuge = matches2[0].Value.Substring(0, 9);
+                        }
+                        else
+                        {
+                            NifConyuge = "No encontrado";
+                        }
                     }
                 }
                 else
                 {
-                    Nif = matches2[0].Value.Substring(0, 9);
+                    if (matches2[0].Value.Length >= 9)
+                    {
+                        Nif = matches2[0].Value.Substring(0, 9);
+                    }
                 }
             }
             catch
@@ -368,7 +438,10 @@ namespace pdftotext
                 fecha036 = ExtraeTexto(patronFecha036, 1);
                 if (!string.IsNullOrEmpty(fecha036))
                 {
-                    fecha036 = fecha036.Substring(0, 10);
+                    if (fecha036.Length >= 10)
+                    {
+                        fecha036 = fecha036.Substring(0, 10);
+                    }
                 }
             }
             catch

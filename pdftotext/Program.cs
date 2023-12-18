@@ -3,7 +3,7 @@
 [assembly: AssemblyTitle("Convierte un PDF en texto y extrae los datos de los modelos de Hacienda")]
 [assembly: AssemblyProduct("dsepdfatexto")]
 [assembly: AssemblyDescription("Convierte un PDF en texto y extrae los datos de los modelos de Hacienda")]
-[assembly: AssemblyCompany("Diagram Software Europa S.L.")]
+//[assembly: AssemblyCompany("Diagram Software Europa S.L.")]
 [assembly: AssemblyCopyright("© 2023 - Diagram Software Europa S.L.")]
 [assembly: AssemblyVersion("1.1.1.0")]
 [assembly: AssemblyFileVersion("1.1.1.0")]

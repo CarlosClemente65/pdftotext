@@ -2,8 +2,8 @@
   "profiles": {
     "pdftotext": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Borrar\\MODELOS\\revisar\\036-23.pdf\" -t \"C:\\Borrar\\MODELOS\\revisar\\texto036-23.txt\" -m \"C:\\Borrar\\MODELOS\\revisar\\datos036-23.txt\"",
-      "workingDirectory": "d:\\Programacion\\c#\\pdftotext\\pdftotext\\bin\\Debug\\net6.0"
+      "commandLineArgs": "\"c:\\doc-ds~1\\noreco~1\\036-22.pdf\" -m \"c:\\doc-ds~1\\noreco~1\\036-22_resp.txt\" -t \"c:\\doc-ds~1\\noreco~1\\036-22-0123.txt\"",
+      "workingDirectory": "C:\\Programacion\\c#\\pdftotext\\pdftotext\\bin\\Debug\\net48"
     }
   }
 }
