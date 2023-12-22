@@ -4,9 +4,10 @@ namespace pdftotext
 {
     public class busquedaModelo
     {
-        //Definicion de variables necesarias para procesar datos
-        private string textoCompleto; //Almacena el texto completo del PDF
-        private List<string> paginasPDF; //Almacena cada una de las paginas del PDF
+        ////Definicion de variables necesarias para procesar datos
+        
+        //Instanciacion de la clase procesosPDF para usar sus metodos en esta
+        procesosPDF procesosPDF = new procesosPDF();
 
         //Definicion de variables a nivel de clase con sus metodos get y set
         public string Justificante { get; private set; }
@@ -138,8 +139,8 @@ namespace pdftotext
         public busquedaModelo(string textoCompleto, List<string> paginasPDF)
         {
             //Construcctor de la clase que inicializa las variables
-            this.textoCompleto = textoCompleto;
-            this.paginasPDF = paginasPDF;
+            Program.textoCompleto = textoCompleto;
+            Program.paginasPDF = paginasPDF;
             this.Justificante = string.Empty;
             this.Expediente = string.Empty;
             this.Csv = string.Empty;
@@ -218,7 +219,7 @@ namespace pdftotext
         {
             try
             {
-                Justificante = ExtraeTexto(patronJustificante, 1);
+                Justificante = procesosPDF.ProcesaPatron(patronJustificante, 1);
                 if (Justificante == "")
                 {
                     Justificante = "No encontrado";
@@ -246,7 +247,7 @@ namespace pdftotext
                     patronExpediente = "20\\d{2}" + Modelo + "[A-Z\\d].*";
                 }
 
-                Expediente = ExtraeTexto(patronExpediente, 1);
+                Expediente = procesosPDF.ProcesaPatron(patronExpediente, 1);
                 if (Expediente.Length >= 4)
                 {
                     Ejercicio = Expediente.Substring(0, 4);
@@ -277,7 +278,7 @@ namespace pdftotext
                     //En el modelo 210 el periodo viene antes del año
                     case "210":
                         patronPeriodo = @"\b(\d[0-9A-Z])(\s)20\d{2}\b";
-                        Periodo = ExtraeTexto(patronPeriodo, 2);
+                        Periodo = procesosPDF.ProcesaPatron(patronPeriodo, 2);
                         if (Periodo.Length >= 7)
                         {
                             Periodo = Periodo.Substring(0, 2);
@@ -292,7 +293,7 @@ namespace pdftotext
                     //El modelo 349 el periodo va detras del justificante
                     case "349":
                         patronPeriodo = @"\b[0-9\d]{13}\b\s\d[0-9A-Z]\b";
-                        Periodo = ExtraeTexto(patronPeriodo, 2);
+                        Periodo = procesosPDF.ProcesaPatron(patronPeriodo, 2);
                         if (Periodo.Length >= 16)
                         {
                             Periodo = Periodo.Substring(Periodo.Length - 2);
@@ -305,7 +306,7 @@ namespace pdftotext
 
                     default:
                         patronPeriodo = @"\b20\d{2}(\s)(\d[0-9A-Z])\b";
-                        Periodo = ExtraeTexto(patronPeriodo, 2);
+                        Periodo = procesosPDF.ProcesaPatron(patronPeriodo, 2);
                         if (Periodo.Length >= 7)
                         {
                             Periodo = Periodo.Substring(5, 2);
@@ -332,7 +333,7 @@ namespace pdftotext
         {
             try
             {
-                Csv = ExtraeTexto(patronCsv, 1);
+                Csv = procesosPDF.ProcesaPatron(patronCsv, 1);
                 if (Csv.Length >= 16)
                 {
                     Csv = Csv.Substring(Csv.Length - 16, 16);
@@ -353,7 +354,7 @@ namespace pdftotext
             //Busca el NIF siempre que no se trate de una renta
             try
             {
-                string NifNombre = ExtraeTexto(patronNif, 2);
+                string NifNombre = procesosPDF.ProcesaPatron(patronNif, 2);
                 NifNombre = NifNombre.Replace("\r\n", " ").Replace("\n", " ").Replace("\r", " ");
                 if (NifNombre.Length >= 9)
                 {
@@ -376,7 +377,7 @@ namespace pdftotext
             try
             {
                 regex = new Regex(patronRentaConjunta);
-                MatchCollection matches1 = regex.Matches(textoCompleto);
+                MatchCollection matches1 = regex.Matches(Program.textoCompleto);
                 if (matches1.Count > 0)
                 {
                     TributacionConjunta = true;
@@ -389,7 +390,7 @@ namespace pdftotext
             {
                 //En la renta el NIF del titular aparece en segundo lugar, y el del conyuge en primer lugar, por eso si la renta es conjunta se devuelve el segundo NIF encontrado (indice 1) para el titular y el del conyuge es el primero (indice 0)
                 regex = new Regex(patronNif);
-                MatchCollection matches2 = regex.Matches(paginasPDF[1]);
+                MatchCollection matches2 = regex.Matches(Program.paginasPDF[1]);
 
                 if (matches2.Count >= 2)
                 {
@@ -435,7 +436,7 @@ namespace pdftotext
             //Busca la fecha de presentacion del modelo 036/037
             try
             {
-                fecha036 = ExtraeTexto(patronFecha036, 1);
+                fecha036 = procesosPDF.ProcesaPatron(patronFecha036, 1);
                 if (!string.IsNullOrEmpty(fecha036))
                 {
                     if (fecha036.Length >= 10)
@@ -460,7 +461,7 @@ namespace pdftotext
 
                 //El patron es igual que el de la busqueda del justificante
                 Regex regex = new Regex(patronJustificante);
-                MatchCollection matches = regex.Matches(textoCompleto.ToString());
+                MatchCollection matches = regex.Matches(Program.textoCompleto.ToString());
 
                 switch (Modelo)
                 {
@@ -495,21 +496,6 @@ namespace pdftotext
 
         #endregion
 
-        private string ExtraeTexto(string patronRegex, int pagina)
-        {
-            //Metodo para extraer el texto segun el patron de busqueda pasado
-            Regex regex = new Regex(patronRegex);
-            MatchCollection matches = regex.Matches(paginasPDF[pagina - 1].ToString());
-
-            //Si encuentra algo 
-            if (matches.Count > 0)
-            {
-                return matches[0].Value;
-            }
-            else
-            {
-                return "";
-            }
-        }
+        
     }
 }

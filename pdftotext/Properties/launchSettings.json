@@ -2,8 +2,8 @@
   "profiles": {
     "pdftotext": {
       "commandName": "Project",
-      "commandLineArgs": "\"c:\\doc-ds~1\\noreco~1\\036-22.pdf\" -m \"c:\\doc-ds~1\\noreco~1\\036-22_resp.txt\" -t \"c:\\doc-ds~1\\noreco~1\\036-22-0123.txt\"",
-      "workingDirectory": "C:\\Programacion\\c#\\pdftotext\\pdftotext\\bin\\Debug\\net48"
+      "commandLineArgs": "\"C:\\Borrar\\laboral\\certificado1.pdf\" -l \"C:\\Borrar\\laboral\\certificado1_resp.txt\" -t \"C:\\Borrar\\laboral\\certificado1_datos.txt\"",
+      "workingDirectory": "D:\\Programacion\\C#\\pdftotext\\pdftotext\\bin\\Debug\\net48"
     }
   }
 }

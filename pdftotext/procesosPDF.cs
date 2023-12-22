@@ -3,6 +3,7 @@ using iText.Kernel.Pdf.Canvas.Parser;
 using iText.Kernel.Pdf;
 using System.Text;
 using Microsoft.SqlServer.Server;
+using System.Text.RegularExpressions;
 
 namespace pdftotext
 {
@@ -18,6 +19,7 @@ namespace pdftotext
         //Variables para la gestion de parametros
         public bool procesaModelo = false; //Si se pasa el parametro -m se procesan los datos del modelo
         public bool extraeTexto = false; //Si se pasa el parametro -t se graba el texto completo en un fichero
+        public bool procesaLaboral = false;//Si se pasa el parametro -l se procesan los documentos laborales 
         //Añadir nuevas variables para otros usos en el futuro
 
         //Variables para la gestion de paginas del PDF 
@@ -26,66 +28,8 @@ namespace pdftotext
 
         //Variables para la extraccion de los datos del PDF
         StringBuilder extractedText = new StringBuilder();
-        public List<string> paginasPDF = new List<string>();
-        public string textoCompleto = string.Empty;
 
-        public bool gestionParametros(string[] parametros)
-        {
-            int totalParametros = parametros.Length;
-            ficheroPDF = parametros[0];
-            //Comprueba si existe el fichero PDF
-            if (!File.Exists(ficheroPDF))
-            {
-                File.WriteAllText("error_proceso.txt", "El fichero PDF no existe");
-                return false;
-            }
 
-            //Procesado del resto de parametros
-            int controlParametros = 0;
-            for (int i = 1; i < totalParametros; i++)
-            {
-                switch (parametros[i])
-                {
-                    case "-m":
-                        //Procesado de modelos PDF. El nombre del fichero de salida debe venir a continuacion del parametro
-                        if (totalParametros > i + 1)
-                        {
-                            //El siguiente parametro debe ser el fichero de salida
-                            if (parametros[i + 1].Length > 2)
-                            {
-                                ficheroDatos = parametros[i + 1];
-                                procesaModelo = true;
-                                controlParametros++;
-                            }
-                        }
-                        break;
-
-                    case "-t":
-                        //Extraccion de texto completo del PDF. El nombre del fichero de salida debe venir a continuacion del parametro.
-                        if (totalParametros > i + 1)
-                        {
-                            //El siguiente parametro debe ser el fichero de salida
-                            if (parametros[i + 1].Length > 2)
-                            {
-                                ficheroTexto = parametros[i + 1];
-                                extraeTexto = true;
-                                controlParametros++;
-                            }
-                        }
-                        break;
-                }
-            }
-
-            //Control si los parametros pasados son correctos
-            if (controlParametros > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
         public void extraeTextoPDF()
         {
@@ -100,21 +44,21 @@ namespace pdftotext
                     string pageText = PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(i), extractionStrategy);
 
                     //Se añade el texto de la pagina a la variable paginasPDF que es una lista con las paginas por separado
-                    paginasPDF.Add(pageText);
+                    Program.paginasPDF.Add(pageText);
 
                     //Se añade el texto de la pagina a la variable extractedText que es un string con todo el texto del PDF
                     extractedText.Append(pageText);
                 }
 
                 //Se almacena el texto extraido para poder procesarlo
-                textoCompleto = extractedText.ToString().Trim();
+                Program.textoCompleto = extractedText.ToString().Trim();
             }
         }
 
         public void extraeDatosModelo()
         {
             //Instanciacion de la clase busqueda para usar los metodos
-            busquedaModelo buscar = new busquedaModelo(textoCompleto, paginasPDF);
+            busquedaModelo buscar = new busquedaModelo(Program.textoCompleto, Program.paginasPDF);
 
             //Hacemos la llamada al metodo buscarDatos para que se almacenen los datos del PDF
             buscar.buscarDatos();
@@ -153,10 +97,54 @@ namespace pdftotext
             }
 
             //Graba el fichero de datos con el texto creado
-            File.WriteAllText(ficheroDatos, texto);
+            grabaFichero(ficheroDatos, texto);
         }
 
-        public void grabaFichero(string texto, string pathFichero)
+        public void extraeDatosLaboral()
+        {
+            //Instanciacion de la clase busqueda para usar los metodos
+            busquedaLaboral buscar = new busquedaLaboral(Program.textoCompleto, Program.paginasPDF);
+
+            //Hacemos la llamada al metodo buscarDatos para que se almacenen los datos del PDF
+            buscar.buscarDatos();
+
+            //Almacena el texto a grabar en el fichero
+            string texto = string.Empty;
+
+            switch (buscar.Modelo)
+            {
+                case "CER":
+                    texto += $"Modelo: {buscar.Modelo} \n";
+                    texto += $"CIF: {buscar.Nif} \n";
+                    texto += $"Ejercicio: {buscar.Ejercicio} \n";
+                    texto += $"Periodo: {buscar.Periodo} \n";
+
+                    break;
+            }
+
+            //Graba el fichero de datos con el texto creado
+            grabaFichero(ficheroDatos, texto);
+
+        }
+
+        public string ProcesaPatron(string patronRegex, int pagina)
+        {
+            //Metodo para extraer el texto segun el patron de busqueda pasado
+            Regex regex = new Regex(patronRegex);
+            MatchCollection matches = regex.Matches(Program.paginasPDF[pagina - 1].ToString());
+
+            //Si encuentra algo 
+            if (matches.Count > 0)
+            {
+                return matches[0].Value;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public void grabaFichero(string pathFichero, string texto)
         {
             File.WriteAllText(pathFichero, texto);
         }
