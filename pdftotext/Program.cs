@@ -48,6 +48,12 @@ namespace pdftotext
                 //Extrae el texto del PDF
                 proceso.extraeTextoPDF();
 
+                //Graba el fichero con el texto completo
+                if (proceso.extraeTexto)
+                {
+                    proceso.grabaFichero(proceso.ficheroTexto, textoCompleto);
+                }
+
                 //Extrae datos del modelo
                 if (proceso.procesaModelo)
                 {
@@ -60,17 +66,13 @@ namespace pdftotext
                     proceso.extraeDatosLaboral();
                 }
 
-                //Graba el fichero con el texto completo
-                if (proceso.extraeTexto)
-                {
-                    proceso.grabaFichero(proceso.ficheroTexto, textoCompleto);
-                }
             }
 
             bool gestionParametros(string[] parametros)
             {
                 int totalParametros = parametros.Length;
                 proceso.ficheroPDF = parametros[0];
+
                 //Comprueba si existe el fichero PDF
                 if (!File.Exists(proceso.ficheroPDF))
                 {

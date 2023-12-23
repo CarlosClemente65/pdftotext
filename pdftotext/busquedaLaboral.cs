@@ -1,18 +1,11 @@
-﻿using Org.BouncyCastle.Bcpg.OpenPgp;
-using Org.BouncyCastle.Crypto.Tls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace pdftotext
+﻿namespace pdftotext
 {
     public class busquedaLaboral
     {
         //Instanciacion de la clase procesosPDF para usar sus metodos en esta
         procesosPDF procesosPDF = new procesosPDF();
 
+        //Definicion de variables para extraer datos
         public string Modelo { get; private set; }
         public string TipoModelo { get; private set; }
         public string Nif { get; private set; }
@@ -92,39 +85,30 @@ namespace pdftotext
                     break;
 
                 case "RNT":
-                    //Documento RNT
-                    BuscarNif();
-                    BuscarTipoModelo();
-                    BuscarPeriodoRLCyRNT();
-                    BuscarCCC();
-                    break;
-
                 case "RLC":
-                    //Documento RLC
+                    //Documento RNT y RLC
                     BuscarNif();
-                    BuscarTipoModelo();
+                    BuscarTipoDocumento();
                     BuscarPeriodoRLCyRNT();
                     BuscarCCC();
                     break;
-
 
                 case "AFIA":
                 case "AFIB":
+                    //Documento AFI (alta y baja)
                     BuscarDniTrabajador();
                     BuscarFechaEfecto();
                     BuscarCCC();
                     break;
 
                 case "IDC":
-                    //Documentos afiliacion anteriores
+                    //Documentos IDC
                     BuscarDniTrabajador();
                     BuscarFechaIDC();
                     BuscarCCC();
                     break;
             }
         }
-
-        
 
 
         #region Metodos de busqueda
@@ -205,7 +189,7 @@ namespace pdftotext
         }
 
 
-        private void BuscarTipoModelo()
+        private void BuscarTipoDocumento()
         {
             //Busqueda del tipo de documento. L00 => 00, L13 => 02, L03 => 5, L90 => 90
             string tipoModeloTmp = procesosPDF.ProcesaPatron(patronTipoModelo, 1);
@@ -262,7 +246,6 @@ namespace pdftotext
             {
                 BajaIDC = bajaIDCTmp.Substring(altaIDCTmp.Length - 10);
             }
-
         }
 
 
@@ -273,9 +256,8 @@ namespace pdftotext
             if (cccTmp.Length > 0)
             {
                 cccTmp = cccTmp.Replace(" ", "");
-                CCC = cccTmp.Substring(cccTmp.Length - 11);
+                CCC = cccTmp.Substring(cccTmp.Length - 11); //Solo se cogen los ultimos 11 digitos porque en algun modelo el CCC no le ponen los 4 digitos del Regimen de la empresa
             }
-
         }
 
         private void BuscarFechaEfecto()
@@ -286,9 +268,8 @@ namespace pdftotext
             {
                 fechaEfectoTmp = fechaEfectoTmp.Substring(26, fechaEfectoTmp.Length - 27);
                 string formatoFechaTexto = "dd 'de' MMMM 'de' yyyy";
-                DateTime fecha = DateTime.ParseExact(fechaEfectoTmp, formatoFechaTexto, System.Globalization.CultureInfo.GetCultureInfo("es-ES"));
-                //DateTime fechaNumerica = fecha.Date;
-                FechaEfecto = fecha.ToString("dd.MM.yyyy");
+                DateTime fecha = DateTime.ParseExact(fechaEfectoTmp, formatoFechaTexto, System.Globalization.CultureInfo.GetCultureInfo("es-ES")); //Se convierte la fecha en texto a fecha numerica
+                FechaEfecto = fecha.ToString("dd.MM.yyyy");//Se convierte la fecha numeria a texto para almacenarla en la variable
             }
         }
 

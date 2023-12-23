@@ -29,7 +29,7 @@ namespace pdftotext
         //Variables para la extraccion de los datos del PDF
         StringBuilder extractedText = new StringBuilder();
 
-        
+
         public void extraeTextoPDF()
         {
             using (PdfDocument pdfDoc = new PdfDocument(new PdfReader(ficheroPDF)))
@@ -113,7 +113,8 @@ namespace pdftotext
             switch (buscar.Modelo)
             {
                 case "CER":
-                    texto += $"Modelo: {buscar.Modelo} \n";
+                    texto += "Modelo: 993 \n";
+                    texto += "Tipo: 03 \n";
                     texto += $"CIF: {buscar.Nif} \n";
                     texto += $"Ejercicio: {buscar.Ejercicio} \n";
                     texto += $"Periodo: {buscar.Periodo} \n";
@@ -121,24 +122,51 @@ namespace pdftotext
 
                 case "RLC":
                 case "RNT":
-                    texto += $"Modelo: {buscar.Modelo} \n";
-                    texto += $"Tipo de modelo: {buscar.TipoModelo}\n";
+                    if (buscar.Modelo == "RLC")
+                    {
+                        texto += "Modelo: 997\n";
+                    }
+                    else
+                    {
+                        texto += "Modelo: 996\n";
+                    }
+
+                    switch (buscar.TipoModelo)
+                    {
+                        case "L00":
+                            texto += "Tipo de modelo: 00\n";
+                            break;
+
+                        case "L13":
+                            texto += "Tipo de modelo: 02\n";
+                            break;
+
+                        case "L03":
+                            texto += "Tipo de modelo: 05\n";
+                            break;
+
+                        case "L90":
+                            texto += "Tipo de modelo: 90\n";
+                            break;
+                    }
+
                     texto += $"CIF: {buscar.Nif} \n";
                     texto += $"Ejercicio: {buscar.Ejercicio} \n";
                     texto += $"Periodo: {buscar.Periodo} \n";
                     texto += $"Codigo cuenta cotizacion: {buscar.CCC}\n";
-
                     break;
 
                 case "AFIA":
-                    texto += $"Modelo: AFI (alta) \n";
+                    texto += "Modelo: 991 \n";
+                    texto += "Tipo de modelo: 00";
                     texto += $"Codigo cuenta cotizacion: {buscar.CCC}\n";
                     texto += $"NIF trabajador: {buscar.DniTrabajador}\n";
                     texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
                     break;
 
                 case "AFIB":
-                    texto += $"Modelo: AFI (baja) \n";
+                    texto += "Modelo: 991 \n";
+                    texto += "Tipo de modelo: 01";
                     texto += $"Codigo cuenta cotizacion: {buscar.CCC}\n";
                     texto += $"NIF trabajador: {buscar.DniTrabajador}\n";
                     texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
@@ -147,11 +175,13 @@ namespace pdftotext
                 case "IDC":
                     if (buscar.BajaIDC.Length > 0)
                     {
-                        texto += $"Modelo: IDC (baja) \n";
+                        texto += "Modelo: 991 \n";
+                        texto += "Tipo de modelo: 05\n";
                     }
                     else
                     {
-                        texto += $"Modelo: IDC (alta) \n";
+                        texto += "Modelo: 991 \n";
+                        texto += "Tipo de modelo: 04\n";
                     }
                     texto += $"Codigo cuenta cotizacion: {buscar.CCC}\n";
                     texto += $"NIF trabajador: {buscar.DniTrabajador}\n";
@@ -159,13 +189,13 @@ namespace pdftotext
                     break;
 
                 case "ITA":
-                    texto += $"Modelo: {buscar.Modelo} \n";
+                    texto += "Modelo: 991 \n";
+                    texto += "Tipo de modelo: 07 \n";
                     texto += $"CIF: {buscar.Nif} \n";
                     texto += $"Ejercicio: {buscar.Ejercicio} \n";
                     texto += $"Periodo: {buscar.Periodo} \n";
                     texto += $"Codigo cuenta cotizacion: {buscar.CCC}\n";
                     break;
-
             }
 
             //Graba el fichero de datos con el texto creado
@@ -173,7 +203,7 @@ namespace pdftotext
 
         }
 
-        public string ProcesaPatron(string patronRegex, int pagina, string Modelo="")
+        public string ProcesaPatron(string patronRegex, int pagina, string Modelo = "")
         {
 
             //Metodo para extraer el texto segun el patron de busqueda pasado
@@ -183,7 +213,7 @@ namespace pdftotext
             //Si encuentra algo 
             if (matches.Count > 0)
             {
-                if (Modelo == "RLC")
+                if (Modelo == "RLC") //En este modelo el periodo de liquidacion aparece en segundo lugar
                 {
                     return matches[1].Value;
                 }
