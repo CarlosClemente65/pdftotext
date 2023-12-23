@@ -29,8 +29,7 @@ namespace pdftotext
         //Variables para la extraccion de los datos del PDF
         StringBuilder extractedText = new StringBuilder();
 
-
-
+        
         public void extraeTextoPDF()
         {
             using (PdfDocument pdfDoc = new PdfDocument(new PdfReader(ficheroPDF)))
@@ -118,8 +117,55 @@ namespace pdftotext
                     texto += $"CIF: {buscar.Nif} \n";
                     texto += $"Ejercicio: {buscar.Ejercicio} \n";
                     texto += $"Periodo: {buscar.Periodo} \n";
+                    break;
+
+                case "RLC":
+                case "RNT":
+                    texto += $"Modelo: {buscar.Modelo} \n";
+                    texto += $"Tipo de modelo: {buscar.TipoModelo}\n";
+                    texto += $"CIF: {buscar.Nif} \n";
+                    texto += $"Ejercicio: {buscar.Ejercicio} \n";
+                    texto += $"Periodo: {buscar.Periodo} \n";
+                    texto += $"Codigo cuenta cotizacion: {buscar.CCC}\n";
 
                     break;
+
+                case "AFIA":
+                    texto += $"Modelo: AFI (alta) \n";
+                    texto += $"Codigo cuenta cotizacion: {buscar.CCC}\n";
+                    texto += $"NIF trabajador: {buscar.DniTrabajador}\n";
+                    texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
+                    break;
+
+                case "AFIB":
+                    texto += $"Modelo: AFI (baja) \n";
+                    texto += $"Codigo cuenta cotizacion: {buscar.CCC}\n";
+                    texto += $"NIF trabajador: {buscar.DniTrabajador}\n";
+                    texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
+                    break;
+
+                case "IDC":
+                    if (buscar.BajaIDC.Length > 0)
+                    {
+                        texto += $"Modelo: IDC (baja) \n";
+                    }
+                    else
+                    {
+                        texto += $"Modelo: IDC (alta) \n";
+                    }
+                    texto += $"Codigo cuenta cotizacion: {buscar.CCC}\n";
+                    texto += $"NIF trabajador: {buscar.DniTrabajador}\n";
+                    texto += $"Fecha efecto: {buscar.AltaIDC} \n";
+                    break;
+
+                case "ITA":
+                    texto += $"Modelo: {buscar.Modelo} \n";
+                    texto += $"CIF: {buscar.Nif} \n";
+                    texto += $"Ejercicio: {buscar.Ejercicio} \n";
+                    texto += $"Periodo: {buscar.Periodo} \n";
+                    texto += $"Codigo cuenta cotizacion: {buscar.CCC}\n";
+                    break;
+
             }
 
             //Graba el fichero de datos con el texto creado
@@ -127,8 +173,9 @@ namespace pdftotext
 
         }
 
-        public string ProcesaPatron(string patronRegex, int pagina)
+        public string ProcesaPatron(string patronRegex, int pagina, string Modelo="")
         {
+
             //Metodo para extraer el texto segun el patron de busqueda pasado
             Regex regex = new Regex(patronRegex);
             MatchCollection matches = regex.Matches(Program.paginasPDF[pagina - 1].ToString());
@@ -136,6 +183,10 @@ namespace pdftotext
             //Si encuentra algo 
             if (matches.Count > 0)
             {
+                if (Modelo == "RLC")
+                {
+                    return matches[1].Value;
+                }
                 return matches[0].Value;
             }
             else

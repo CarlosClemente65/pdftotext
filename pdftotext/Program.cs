@@ -54,6 +54,7 @@ namespace pdftotext
                     proceso.extraeDatosModelo();
                 }
 
+                //Extrae datos de los documentos de laboral
                 if (proceso.procesaLaboral)
                 {
                     proceso.extraeDatosLaboral();
