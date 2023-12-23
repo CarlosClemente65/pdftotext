@@ -124,29 +124,29 @@ namespace pdftotext
                 case "RNT":
                     if (buscar.Modelo == "RLC")
                     {
-                        texto += "Modelo: 997\n";
+                        texto += "Modelo: 997 \n";
                     }
                     else
                     {
-                        texto += "Modelo: 996\n";
+                        texto += "Modelo: 996 \n";
                     }
 
                     switch (buscar.TipoModelo)
                     {
                         case "L00":
-                            texto += "Tipo de modelo: 00\n";
+                            texto += "Tipo de modelo: 00 \n";
                             break;
 
                         case "L13":
-                            texto += "Tipo de modelo: 02\n";
+                            texto += "Tipo de modelo: 02 \n";
                             break;
 
                         case "L03":
-                            texto += "Tipo de modelo: 05\n";
+                            texto += "Tipo de modelo: 05 \n";
                             break;
 
                         case "L90":
-                            texto += "Tipo de modelo: 90\n";
+                            texto += "Tipo de modelo: 90 \n";
                             break;
                     }
 
@@ -158,17 +158,17 @@ namespace pdftotext
 
                 case "AFIA":
                     texto += "Modelo: 991 \n";
-                    texto += "Tipo de modelo: 00";
-                    texto += $"Codigo cuenta cotizacion: {buscar.CCC}\n";
-                    texto += $"NIF trabajador: {buscar.DniTrabajador}\n";
+                    texto += "Tipo de modelo: 00 \n";
+                    texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
+                    texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
                     texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
                     break;
 
                 case "AFIB":
                     texto += "Modelo: 991 \n";
-                    texto += "Tipo de modelo: 01";
-                    texto += $"Codigo cuenta cotizacion: {buscar.CCC}\n";
-                    texto += $"NIF trabajador: {buscar.DniTrabajador}\n";
+                    texto += "Tipo de modelo: 01 \n";
+                    texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
+                    texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
                     texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
                     break;
 
@@ -176,15 +176,15 @@ namespace pdftotext
                     if (buscar.BajaIDC.Length > 0)
                     {
                         texto += "Modelo: 991 \n";
-                        texto += "Tipo de modelo: 05\n";
+                        texto += "Tipo de modelo: 05 \n";
                     }
                     else
                     {
                         texto += "Modelo: 991 \n";
-                        texto += "Tipo de modelo: 04\n";
+                        texto += "Tipo de modelo: 04 \n";
                     }
-                    texto += $"Codigo cuenta cotizacion: {buscar.CCC}\n";
-                    texto += $"NIF trabajador: {buscar.DniTrabajador}\n";
+                    texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
+                    texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
                     texto += $"Fecha efecto: {buscar.AltaIDC} \n";
                     break;
 
@@ -194,7 +194,7 @@ namespace pdftotext
                     texto += $"CIF: {buscar.Nif} \n";
                     texto += $"Ejercicio: {buscar.Ejercicio} \n";
                     texto += $"Periodo: {buscar.Periodo} \n";
-                    texto += $"Codigo cuenta cotizacion: {buscar.CCC}\n";
+                    texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
                     break;
             }
 
@@ -203,7 +203,7 @@ namespace pdftotext
 
         }
 
-        public string ProcesaPatron(string patronRegex, int pagina, string Modelo = "")
+        public string ProcesaPatron(string patronRegex, int pagina, string Modelo = "", string TipoModelo = "")
         {
 
             //Metodo para extraer el texto segun el patron de busqueda pasado
@@ -213,11 +213,14 @@ namespace pdftotext
             //Si encuentra algo 
             if (matches.Count > 0)
             {
-                if (Modelo == "RLC") //En este modelo el periodo de liquidacion aparece en segundo lugar
+                if (Modelo == "RLC" && TipoModelo == "L90") //En este modelo el periodo de liquidacion aparece en segundo lugar
                 {
                     return matches[1].Value;
                 }
-                return matches[0].Value;
+                else
+                {
+                    return matches[0].Value;
+                }
             }
             else
             {

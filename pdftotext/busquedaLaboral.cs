@@ -215,7 +215,7 @@
             //Busqueda del periodo en el campo "Periodo liquidacion": el L03 se coje de la fecha de control, el resto del periodo de liquidacion.
             if (TipoModelo == "L03")
             {
-                string periodoTmp = procesosPDF.ProcesaPatron(patronPeriodoL03, 1, Modelo);
+                string periodoTmp = procesosPDF.ProcesaPatron(patronPeriodoL03, 1, Modelo, TipoModelo);
                 if (periodoTmp.Length > 0)
                 {
                     Ejercicio = periodoTmp.Substring(periodoTmp.Length - 4);
@@ -224,7 +224,7 @@
             }
             else
             {
-                string periodoTmp = procesosPDF.ProcesaPatron(patronPeriodoL00, 1, Modelo) ;
+                string periodoTmp = procesosPDF.ProcesaPatron(patronPeriodoL00, 1, Modelo, TipoModelo) ;
                 if (periodoTmp.Length > 0)
                 {
                     Ejercicio = periodoTmp.Substring(3, 4);
