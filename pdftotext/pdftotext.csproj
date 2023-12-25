@@ -11,6 +11,7 @@
 		<AssemblyName>dsepdfatexto</AssemblyName>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<SignAssembly>False</SignAssembly>
+		<AssemblyOriginatorKeyFile>C:\Borrar\carlos.cer</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 	  <GenerateAssemblyInfo>False</GenerateAssemblyInfo>

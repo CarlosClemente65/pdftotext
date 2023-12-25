@@ -29,7 +29,7 @@
 
         #region patrones de busqueda
         //Definicion de patrones de busqueda de datos
-        string patronNif = @"\b(?=\w*[A-Z])(?=\w*\d)\w{10}\b"; //Busca una palabra de 10 caracteres (\w{10}) y obliga a que haya alguna letra mayuscula y algun numero
+        string patronNif = @"\b(?=(?:\w*[A-Z]){1,2})(?=\w*\d)\w{10}\b"; //Busca una palabra de 10 caracteres (\w{10}) y obliga a que haya alguna letra mayuscula y algun numero
         string patronPeriodo = @"Fecha: \d{2}[/|.]\d{2}[/|.]\d{4}";
         string patronPeriodoL00 = @"\d{2}/\d{4}.*\d{2}/\d{4}";
         string patronPeriodoL03 = @"Fecha de Control: \d{2]/\d{4}\b";

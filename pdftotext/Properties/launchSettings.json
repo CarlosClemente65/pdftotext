@@ -2,7 +2,7 @@
   "profiles": {
     "pdftotext": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Borrar\\laboral\\RNT1.pdf\" -l \"C:\\Borrar\\laboral\\RNT1_DATOS.txt\" -t \"C:\\Borrar\\laboral\\RNT1_TXT.txt\"",
+      "commandLineArgs": "\"C:\\Borrar\\modelos\\100_con-22.pdf\" -m \"C:\\Borrar\\modelos\\100_con-22.txt\" -t \"C:\\Borrar\\modelos\\100_con-22.txt\"",
       "workingDirectory": "D:\\Programacion\\C#\\pdftotext\\pdftotext\\bin\\Debug\\net48"
     }
   }

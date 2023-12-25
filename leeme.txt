@@ -1,7 +1,9 @@
 
 Uso:
-	dsedatosmodelos.exe fichero.pdf -m salidaDatosModelos.txt -t salidaTextoCompleto.txt
+	dsedatosmodelos.exe fichero.pdf -t salidaTextoCompleto.txt -m salidaDatosModelos.txt -l salidaDatosLaboral.txt
 
-Notas: 	1. El fichero.pdf y al menos uno de los dos parametros siguientes son obligatorios
-		2. El parametro -m extrae los datos del modelo y debe ir seguido de la ruta del fichero a grabar
-		3. El parametro -t graba el texto completo del PDF y debe ir seguido de la ruta del fichero a grabar
+Notas: 	1. El fichero.pdf y al menos uno de los 3 parametros siguientes son obligatorios (el orden de los parametros no importa)
+		2. El parametro -t graba el texto completo del PDF y debe ir seguido de la ruta del fichero a grabar
+		3. El parametro -m extrae los datos del modelo y debe ir seguido de la ruta del fichero a grabar
+		4. El parametro -l extrae los datos de los documentos de laboral y debe ir seguido de la ruta del fichero a grabar.
+		
