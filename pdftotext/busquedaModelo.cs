@@ -38,8 +38,8 @@ namespace pdftotext
         string patronCsv = @"Verificación(\s|:\s)[A-Z\d]{16}\b";
 
         //El NIF suele estar seguido del nombre y se busca siempre en la pagina 2 porque en la pagina 1 esta el presentador que puede ser distinto. La expresion se asegura que haya alguna letra mayuscula, la primera palabra debe ser el NIF (empieza por letra o numero, le siguen 7 numeros y termina con letra o numero), y la segunda parte busca hasta un total de 4 palabras que se supone que es el nombre; en todo caso el nombre luego no se usa.
-        //string patronNif = @"(?=.*[A-Z])\b[A-Z0-9]\d{7}[A-Z0-9]\b(?:\s*\S+[ \t]*){0,4}";
-		string patronNif= @"\b(?=(?:\w*[A-Z]){1,2})(?=\w*\d)\w{9}\b";
+        //string patronNif = @"(?=.*[A-Z])\b[A-Z0-9]\d{7}[A-Z0-9]\b(?:\s*\S+[ \t]*){0,4}"; //Este patron tambien busca el NIF de otro modo
+		string patronNif= @"\b(?=(?:\w*[A-Z]){1,2})(?=\w*\d)\w{9}\b"; //Este patron busca una cadena de 9 caracteres en la que haya al menos 1 o 2 letras mayusculas y el resto seran numeros
 
         //Busca si se trata de una renta conjunta en todo el texto ya que en la pagina 2 solo estan las equis de las casillas pero no se puede saber cual corresponde, por eso se busca el texto de la casilla 0461 en la liquidacion y si existe es porque ha aplicado la reduccion y por lo tanto es conjunta.
         string patronRentaConjunta = "Reducción por tributación conjunta";

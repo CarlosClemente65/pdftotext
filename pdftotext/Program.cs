@@ -17,7 +17,7 @@ namespace pdftotext
     Desarrollada por Carlos Clemente - 12/2023
     
     Uso:
-        dsepdfatext fichero.pdf -m datosModelo.txt -t textoPDF.txt -l datosLaboral.txt
+        dsepdfatexto fichero.pdf -m datosModelo.txt -t textoPDF.txt -l datosLaboral.txt
         Nota: el parametro -m es el fichero con los campos localizados del modelo, el parametro -t es el texto completo del PDF, y el parametro -l es el fichero con los campos localizados del modelo laboral
     */
 
