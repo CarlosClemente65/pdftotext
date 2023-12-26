@@ -24,6 +24,8 @@
         string ITA = string.Empty;
         string AFIA = string.Empty; //Modelo afiliacion alta
         string AFIB = string.Empty; //Modelo afiliacion baja
+        string AFIV = string.Empty; //Modelo afiliacion variacion
+        string AFIC = string.Empty; //Modelo afiliacion cambio de contrato
         string IDC = string.Empty;
 
 
@@ -41,6 +43,8 @@
         string patronITA = @"INFORME DE TRABAJADORES EN ALTA A FECHA: \d{2}.\d{2}.\d{4}";
         string patronAFIA = "RESOLUCIÓN SOBRE RECONOCIMIENTO DE ALTA";//Documento de afiliacion de alta
         string patronAFIB = "RESOLUCIÓN SOBRE RECONOCIMIENTO DE BAJA";//Documento de afiliacion de baja
+        string patronAFIV = ""; //Documento de afiliacion de variacion
+        string patronAFIC = ""; //Documento de afiliacion de variacion
         string patronFechaEfecto = @"se indica a continuación: (\S+ \S+ \S+ \S+ \S+)";
         string patronIDC = "Informe de Datos para la Cotización";
         string patronaltaIDC = @"ALTA:\s*\d{2}.\d{2}.\d{4}";
@@ -101,8 +105,17 @@
                     BuscarCCC();
                     break;
 
+                case "AFIV":
+                    //Documento AFI de variacion (la fecha de alta y de contrato son diferentes)
+                    break;
+
+                case "AFIC":
+                    //Documento AFI de cambio de contrato (pendiente de ver el documento)
+                    break;
+
                 case "IDC":
                     //Documentos IDC
+                    //Hay que incluir para la busqueda de los IDC de baja (supongo que seran con la fecha de baja que hay en el documento) y variacion (si la fecha de alta es diferente a la de contrato)
                     BuscarDniTrabajador();
                     BuscarFechaIDC();
                     BuscarCCC();
@@ -126,6 +139,18 @@
                 if (!string.IsNullOrEmpty(AFIB))
                 {
                     Modelo = "AFIB";
+                }
+
+                AFIV = procesosPDF.ProcesaPatron(patronAFIV, 1);
+                if (!string.IsNullOrEmpty(AFIV))
+                {
+                    Modelo = "AFIV";
+                }
+
+                AFIC = procesosPDF.ProcesaPatron(patronAFIC, 1);
+                if (!string.IsNullOrEmpty(AFIC))
+                {
+                    Modelo = "AFIC";
                 }
 
                 CER = procesosPDF.ProcesaPatron(patronCER, 1);

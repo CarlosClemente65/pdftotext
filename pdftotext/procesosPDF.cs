@@ -172,6 +172,15 @@ namespace pdftotext
                     texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
                     break;
 
+                //Esta pendiente de desarrollo (faltaria el patron de busqueda)
+                //case "AFIV": 
+                //    texto += "Modelo: 991 \n";
+                //    texto += "Tipo de modelo: 02 \n";
+                //    texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
+                //    texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
+                //    texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
+                //    break;
+
                 case "IDC":
                     if (buscar.BajaIDC.Length > 0)
                     {
