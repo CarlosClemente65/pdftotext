@@ -172,7 +172,7 @@ namespace pdftotext
                     texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
                     break;
 
-                //Esta pendiente de desarrollo (faltaria el patron de busqueda)
+                //Esta pendiente de desarrollo por falta de documento de ejemplo (faltaria el patron de busqueda)
                 //case "AFIV": 
                 //    texto += "Modelo: 991 \n";
                 //    texto += "Tipo de modelo: 02 \n";
@@ -181,20 +181,20 @@ namespace pdftotext
                 //    texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
                 //    break;
 
-                case "IDC":
-                    if (buscar.BajaIDC.Length > 0)
-                    {
-                        texto += "Modelo: 991 \n";
-                        texto += "Tipo de modelo: 05 \n";
-                    }
-                    else
-                    {
-                        texto += "Modelo: 991 \n";
-                        texto += "Tipo de modelo: 04 \n";
-                    }
+                case "AFIC":
+                    texto += "Modelo: 991 \n";
+                    texto += "Tipo de modelo: 03 \n";
                     texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
                     texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
-                    texto += $"Fecha efecto: {buscar.AltaIDC} \n";
+                    texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
+                    break;
+
+                case "IDC":
+                    texto += "Modelo: 991 \n";
+                    texto += $"Tipo de modelo: {buscar.TipoIDC} \n";
+                    texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
+                    texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
+                    texto += $"Fecha efecto: {buscar.PeriodoIDC} \n";
                     break;
 
                 case "ITA":
