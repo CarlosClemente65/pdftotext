@@ -1,3 +1,7 @@
+Aplicacion desarrollada por Carlos Clemente que permite extraer el texto de un PDF y obtener los campos
+de los modelos de Hacienda y de documentos laborales para su archivado en el GAD.
+
+En la carpeta /ejemplos_modelos estan los PDFs y documentos de texto con los que se han hecho las pruebas
 
 Uso:
 	dsedatosmodelos.exe fichero.pdf -t salidaTextoCompleto.txt -m salidaDatosModelos.txt -l salidaDatosLaboral.txt

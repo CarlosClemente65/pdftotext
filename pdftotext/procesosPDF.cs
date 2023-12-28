@@ -205,6 +205,16 @@ namespace pdftotext
                     texto += $"Periodo: {buscar.Periodo} \n";
                     texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
                     break;
+
+
+                case "HUE":
+                    texto += "Modelo: 992 \n";
+                    texto += "Tipo de modelo: 00 \n";
+                    texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
+                    texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
+                    texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
+                    texto += $"Observaciones: {buscar.Observaciones} \n";
+                    break;
             }
 
             //Graba el fichero de datos con el texto creado
@@ -212,7 +222,7 @@ namespace pdftotext
 
         }
 
-        public string ProcesaPatron(string patronRegex, int pagina, string Modelo = "", string TipoModelo = "")
+        public string ProcesaPatron(string patronRegex, int pagina, string Modelo = "", string TipoModelo = "", int valor = 0)
         {
 
             //Metodo para extraer el texto segun el patron de busqueda pasado
@@ -222,14 +232,7 @@ namespace pdftotext
             //Si encuentra algo 
             if (matches.Count > 0)
             {
-                if (Modelo == "RLC" && TipoModelo == "L90") //En este modelo el periodo de liquidacion aparece en segundo lugar
-                {
-                    return matches[1].Value;
-                }
-                else
-                {
-                    return matches[0].Value;
-                }
+                return matches[valor].Value; //Se pasa por parametro el valor que se quiere devolver porque en algunos casos no es el primero (valor 0), sino que puede ser el segundo (valor 1) o siguientes
             }
             else
             {

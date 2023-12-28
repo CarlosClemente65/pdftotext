@@ -1,4 +1,6 @@
-﻿namespace pdftotext
+﻿using System.Text.RegularExpressions;
+
+namespace pdftotext
 {
     public class busquedaLaboral
     {
@@ -19,28 +21,31 @@
         //public string FechaIDC { get; private set; }
         public string PeriodoIDC { get; private set; }
         public string TipoIDC { get; private set; }
+        public string Observaciones { get; private set; }
 
         //Tipos de documento
-        string CER = string.Empty;
-        string RLC = string.Empty;
-        string RNT = string.Empty;
-        string ITA = string.Empty;
-        string AFIA = string.Empty; //Modelo afiliacion alta
-        string AFIB = string.Empty; //Modelo afiliacion baja
-        string AFIV = string.Empty; //Modelo afiliacion variacion
-        string AFIC = string.Empty; //Modelo afiliacion cambio de contrato
-        string IDC = string.Empty;
+        string CER = string.Empty; //Documento de certificado de corriente de pago
+        string RLC = string.Empty; //Documento de Recibo de liquidacion de coticaciones (antiguo TC1)
+        string RNT = string.Empty; //Documento de Relacion nominal de trabajadores (antiguo TC2)
+        string ITA = string.Empty; //Documento de Trabajadores en alta
+        string AFIA = string.Empty; //Documento de afiliacion - alta
+        string AFIB = string.Empty; //Documento de afiliacion - baja
+        string AFIV = string.Empty; //Documento de afiliacion - variacion
+        string AFIC = string.Empty; //Documento de afiliacion - cambio de contrato
+        string IDC = string.Empty; //Documento de Informe de datos para la cotizacion
+        String HUE = string.Empty; //Documento de huella de contrato
 
 
 
         #region patrones de busqueda
         //Definicion de patrones de busqueda de datos
-        string patronNif = @"\b(?=(?:\w*[A-Z]){1,2})(?=\w*\d)\w{10}\b"; //Busca una palabra de 10 caracteres (\w{10}) y obliga a que haya alguna letra mayuscula y algun numero
+        string patronNif = @"\b(?=(?:\w*[A-Z]){0,2})(?=\w*\d)\w{9,10}\b"; //Busca una palabra de 9 o 10 caracteres (\w{9,10}) y obliga a que haya alguna letra mayuscula y algun numero, pero el primer caracter es opcional (en los documentos laborales le pueden poner un cero delante)
         string patronPeriodo = @"Fecha: \d{2}[-/.]\d{2}[-/.]\d{4}"; //Busca el texto seguido de una fecha separada por un guion, una barra inclinada o un punto
         string patronPeriodoL00 = @"\d{2}/\d{4}.*\d{2}/\d{4}"; //Busca dos digitos, seguido de una barra inclinada, seguido de 4 digitos, seguido de cero o varios espacios, seguido de dos digitos, seguido de una barra inclinada y seguido de 4 digitos.
         string patronPeriodoL03 = @"Fecha de Control: \d{2]/\d{4}\b"; //Busca el texto seguido de 2 digitos, seguido de una barra inclinada, seguido de 4 digitos y termina la palabra.
         string patronTipoModelo = @"L\d{2}.\w*"; //Busca una L seguida de 2 digitos, seguida de un caracter y seguida de cero o mas palabras.
-        string patronCCC = @"\d{4}\s\d{2}\s?\d{9}"; //Busca 4 digitos, seguido de un espacio, seguido de 2 digitos, seguido de un espacio (es opcional), y seguido de 9 digitos.
+        string patronCCC = @"\d{4}[-. ]\d{2}[-. ]?\d{7}[-. ]?\d{2}"; //Busca 4 digitos, seguido de un guion, un punto o un espacio, seguido de 2 digitos, seguido de un guion, un punto o un espacio (es opcional), seguido de 9 digitos, seguido de un guion, un punto o un espacio (es opcional) y seguido de dos digitos; (en algunos documentos el CCC le ponen guiones para separar.
+        string patronCCCHuella = @"(\d\s){6}\d{7}(\s\d){2}"; //Busca 6 digitos separados por espacio, seguido de 7 digitos y seguido de 2 digitos separados por espacio (en la huella el CCC viene separado por espacios)
         string patronCER = "CERTIFICADO DE ESTAR AL CORRIENTE";
         string patronRLC = @"[A-Z]RLC\d{10}\b"; //Busca una letra mayuscula, seguida de RLC y seguida de 10 digitos que terminan la palabra.
         string patronRNT = "[A-Z]RNT\\d{10}\\b"; //Busca una letra mayuscula, seguida de RNT y seguida de 10 digitos que terminan la palabra.
@@ -52,11 +57,13 @@
         //string patronFechaEfecto = @"se indica a continuación: (\S+ \S+ \S+ \S+ \S+)"; //Busca el texto seguido de 5 palabras que seria la fecha en formato dia de mes de año; este patron no es muy seguro, uso el siguiente.
         string patronFechaEfecto = @"se indica a continuación: (\d{2} de \S+ de \d{4})"; //Busca el texto seguido de la fecha en formato dia de mes de año
         string patronFechaEfectoAFIC = @"con efectos de \d{2}[-/.]\d{2}[-/.]\d{4}"; //Busca el texto seguido de una fecha separada por un guion, una barra inclinada o un punto.
+        string patronFechaHuella = @"Fecha de Inicio (\w+\s+)*:\s\d{2}[-/.]\d{2}[-/.]\d{4}";
         string patronIDC = "Informe de Datos para la Cotización";
         string patronAltaIDC = @"ALTA:\s*\d{2}.\d{2}.\d{4}"; //Busca el texto seguido de uno o varios espacios y despues la fecha en formato dd.mm.aaaa (el separador puede ser cualquier caracter)
         string patronBajaIDC = @"BAJA:\s*\d{2}.\d{2}.\d{4}"; //Busca el texto seguido de uno o varios espacios y despues la fecha en formato dd.mm.aaaa (el separador puede ser cualquier caracter)
         string patronPeriodoIDC = @"PERIODO:\s*DESDE\s*\d{2}.\d{2}.\d{4}"; //Busca el texto seguido de uno o varios espacios y despues la fecha en formato dd.mm.aaaa (el separador puede ser cualquier caracter)";
         string patronFechaIDC = @"FECHA:\s*\d{2}.\d{2}.\d{4}"; //Busca el texto seguido de uno o varios espacios y despues la fecha en formato dd.mm.aaaa (el separador puede ser cualquier caracter)";
+        string patronHuella = @"COMUNICACIÓN\b.*CONTRATO DE TRABAJO";
 
 
         #endregion
@@ -74,11 +81,9 @@
             this.CCC = string.Empty;
             this.DniTrabajador = string.Empty;
             this.FechaEfecto = string.Empty;
-            //this.AltaIDC = string.Empty;
-            //this.BajaIDC = string.Empty;
-            //this.FechaIDC = string.Empty;
-            this.PeriodoIDC = string.Empty;
+            this.PeriodoIDC = string.Empty; //En los IDC se necesita esta fecha para comparar con el alta y la fecha del contrato para saber si es una variacion.
             this.TipoIDC = string.Empty; //Controla el tipo de IDC (alta, baja o variacion)
+            this.Observaciones = string.Empty; //Permite pasar observaciones al GAD
         }
 
         public void buscarDatos()
@@ -125,6 +130,13 @@
                     //Hay que incluir para la busqueda de los IDC de baja (supongo que seran con la fecha de baja que hay en el documento) y variacion (si la fecha de alta es diferente a la de contrato)
                     BuscarDniTrabajador();
                     BuscarFechaIDC();
+                    BuscarCCC();
+                    break;
+
+                case "HUE":
+                    //Documentos de huella de contratos
+                    BuscarDniTrabajador();
+                    BuscarFechaEfecto();
                     BuscarCCC();
                     break;
             }
@@ -193,6 +205,13 @@
                 {
                     Modelo = "IDC";
                 }
+
+                HUE = procesosPDF.ProcesaPatron(patronHuella, 1);
+                if (!string.IsNullOrEmpty(HUE))
+                {
+                    Modelo = "HUE";
+                    Observaciones = HUE;
+                }
             }
             catch
             {
@@ -214,10 +233,18 @@
         private void BuscarDniTrabajador()
         {
             //Busqueda del DNI del trabajador
-            DniTrabajador = procesosPDF.ProcesaPatron(patronNif, 1);
+            if (Modelo == "HUE")
+            {
+                DniTrabajador = procesosPDF.ProcesaPatron(patronNif, 1, Modelo, "", 1);
+            }
+            else
+            {
+                DniTrabajador = procesosPDF.ProcesaPatron(patronNif, 1, Modelo, "", 0);
+            }
+
             if (DniTrabajador.Length > 0)
             {
-                DniTrabajador = DniTrabajador.Substring(1, 9);
+                DniTrabajador = DniTrabajador.Substring(DniTrabajador.Length - 9);
             }
         }
 
@@ -268,6 +295,7 @@
 
         private void BuscarFechaIDC()
         {
+            //En el IDC se necesitan buscar las fechas de alta, periodo,baja o fecha contrato para luego saber si es una variacion o baja
             string altaIDC = procesosPDF.ProcesaPatron(patronAltaIDC, 1);
             if (altaIDC.Length > 0)
             {
@@ -311,10 +339,19 @@
         private void BuscarCCC()
         {
             //Hace falta para los modelos anteriores y en los nuevos por si hay varios centros de trabajo
-            string cccTmp = procesosPDF.ProcesaPatron(patronCCC, 1);
+            string cccTmp = string.Empty;
+            if (Modelo == "HUE")
+            {
+                cccTmp = procesosPDF.ProcesaPatron(patronCCCHuella, 1);
+            }
+            else
+            {
+                cccTmp = procesosPDF.ProcesaPatron(patronCCC, 1);
+            }
+
             if (cccTmp.Length > 0)
             {
-                cccTmp = cccTmp.Replace(" ", "");
+                cccTmp = cccTmp.Replace(" ", "").Replace("-", "");
                 CCC = cccTmp.Substring(cccTmp.Length - 11); //Solo se cogen los ultimos 11 digitos porque en algun modelo el CCC no le ponen los 4 digitos del Regimen de la empresa
             }
         }
@@ -323,24 +360,42 @@
         {
             //Hace falta para los modelos anteriores.
             string fechaEfectoTmp = string.Empty;
-            if (Modelo == "AFIC")
+            switch (Modelo)
             {
-                fechaEfectoTmp = procesosPDF.ProcesaPatron(patronFechaEfectoAFIC, 1);
-                if (fechaEfectoTmp.Length > 0)
-                {
-                    FechaEfecto = fechaEfectoTmp.Substring(fechaEfectoTmp.Length - 10);
-                }
-            }
-            else
-            {
-                fechaEfectoTmp = procesosPDF.ProcesaPatron(patronFechaEfecto, 1);
-                if (fechaEfectoTmp.Length > 0)
-                {
-                    fechaEfectoTmp = fechaEfectoTmp.Substring(fechaEfectoTmp.Length - 23);
-                    string formatoFechaTexto = "dd 'de' MMMM 'de' yyyy";
-                    DateTime fecha = DateTime.ParseExact(fechaEfectoTmp, formatoFechaTexto, System.Globalization.CultureInfo.GetCultureInfo("es-ES")); //Se convierte la fecha en texto a fecha numerica
-                    FechaEfecto = fecha.ToString("dd/MM/yyyy");//Se convierte la fecha numeria a texto para almacenarla en la variable
-                }
+                case "AFIC":
+                    fechaEfectoTmp = procesosPDF.ProcesaPatron(patronFechaEfectoAFIC, 1);
+                    if (fechaEfectoTmp.Length > 0)
+                    {
+                        FechaEfecto = fechaEfectoTmp.Substring(fechaEfectoTmp.Length - 10);
+                    }
+                    break;
+
+                case "HUE":
+                    fechaEfectoTmp = procesosPDF.ProcesaPatron(patronFechaHuella, 1);
+                    if (fechaEfectoTmp.Length > 0)
+                    {
+                        FechaEfecto = fechaEfectoTmp.Substring(fechaEfectoTmp.Length - 10);
+                    }
+                    break;
+
+                default:
+                    fechaEfectoTmp = procesosPDF.ProcesaPatron(patronFechaEfecto, 1);
+                    if (fechaEfectoTmp.Length > 0)
+                    {
+                        //Al texto que le llega del PDF le hace un regex para obtener unicamente la fecha (segunda parte del patron)
+                        string pattern = @".*:\s*(\d{1,2}\s+de\s+[^\s]+\s+de\s+\d{4})";
+                        Match match = Regex.Match(fechaEfectoTmp, pattern);
+
+                        if (match.Success)
+                        {
+                            fechaEfectoTmp = match.Groups[1].Value;
+                        }
+                        string formatoFechaTexto = "dd 'de' MMMM 'de' yyyy";
+                        DateTime fecha = DateTime.ParseExact(fechaEfectoTmp, formatoFechaTexto, System.Globalization.CultureInfo.GetCultureInfo("es-ES")); //Se convierte la fecha en texto a fecha numerica
+                        FechaEfecto = fecha.ToString("dd/MM/yyyy");//Se convierte la fecha numeria a texto para almacenarla en la variable
+
+                    }
+                    break;
             }
         }
     }

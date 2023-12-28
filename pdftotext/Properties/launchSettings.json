@@ -2,8 +2,8 @@
   "profiles": {
     "pdftotext": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Borrar\\laboral\\idcv4.pdf\" -l \"C:\\Borrar\\laboral\\idcv4_DATOS.txt\" -t \"C:\\Borrar\\laboral\\idcv4_TXT.txt\"",
-      "workingDirectory": "D:\\Programacion\\C#\\pdftotext\\pdftotext\\bin\\Debug\\net48"
+      "commandLineArgs": "\"C:\\Borrar\\laboral\\AFIC2.pdf\" -l \"C:\\Borrar\\laboral\\AFIC2_DATOS.txt\" -t \"C:\\Borrar\\laboral\\AFIC2_TXT.txt\"",
+      "workingDirectory": "C:\\Programacion\\c#\\pdftotext\\pdftotext\\bin\\Debug\\net48"
     }
   }
 }
