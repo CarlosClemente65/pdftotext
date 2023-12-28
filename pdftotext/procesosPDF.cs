@@ -2,7 +2,6 @@
 using iText.Kernel.Pdf.Canvas.Parser;
 using iText.Kernel.Pdf;
 using System.Text;
-using Microsoft.SqlServer.Server;
 using System.Text.RegularExpressions;
 
 namespace pdftotext
@@ -113,137 +112,130 @@ namespace pdftotext
             switch (buscar.Modelo)
             {
                 case "CER":
-                    texto += "Modelo: 993 \n";
-                    texto += "Tipo: 03 \n";
-                    texto += $"CIF: {buscar.Nif} \n";
-                    texto += $"Ejercicio: {buscar.Ejercicio} \n";
-                    texto += $"Periodo: {buscar.Periodo} \n";
-                    texto += $"Observaciones 1: {buscar.Observaciones1} \n";
-                    texto += $"Observaciones 2: {buscar.Observaciones2} \n";
+                    texto += "Modelo: 993";
+                    texto += "\nTipo: 03";
+                    texto += $"\nCIF: {buscar.Nif}";
+                    texto += $"\nEjercicio: {buscar.Ejercicio}";
+                    texto += $"\nPeriodo: {buscar.Periodo}";
                     break;
 
                 case "RLC":
                 case "RNT":
                     if (buscar.Modelo == "RLC")
                     {
-                        texto += "Modelo: 997 \n";
+                        texto += "Modelo: 997";
                     }
                     else
                     {
-                        texto += "Modelo: 996 \n";
+                        texto += "Modelo: 996";
                     }
 
                     switch (buscar.TipoModelo)
                     {
                         case "L00":
-                            texto += "Tipo de modelo: 00 \n";
+                            texto += "\nTipo: 00";
                             break;
 
                         case "L13":
-                            texto += "Tipo de modelo: 02 \n";
+                            texto += "\nTipo: 02";
                             break;
 
                         case "L03":
-                            texto += "Tipo de modelo: 05 \n";
+                            texto += "\nTipo: 05";
                             break;
 
                         case "L90":
-                            texto += "Tipo de modelo: 90 \n";
+                            texto += "\nTipo: 90";
                             break;
                     }
 
-                    texto += $"CIF: {buscar.Nif} \n";
-                    texto += $"Ejercicio: {buscar.Ejercicio} \n";
-                    texto += $"Periodo: {buscar.Periodo} \n";
-                    texto += $"Codigo cuenta cotizacion: {buscar.CCC}\n";
+                    texto += $"\nCIF: {buscar.Nif}";
+                    texto += $"\nEjercicio: {buscar.Ejercicio}";
+                    texto += $"\nPeriodo: {buscar.Periodo}";
                     break;
 
                 case "AFIA":
-                    texto += "Modelo: 991 \n";
-                    texto += "Tipo de modelo: 00 \n";
-                    texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
-                    texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
-                    texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
-                    texto += $"Observaciones 1: {buscar.Observaciones1} \n";
-                    texto += $"Observaciones 2: {buscar.Observaciones2} \n";
-                    texto += $"Campo libre 1: {buscar.CampoLibre1} \n";
-                    texto += $"Campo libre 2: {buscar.CampoLibre2} \n";
+                    texto += "Modelo: 991";
+                    texto += "\nTipo: 00";
+                    texto += $"\nCodigo cuenta cotizacion: {buscar.CCC}";
+                    texto += $"\nNIF trabajador: {buscar.DniTrabajador}";
+                    texto += $"\nFecha efecto: {buscar.FechaEfecto}";
                     break;
 
                 case "AFIB":
-                    texto += "Modelo: 991 \n";
-                    texto += "Tipo de modelo: 01 \n";
-                    texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
-                    texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
-                    texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
-                    texto += $"Observaciones 1: {buscar.Observaciones1} \n";
-                    texto += $"Observaciones 2: {buscar.Observaciones2} \n";
-                    texto += $"Campo libre 1: {buscar.CampoLibre1} \n";
-                    texto += $"Campo libre 2: {buscar.CampoLibre2} \n";
-
+                    texto += "Modelo: 991";
+                    texto += "\nTipo: 01";
+                    texto += $"\nCodigo cuenta cotizacion: {buscar.CCC}";
+                    texto += $"\nNIF trabajador: {buscar.DniTrabajador}";
+                    texto += $"\nFecha efecto: {buscar.FechaEfecto}";
                     break;
 
                 //Esta pendiente de desarrollo por falta de documento de ejemplo (faltaria el patron de busqueda)
                 //case "AFIV": 
-                //    texto += "Modelo: 991 \n";
-                //    texto += "Tipo de modelo: 02 \n";
-                //    texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
-                //    texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
-                //    texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
+                //    texto += "Modelo: 991";
+                //    texto += "\nTipo: 02";
+                //    texto += $"\nCodigo cuenta cotizacion: {buscar.CCC}";
+                //    texto += $"\nNIF trabajador: {buscar.DniTrabajador}";
+                //    texto += $"\nFecha efecto: {buscar.FechaEfecto}";
                 //    break;
 
                 case "AFIC":
-                    texto += "Modelo: 991 \n";
-                    texto += "Tipo de modelo: 03 \n";
-                    texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
-                    texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
-                    texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
-                    texto += $"Observaciones 1: {buscar.Observaciones1} \n";
-                    texto += $"Observaciones 2: {buscar.Observaciones2} \n";
-                    texto += $"Campo libre 1: {buscar.CampoLibre1} \n";
-                    texto += $"Campo libre 2: {buscar.CampoLibre2} \n";
-
+                    texto += "Modelo: 991";
+                    texto += "\nTipo: 03";
+                    texto += $"\nCodigo cuenta cotizacion: {buscar.CCC}";
+                    texto += $"\nNIF trabajador: {buscar.DniTrabajador}";
+                    texto += $"\nFecha efecto: {buscar.FechaEfecto}";
                     break;
 
                 case "IDC":
-                    texto += "Modelo: 991 \n";
-                    texto += $"Tipo de modelo: {buscar.TipoIDC} \n";
-                    texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
-                    texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
-                    texto += $"Fecha efecto: {buscar.PeriodoIDC} \n";
-                    texto += $"Observaciones 1: {buscar.Observaciones1} \n";
-                    texto += $"Observaciones 2: {buscar.Observaciones2} \n";
-                    texto += $"Campo libre 1: {buscar.CampoLibre1} \n";
-                    texto += $"Campo libre 2: {buscar.CampoLibre2} \n";
+                    texto += "Modelo: 991";
+                    texto += $"\nTipo: {buscar.TipoIDC} \n";
+                    texto += $"\nCodigo cuenta cotizacion: {buscar.CCC}";
+                    texto += $"\nNIF trabajador: {buscar.DniTrabajador} ";
+                    texto += $"\nFecha efecto: {buscar.PeriodoIDC}";
                     break;
 
                 case "ITA":
-                    texto += "Modelo: 991 \n";
-                    texto += "Tipo de modelo: 07 \n";
-                    texto += $"CIF: {buscar.Nif} \n";
-                    texto += $"Ejercicio: {buscar.Ejercicio} \n";
-                    texto += $"Periodo: {buscar.Periodo} \n";
-                    texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
-                    texto += $"Observaciones 1: {buscar.Observaciones1} \n";
+                    texto += "Modelo: 991";
+                    texto += "\nTipo: 07 \n";
+                    texto += $"\nCIF: {buscar.Nif}";
+                    texto += $"\nEjercicio: {buscar.Ejercicio}";
+                    texto += $"\nPeriodo: {buscar.Periodo}";
                     break;
 
 
                 case "HUE":
-                    texto += "Modelo: 992 \n";
-                    texto += "Tipo de modelo: 00 \n";
-                    texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
-                    texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
-                    texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
-                    texto += $"Observaciones1: {buscar.Observaciones1} \n";
-                    if (!string.IsNullOrEmpty(buscar.Observaciones2))
-                    {
-                        texto += $"Observaciones2: {buscar.Observaciones2} \n";
-                    }
-                    if (!string.IsNullOrEmpty(buscar.Observaciones3))
-                    {
-                        texto += $"Observaciones3: {buscar.Observaciones3} \n";
-                    }
+                    texto += "Modelo: 992";
+                    texto += "\nTipo: 00";
+                    texto += $"\nCodigo cuenta cotizacion: {buscar.CCC}";
+                    texto += $"\nNIF trabajador: {buscar.DniTrabajador}";
+                    texto += $"\nFecha efecto: {buscar.FechaEfecto}";
                     break;
+            }
+
+            if (!string.IsNullOrEmpty(buscar.Observaciones1))
+            {
+                texto += $"\nObservaciones1: {buscar.Observaciones1}";
+            }
+
+            if (!string.IsNullOrEmpty(buscar.Observaciones2))
+            {
+                texto += $"\nObservaciones2: {buscar.Observaciones2}";
+            }
+
+            if (!string.IsNullOrEmpty(buscar.Observaciones3))
+            {
+                texto += $"\nObservaciones3: {buscar.Observaciones3}";
+            }
+
+            if (!string.IsNullOrEmpty(buscar.CampoLibre1))
+            {
+                texto += $"\nCampo libre 1: {buscar.CampoLibre1}";
+            }
+
+            if (!string.IsNullOrEmpty(buscar.CampoLibre2))
+            {
+                texto += $"\nCampo libre 2: {buscar.CampoLibre2}";
             }
 
             //Graba el fichero de datos con el texto creado
@@ -253,8 +245,7 @@ namespace pdftotext
 
         public string ProcesaPatron(string patronRegex, int pagina, string Modelo = "", string TipoModelo = "", int valor = 0)
         {
-
-            //Metodo para extraer el texto segun el patron de busqueda pasado
+            //Metodo para extraer el texto segun el patron de busqueda pasado. Opcionalmente se puede pasar el modelo, tipo de modelo y el indice del texto encontrado a devolver
             Regex regex = new Regex(patronRegex);
             MatchCollection matches = regex.Matches(Program.paginasPDF[pagina - 1].ToString());
 

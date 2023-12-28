@@ -16,15 +16,11 @@ namespace pdftotext
         public string CCC { get; private set; }
         public string DniTrabajador { get; private set; }
         public string FechaEfecto { get; private set; }
-        //public string AltaIDC { get; private set; }
-        //public string BajaIDC { get; private set; }
-        //public string FechaIDC { get; private set; }
         public string PeriodoIDC { get; private set; }
         public string TipoIDC { get; private set; }
         public string Observaciones1 { get; private set; }
         public string Observaciones2 { get; private set; }
         public string Observaciones3 { get; private set; }
-
         public string CampoLibre1 { get; private set; }
         public string CampoLibre2 { get; private set; }
 
@@ -38,37 +34,61 @@ namespace pdftotext
         string AFIV = string.Empty; //Documento de afiliacion - variacion
         string AFIC = string.Empty; //Documento de afiliacion - cambio de contrato
         string IDC = string.Empty; //Documento de Informe de datos para la cotizacion
-        String HUE = string.Empty; //Documento de huella de contrato
+        string HUE = string.Empty; //Documento de huella de contrato
 
 
 
         #region patrones de busqueda
         //Definicion de patrones de busqueda de datos
+
         string patronNif = @"\b(?=(?:\w*[A-Z]){0,2})(?=\w*\d)\w{9,10}\b"; //Busca una palabra de 9 o 10 caracteres (\w{9,10}) y obliga a que haya alguna letra mayuscula y algun numero, pero el primer caracter es opcional (en los documentos laborales le pueden poner un cero delante)
+
         string patronPeriodo = @"Fecha: \d{2}[-/.]\d{2}[-/.]\d{4}"; //Busca el texto seguido de una fecha separada por un guion, una barra inclinada o un punto
+
         string patronPeriodoL00 = @"\d{2}/\d{4}.*\d{2}/\d{4}"; //Busca dos digitos, seguido de una barra inclinada, seguido de 4 digitos, seguido de cero o varios espacios, seguido de dos digitos, seguido de una barra inclinada y seguido de 4 digitos.
+
         string patronPeriodoL03 = @"Fecha de Control: \d{2]/\d{4}\b"; //Busca el texto seguido de 2 digitos, seguido de una barra inclinada, seguido de 4 digitos y termina la palabra.
-        string patronTipoModelo = @"L\d{2}.\w*"; //Busca una L seguida de 2 digitos, seguida de un caracter y seguida de cero o mas palabras.
-        string patronCCC = @"\d{4}[-. ]\d{2}[-. ]?\d{7}[-. ]?\d{2}"; //Busca 4 digitos, seguido de un guion, un punto o un espacio, seguido de 2 digitos, seguido de un guion, un punto o un espacio (es opcional), seguido de 9 digitos, seguido de un guion, un punto o un espacio (es opcional) y seguido de dos digitos; (en algunos documentos el CCC le ponen guiones para separar.
+
+        string patronTipoModelo = @"L\d{2}(.+)"; //Busca una L seguida de 2 digitos, seguida de un caracter y seguida de cero o mas palabras.   L\d{2}.\w*
+
+
+        string patronCCC = @"\d{4}[-. ]\d{2}[-. ]?\d{7}[-. ]?\d{2}"; //Busca 4 digitos, seguido de un guion, un punto o un espacio, seguido de 2 digitos, seguido de un guion, un punto o un espacio (es opcional), seguido de 7 digitos, seguido de un guion, un punto o un espacio (es opcional) y seguido de 2 digitos; (en algunos documentos el CCC le ponen guiones para separar.
+
         string patronCCCHuella = @"(\d\s){6}\d{7}(\s\d){2}"; //Busca 6 digitos separados por espacio, seguido de 7 digitos y seguido de 2 digitos separados por espacio (en la huella el CCC viene separado por espacios)
+
         string patronCER = "CERTIFICADO DE ESTAR AL CORRIENTE";
+
         string patronRLC = @"[A-Z]RLC\d{10}\b"; //Busca una letra mayuscula, seguida de RLC y seguida de 10 digitos que terminan la palabra.
+
         string patronRNT = "[A-Z]RNT\\d{10}\\b"; //Busca una letra mayuscula, seguida de RNT y seguida de 10 digitos que terminan la palabra.
+
         string patronITA = @"INFORME DE TRABAJADORES EN ALTA A FECHA: \d{2}.\d{2}.\d{4}"; //Busca el texto seguido dos digitos, seguido de un caracter, seguido de dos digitos, seguido de un caracter y seguido de 4 caracteres.
+
         string patronAFIA = "RESOLUCIÓN SOBRE RECONOCIMIENTO DE ALTA(.+)";//Documento de afiliacion de alta
+
         string patronAFIB = "RESOLUCIÓN SOBRE RECONOCIMIENTO DE BAJA(.+)";//Documento de afiliacion de baja
+
         string patronAFIV = ""; //Documento de afiliacion de variacion (no hay documento de ejemplo)
-        string patronAFIC = @"COMUNICACIÓN SOBRE\s+(\w+\s+)*\nCONTRATO DE TRABAJO\s+([\w+\s]+)$*"; //Documento de afiliacion de variacion
-        //string patronFechaEfecto = @"se indica a continuación: (\S+ \S+ \S+ \S+ \S+)"; //Busca el texto seguido de 5 palabras que seria la fecha en formato dia de mes de año; este patron no es muy seguro, uso el siguiente.
+
+        string patronAFIC = @"COMUNICACIÓN SOBRE\s+(\w+\s+)*\nCONTRATO DE TRABAJO\s+([\w+\s]+)$*"; //Documento de afiliacion de variacion. Busca el texto seguido de uno o varios espacios, seguido de una o varias palabras separadas por espacios, seguido de un salto de linea, seguido del texto, seguido de uno o varios espacios, seguido de una o varias palabras que estan al final de la linea
+
         string patronFechaEfecto = @"se indica a continuación: (\d{2} de \S+ de \d{4})"; //Busca el texto seguido de la fecha en formato dia de mes de año
+
         string patronFechaEfectoAFIC = @"con efectos de \d{2}[-/.]\d{2}[-/.]\d{4}"; //Busca el texto seguido de una fecha separada por un guion, una barra inclinada o un punto.
-        string patronFechaHuella = @"Fecha de Inicio (\w+\s+)*:\s\d{2}[-/.]\d{2}[-/.]\d{4}";
-        string patronIDC = "Informe de Datos para la Cotización(.+)";
+
+        string patronFechaHuella = @"Fecha de Inicio (\w+\s+)*:\s\d{2}[-/.]\d{2}[-/.]\d{4}"; //Busca el texto seguido de una o varias palabras separadas por espacios, seguido de dos puntos, seguido de un espacio, seguido de una fecha separada por guiones, barra inclinada o puntos.
+
+        string patronIDC = "Informe de Datos para la Cotización(.+)"; //Busca el texto seguido de cualquier caracter
+
         string patronAltaIDC = @"ALTA:\s*\d{2}.\d{2}.\d{4}"; //Busca el texto seguido de uno o varios espacios y despues la fecha en formato dd.mm.aaaa (el separador puede ser cualquier caracter)
+
         string patronBajaIDC = @"BAJA:\s*\d{2}.\d{2}.\d{4}"; //Busca el texto seguido de uno o varios espacios y despues la fecha en formato dd.mm.aaaa (el separador puede ser cualquier caracter)
+
         string patronPeriodoIDC = @"PERIODO:\s*DESDE\s*\d{2}.\d{2}.\d{4}"; //Busca el texto seguido de uno o varios espacios y despues la fecha en formato dd.mm.aaaa (el separador puede ser cualquier caracter)";
+
         string patronFechaIDC = @"FECHA:\s*\d{2}.\d{2}.\d{4}"; //Busca el texto seguido de uno o varios espacios y despues la fecha en formato dd.mm.aaaa (el separador puede ser cualquier caracter)";
-        string patronHuella = @"COMUNICACIÓN[\s\S]*DEL CONTRATO DE[\s\S]*?\n(.+)";
+
+        string patronHuella = @"COMUNICACIÓN[\s\S]*DEL CONTRATO DE[\s\S]*?\n(.+)"; //Busca el texto seguido cualquier espacio o caracter (\S es lo contrario de un espacio), seguido de un salto de linea, seguido de cualquier caracter que no sea un salto de linea.
 
 
         #endregion
@@ -111,6 +131,7 @@ namespace pdftotext
                     //Documento ITA
                     BuscarNif();
                     BuscarCCC();
+                    CampoLibre1 = $"CCC: {CCC}";
                     break;
 
                 case "RNT":
@@ -120,6 +141,7 @@ namespace pdftotext
                     BuscarTipoDocumento();
                     BuscarPeriodoRLCyRNT();
                     BuscarCCC();
+                    CampoLibre1 = $"CCC: {CCC}";
                     break;
 
                 case "AFIA"://Documento AFI de alta
@@ -127,8 +149,8 @@ namespace pdftotext
                 case "AFIC": //Documento AFI de cambio de contrato
                     BuscarDniTrabajador();
                     BuscarFechaEfecto();
-                    CampoLibre2 = FechaEfecto;
                     BuscarCCC();
+                    CampoLibre2 = FechaEfecto;
                     break;
 
                 case "AFIV":
@@ -137,7 +159,6 @@ namespace pdftotext
 
                 case "IDC":
                     //Documentos IDC
-                    //Hay que incluir para la busqueda de los IDC de baja (supongo que seran con la fecha de baja que hay en el documento) y variacion (si la fecha de alta es diferente a la de contrato)
                     BuscarDniTrabajador();
                     BuscarFechaIDC();
                     BuscarCCC();
@@ -203,19 +224,18 @@ namespace pdftotext
                     Modelo = "AFIC";
                 }
 
-                AFIV = procesosPDF.ProcesaPatron(patronAFIV, 1);
-                if (!string.IsNullOrEmpty(AFIV))
-                {
-                    Modelo = "AFIV";
-                }
-
+                ////Este documento no tenemos ejemplo del PDF. Lo dejo comentado por si lo conseguimos poder implantarlo
+                //AFIV = procesosPDF.ProcesaPatron(patronAFIV, 1);
+                //if (!string.IsNullOrEmpty(AFIV))
+                //{
+                //    Modelo = "AFIV";
+                //}
 
                 CER = procesosPDF.ProcesaPatron(patronCER, 1);
                 if (!string.IsNullOrEmpty(CER))
                 {
                     Modelo = "CER";
                 }
-
 
                 RNT = procesosPDF.ProcesaPatron(patronRNT, 1);
                 if (!string.IsNullOrEmpty(RNT))
@@ -237,8 +257,6 @@ namespace pdftotext
 
                     if (match.Success)
                     {
-                        //CampoLibre1 = match.Groups[1].Value;
-
                         string fechaTmp = match.Groups[2].Value;
                         string formatoFechaTexto = " dd MM yyyy";
                         DateTime fecha = DateTime.ParseExact(fechaTmp, formatoFechaTexto, System.Globalization.CultureInfo.GetCultureInfo("es-ES")); //Se convierte la fecha en texto a fecha numerica
@@ -330,6 +348,7 @@ namespace pdftotext
             if (tipoModeloTmp.Length > 0)
             {
                 TipoModelo = tipoModeloTmp.Substring(0, 3);
+                Observaciones1 = Modelo + " - " + tipoModeloTmp;
             }
         }
 
