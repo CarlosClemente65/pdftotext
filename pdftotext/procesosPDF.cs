@@ -118,6 +118,8 @@ namespace pdftotext
                     texto += $"CIF: {buscar.Nif} \n";
                     texto += $"Ejercicio: {buscar.Ejercicio} \n";
                     texto += $"Periodo: {buscar.Periodo} \n";
+                    texto += $"Observaciones 1: {buscar.Observaciones1} \n";
+                    texto += $"Observaciones 2: {buscar.Observaciones2} \n";
                     break;
 
                 case "RLC":
@@ -162,6 +164,10 @@ namespace pdftotext
                     texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
                     texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
                     texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
+                    texto += $"Observaciones 1: {buscar.Observaciones1} \n";
+                    texto += $"Observaciones 2: {buscar.Observaciones2} \n";
+                    texto += $"Campo libre 1: {buscar.CampoLibre1} \n";
+                    texto += $"Campo libre 2: {buscar.CampoLibre2} \n";
                     break;
 
                 case "AFIB":
@@ -170,6 +176,11 @@ namespace pdftotext
                     texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
                     texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
                     texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
+                    texto += $"Observaciones 1: {buscar.Observaciones1} \n";
+                    texto += $"Observaciones 2: {buscar.Observaciones2} \n";
+                    texto += $"Campo libre 1: {buscar.CampoLibre1} \n";
+                    texto += $"Campo libre 2: {buscar.CampoLibre2} \n";
+
                     break;
 
                 //Esta pendiente de desarrollo por falta de documento de ejemplo (faltaria el patron de busqueda)
@@ -187,6 +198,11 @@ namespace pdftotext
                     texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
                     texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
                     texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
+                    texto += $"Observaciones 1: {buscar.Observaciones1} \n";
+                    texto += $"Observaciones 2: {buscar.Observaciones2} \n";
+                    texto += $"Campo libre 1: {buscar.CampoLibre1} \n";
+                    texto += $"Campo libre 2: {buscar.CampoLibre2} \n";
+
                     break;
 
                 case "IDC":
@@ -195,6 +211,10 @@ namespace pdftotext
                     texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
                     texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
                     texto += $"Fecha efecto: {buscar.PeriodoIDC} \n";
+                    texto += $"Observaciones 1: {buscar.Observaciones1} \n";
+                    texto += $"Observaciones 2: {buscar.Observaciones2} \n";
+                    texto += $"Campo libre 1: {buscar.CampoLibre1} \n";
+                    texto += $"Campo libre 2: {buscar.CampoLibre2} \n";
                     break;
 
                 case "ITA":
@@ -204,6 +224,7 @@ namespace pdftotext
                     texto += $"Ejercicio: {buscar.Ejercicio} \n";
                     texto += $"Periodo: {buscar.Periodo} \n";
                     texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
+                    texto += $"Observaciones 1: {buscar.Observaciones1} \n";
                     break;
 
 
@@ -213,7 +234,15 @@ namespace pdftotext
                     texto += $"Codigo cuenta cotizacion: {buscar.CCC} \n";
                     texto += $"NIF trabajador: {buscar.DniTrabajador} \n";
                     texto += $"Fecha efecto: {buscar.FechaEfecto} \n";
-                    texto += $"Observaciones: {buscar.Observaciones} \n";
+                    texto += $"Observaciones1: {buscar.Observaciones1} \n";
+                    if (!string.IsNullOrEmpty(buscar.Observaciones2))
+                    {
+                        texto += $"Observaciones2: {buscar.Observaciones2} \n";
+                    }
+                    if (!string.IsNullOrEmpty(buscar.Observaciones3))
+                    {
+                        texto += $"Observaciones3: {buscar.Observaciones3} \n";
+                    }
                     break;
             }
 
