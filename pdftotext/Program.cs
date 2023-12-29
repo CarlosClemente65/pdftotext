@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 
+
+
 [assembly: AssemblyTitle("Convierte un PDF en texto y extrae los datos de los modelos de Hacienda")]
 [assembly: AssemblyProduct("dsepdfatexto")]
 [assembly: AssemblyDescription("Convierte un PDF en texto y extrae los datos de los modelos de Hacienda")]
@@ -66,6 +68,42 @@ namespace pdftotext
                     proceso.extraeDatosLaboral();
                 }
 
+            }
+            else
+            {
+                if (Environment.UserInteractive)
+                {
+                    // Obtener la información del ensamblado actual
+                    Assembly assembly = Assembly.GetExecutingAssembly();
+
+                    // Obtener el atributo del copyright del ensamblado
+                    AssemblyCopyrightAttribute copyrightAttribute =
+                        (AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(assembly, typeof(AssemblyCopyrightAttribute));
+
+                    //Obtener el atributo del nombre del ensamblado
+                    AssemblyProductAttribute nombreProducto = (AssemblyProductAttribute)Attribute.GetCustomAttribute(assembly, typeof(AssemblyProductAttribute));
+
+                    // Obtener el valor de la propiedad Copyright y nombre del producto
+                    string copyrightValue = copyrightAttribute?.Copyright;
+                    string nombreValue = nombreProducto?.Product;
+
+
+
+                    // Utilizar el valor en una cadena de texto
+                    string mensaje = $"{nombreValue} - {copyrightValue}";
+
+
+                    Console.BackgroundColor = ConsoleColor.DarkRed; 
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Title = mensaje;
+                    Console.WriteLine("\n\tEsta aplicacion debe ejecutarse por linea de comandos.");
+                    Console.WriteLine("\n\t\tPulse una tecla para salir");
+                    Console.BufferHeight = 5;
+                    Console.SetWindowPosition(0, 0);
+                    Console.SetWindowSize(65,5);
+                    Console.ReadKey();
+                    Console.ResetColor();
+                }
             }
 
             bool gestionParametros(string[] parametros)
