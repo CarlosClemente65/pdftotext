@@ -11,18 +11,37 @@ Permite extraer los datos de un PDF a un fichero de texto, y buscar las variable
 
 ### Control versiones
 
-* v1.0 Primera version que extrae el texto completo del PDF
-* v1.1 Incorporada la opcion para la extraccion de datos de modelos
-* v1.2 Incorporada la opcion para la extraccion de datos de documentos laborales
+* v1.0.0 Primera version que extrae el texto completo del PDF
+* v1.1.0 Incorporada la opcion para la extraccion de datos de modelos
+* v1.2.0 Incorporada la opcion para la extraccion de datos de documentos laborales
+* v1.2.1 Incorporada la opcion para el proceso masivo de documentos de una carpeta y poder mostrar la ayuda
 <br><br>
 
 
 ### Uso:
-<code>dsepdfatext.exe fichero.pdf -m datosModelo.txt -l datosLaboral.txt -t textoPDF.txt</code>
-<br><br>
+```
+* dsepdfatexto.exe -h
+* dsepdfatexto.exe fichero.pdf -t textoPDF.txt -m datosModelo.txt -l datosLaboral.txt 
+* dsepdfatexto carpeta [-rm | -rl]
+	
+ Parametros
+	-h                 : Esta ayuda
+    fichero.pdf        : Nombre del fichero PDF a procesar (unico fichero)
+    -t textoPDF.txt    : Nombre del fichero en el que grabar el texto completo del PDF
+    -m datosModelo.txt : Nombre del fichero en el que grabar los campos localizados del modelo
+    -l datosLaboral.txt: Nombre del fichero en el que grabar los campos localizados del modelo laboral
+    carpeta            : Carpeta donde estan todos los ficheros PDF a procesar de forma masiva
+    -rm                : Parametro que indica que se procesen los ficheros de la carpeta como modelos
+    -rl                : Parametro que indica que se procesen los ficheros de la carpeta como documentos laborales
+
+```
+<br>
 
 ### Notas:
-* El parametro -m es el fichero con los campos localizados del modelo
-* El parametro -l es el fichero con los campos localizados del modelo laboral
-* El parametro -t es el texto completo del PDFli>
-* El orden de estos parametros es indiferente
+* Si se pasa como primer parametro una carpeta, se procesan los ficheros como modelos (parametro -rm) o como documentos de laboral (parametro -rl)
+* Si se pasa como primer parametro -h se muestra la ayuda del programa. Tambien se muestra la ayuda si se ejecuta desde windows
+* Si se pasa el fichero.pdf al menos uno de los 3 parametros siguientes son obligatorios (el orden de los parametros es indiferente)
+* El parametro -t va seguido del nombre del fichero con el texto completo del PDF
+* El parametro -m va seguido del nombre del fichero con los campos localizados del modelo
+* El parametro -l va seguido del nombre del fichero con los campos localizados del modelo laboral
+

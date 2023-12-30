@@ -1,14 +1,12 @@
 ﻿using System.Reflection;
 
-
-
 [assembly: AssemblyTitle("Convierte un PDF en texto y extrae los datos de los modelos de Hacienda")]
 [assembly: AssemblyProduct("dsepdfatexto")]
 [assembly: AssemblyDescription("Convierte un PDF en texto y extrae los datos de los modelos de Hacienda")]
 //[assembly: AssemblyCompany("Diagram Software Europa S.L.")]
 [assembly: AssemblyCopyright("© 2023 - Diagram Software Europa S.L.")]
-[assembly: AssemblyVersion("1.2.1.0")]
-[assembly: AssemblyFileVersion("1.2.1.0")]
+[assembly: AssemblyVersion("1.2.2.0")]
+[assembly: AssemblyFileVersion("1.2.2.0")]
 
 
 namespace pdftotext
@@ -19,9 +17,21 @@ namespace pdftotext
     Desarrollada por Carlos Clemente - 12/2023
     
     Uso:
-        dsepdfatexto fichero.pdf -m datosModelo.txt -t textoPDF.txt -l datosLaboral.txt
-        Nota: el parametro -m es el fichero con los campos localizados del modelo, el parametro -t es el texto completo del PDF, y el parametro -l es el fichero con los campos localizados del modelo laboral
-    */
+        dsepdfatexto -h
+        dsepdfatexto fichero.pdf -t textoPDF.txt -m datosModelo.txt  -l datosLaboral.txt
+        dsepdfatexto carpeta [-rm | rl]
+
+    Parametros:
+        -h                 : Esta ayuda
+        fichero.pdf        : nombre del fichero PDF a procesar (unico fichero)
+        -t textoPDF.txt    : nombre del fichero en el que grabar el texto completo del PDF
+        -m datosModelo.txt : nombre del fichero en el que grabar los campos localizados del modelo
+        -l datosLaboral.txt: nombre del fichero en el que grabar los campos localizados del modelo laboral
+        carpeta            : carpeta donde estan todos los ficheros PDF a procesar de forma masiva
+        -rm                : parametro que indica que se procesen los ficheros de la ruta como modelos
+        -rl                : parametro que indica que se procesen los ficheros de la rut como documentos laborales
+
+     */
 
     class Program
     {
@@ -35,80 +45,112 @@ namespace pdftotext
         //Instanciacion de la clase procesosPDF para acceder a los metodos definidos en ella
         public static procesosPDF proceso = new procesosPDF();
 
+        // Obtener la información del ensamblado actual
+        static Assembly assembly = Assembly.GetExecutingAssembly();
+
+        // Obtener el atributo del copyright del ensamblado
+        static AssemblyCopyrightAttribute copyrightAttribute =
+            (AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(assembly, typeof(AssemblyCopyrightAttribute));
+
+        //Obtener el atributo del nombre del ensamblado
+        static AssemblyProductAttribute nombreProducto = (AssemblyProductAttribute)Attribute.GetCustomAttribute(assembly, typeof(AssemblyProductAttribute));
+
+        // Obtener el valor de la propiedad Copyright y nombre del producto
+        static string copyrightValue = copyrightAttribute?.Copyright;
+        static string nombreValue = nombreProducto?.Product;
+
         static void Main(string[] args)
         {
-            //Se deben pasar al menos 3 parametros: fichero PDF, tipo de proceso y fichero de salida
-            if (args.Length > 2)
+            //Control para si no se ejecuta desde la linea de comnados, mostrar un mensaje
+            switch (args.Length)
             {
-                //Proceso de los parametros que se pasan
-                continuar = gestionParametros(args);
+                case 0:
+                    //Si no se pasan argumentos debe ser porque se ha ejecutado desde windows
+                    // Abre una ventana de consola para mostrar el mensaje
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.SetWindowSize(120, 22);
+                    Console.SetBufferSize(120, 22);
+                    Console.Clear();
+                    Console.Title = $"{nombreValue} - {copyrightValue}";
+                    Console.WriteLine("\r\n\tEsta aplicacion debe ejecutarse por linea de comandos y pasarle los parametros correspondientes.");
+                    mensajeAyuda();
+                    Console.SetWindowSize(120, 30);
+                    Console.SetBufferSize(120, 30);
+                    Console.ResetColor();
+                    Console.Clear();
+                    Environment.Exit(0);
+                    break;
+
+                case 1:
+                    //Si solo se pasa un parametro puede ser la peticion de ayuda
+                    if (args[0] == "-h")
+                    {
+                        mensajeAyuda();
+                    }
+                    break;
+
+                default:
+                    //Proceso de los parametros que se pasan
+                    continuar = gestionParametros(args);
+
+                    //Si los parametros pasados son correctos realiza los procesos que se hayan pasado como parametros
+                    if (continuar)
+                    {
+                        proceso.extraeTextoPDF();
+                        //Graba el fichero con el texto completo
+                        if (proceso.grabaTexto)
+                        {
+                            proceso.grabaFichero(proceso.ficheroTexto, textoCompleto);
+                        }
+
+                        switch (proceso.tipoProceso)
+                        {
+                            case "Modelos":
+                                proceso.extraeDatosModelo();
+                                break;
+
+                            case "Laboral":
+                                proceso.extraeDatosLaboral();
+                                break;
+
+                            case "Masivo":
+                                foreach (string fichero in proceso.archivosPDF)
+                                {
+                                    proceso.ficheroPDF = fichero;
+                                    string nombreFichero = Path.ChangeExtension(fichero, null);
+                                    proceso.ficheroTexto = nombreFichero + "_TXT.txt";
+                                    proceso.ficheroDatos = nombreFichero + "_DATOS.txt";
+                                    proceso.grabaFichero(proceso.ficheroTexto, textoCompleto);
+
+                                    switch (args[1])
+                                    {
+                                        case "-rm":
+                                            proceso.extraeDatosModelo();
+                                            break;
+
+                                        case "-rl":
+                                            proceso.extraeDatosLaboral();
+                                            break;
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                    break;
             }
+        }
 
-            //Si los parametros pasados son correctos realiza los procesos que se hayan pasado como parametros
-            if (continuar)
+
+        static bool gestionParametros(string[] parametros)
+        {
+            int totalParametros = parametros.Length;
+            if (parametros[1] == "-rl" || parametros[1] == "-rm")
             {
-                //Extrae el texto del PDF
-                proceso.extraeTextoPDF();
-
-                //Graba el fichero con el texto completo
-                if (proceso.extraeTexto)
-                {
-                    proceso.grabaFichero(proceso.ficheroTexto, textoCompleto);
-                }
-
-                //Extrae datos del modelo
-                if (proceso.procesaModelo)
-                {
-                    proceso.extraeDatosModelo();
-                }
-
-                //Extrae datos de los documentos de laboral
-                if (proceso.procesaLaboral)
-                {
-                    proceso.extraeDatosLaboral();
-                }
-
+                //Si el primer parametro es -rm (ruta de modelos) o -rl (ruta de documentos laborales) se va a procesar la ruta completa, que se controla desde la gestion de parametros. 
             }
             else
             {
-                if (Environment.UserInteractive)
-                {
-                    // Obtener la información del ensamblado actual
-                    Assembly assembly = Assembly.GetExecutingAssembly();
-
-                    // Obtener el atributo del copyright del ensamblado
-                    AssemblyCopyrightAttribute copyrightAttribute =
-                        (AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(assembly, typeof(AssemblyCopyrightAttribute));
-
-                    //Obtener el atributo del nombre del ensamblado
-                    AssemblyProductAttribute nombreProducto = (AssemblyProductAttribute)Attribute.GetCustomAttribute(assembly, typeof(AssemblyProductAttribute));
-
-                    // Obtener el valor de la propiedad Copyright y nombre del producto
-                    string copyrightValue = copyrightAttribute?.Copyright;
-                    string nombreValue = nombreProducto?.Product;
-
-
-
-                    // Utilizar el valor en una cadena de texto
-                    string mensaje = $"{nombreValue} - {copyrightValue}";
-
-
-                    Console.BackgroundColor = ConsoleColor.DarkRed; 
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Title = mensaje;
-                    Console.WriteLine("\n\tEsta aplicacion debe ejecutarse por linea de comandos.");
-                    Console.WriteLine("\n\t\tPulse una tecla para salir");
-                    Console.BufferHeight = 5;
-                    Console.SetWindowPosition(0, 0);
-                    Console.SetWindowSize(65,5);
-                    Console.ReadKey();
-                    Console.ResetColor();
-                }
-            }
-
-            bool gestionParametros(string[] parametros)
-            {
-                int totalParametros = parametros.Length;
                 proceso.ficheroPDF = parametros[0];
 
                 //Comprueba si existe el fichero PDF
@@ -117,69 +159,106 @@ namespace pdftotext
                     proceso.grabaFichero("error_proceso.txt", "El fichero PDF no existe");
                     return false;
                 }
-
-                //Procesado del resto de parametros
-                int controlParametros = 0;
-                for (int i = 1; i < totalParametros; i++)
+            }
+            //Procesado del resto de parametros
+            int controlParametros = 0;
+            for (int i = 1; i < totalParametros; i++)
+            {
+                switch (parametros[i])
                 {
-                    switch (parametros[i])
-                    {
-                        case "-m":
-                            //Procesado de modelos PDF. El nombre del fichero de salida debe venir a continuacion del parametro
-                            if (totalParametros > i + 1)
+                    case "-t":
+                        //Extraccion de texto completo del PDF. El nombre del fichero de salida debe venir a continuacion del parametro.
+                        if (totalParametros > i + 1)
+                        {
+                            //El siguiente parametro debe ser el fichero de salida
+                            if (parametros[i + 1].Length > 2)
                             {
-                                //El siguiente parametro debe ser el fichero de salida
-                                if (parametros[i + 1].Length > 2)
-                                {
-                                    proceso.ficheroDatos = parametros[i + 1];
-                                    proceso.procesaModelo = true;
-                                    controlParametros++;
-                                }
+                                proceso.ficheroTexto = parametros[i + 1];
+                                proceso.grabaTexto = true;
+                                controlParametros++;
                             }
-                            break;
+                        }
+                        break;
 
-                        case "-t":
-                            //Extraccion de texto completo del PDF. El nombre del fichero de salida debe venir a continuacion del parametro.
-                            if (totalParametros > i + 1)
+                    case "-m":
+                        //Procesado de modelos PDF. El nombre del fichero de salida debe venir a continuacion del parametro
+                        if (totalParametros > i + 1)
+                        {
+                            //El siguiente parametro debe ser el fichero de salida
+                            if (parametros[i + 1].Length > 2)
                             {
-                                //El siguiente parametro debe ser el fichero de salida
-                                if (parametros[i + 1].Length > 2)
-                                {
-                                    proceso.ficheroTexto = parametros[i + 1];
-                                    proceso.extraeTexto = true;
-                                    controlParametros++;
-                                }
+                                proceso.ficheroDatos = parametros[i + 1];
+                                proceso.procesaModelo = true;
+                                proceso.tipoProceso = "Modelos";
+                                controlParametros++;
                             }
-                            break;
+                        }
+                        break;
 
-                        case "-l":
-                            //Procesado de documentos laborales en PDF. El nombre del fichero de salida debe venir a continuacion del parametro
-                            if (totalParametros > i + 1)
+
+                    case "-l":
+                        //Procesado de documentos laborales en PDF. El nombre del fichero de salida debe venir a continuacion del parametro
+                        if (totalParametros > i + 1)
+                        {
+                            //El siguiente parametro debe ser el fichero de salida
+                            if (parametros[i + 1].Length > 2)
                             {
-                                //El siguiente parametro debe ser el fichero de salida
-                                if (parametros[i + 1].Length > 2)
-                                {
-                                    proceso.ficheroDatos = parametros[i + 1];
-                                    proceso.procesaLaboral = true;
-                                    controlParametros++;
-                                }
+                                proceso.ficheroDatos = parametros[i + 1];
+                                proceso.procesaLaboral = true;
+                                proceso.tipoProceso = "Laboral";
+                                controlParametros++;
                             }
-                            break;
-                    }
-                }
+                        }
+                        break;
 
-                //Control si los parametros pasados son correctos
-                if (controlParametros > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
+                    case "-rl":
+                    case "-rm":
+                        //Proceso de ficheros de la ruta indicada
+                        if (totalParametros > i)
+                        {
+                            //El parametro anterior debe ser la ruta de los PDFs
+                            if (parametros[i - 1].Length > 2)
+                            {
+                                proceso.ProcesoMasivo(parametros[i - 1]);
+                                proceso.tipoProceso = "Masivo";
+                                controlParametros++;
+                            }
+                        }
+                        break;
                 }
             }
 
+            //Control si los parametros pasados son correctos
+            if (controlParametros > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        
+
+        static void mensajeAyuda()
+        {
+            string mensaje =
+                "\r\nUso:" +
+                "\r\n\tdsepdfatexto fichero.pdf -t textoPDF.txt -m datosModelo.txt  -l datosLaboral.txt" +
+                "\r\n\tdsepdfatexto carpeta [-rm | rl]" +
+                "\r\n\r\nParametros:" +
+                "\r\n\t-h                 : Esta ayuda" +
+                "\r\n\tfichero.pdf        : nombre del fichero PDF a procesar (unico fichero)" +
+                "\r\n\t-t textoPDF.txt    : nombre del fichero en el que grabar el texto completo del PDF" +
+                "\r\n\t-m datosModelo.txt : nombre del fichero en el que grabar los campos localizados del modelo" +
+                "\r\n\t-l datosLaboral.txt: nombre del fichero en el que grabar los campos localizados del modelo laboral" +
+                "\r\n\tcarpeta            : carpeta donde estan todos los ficheros PDF a procesar de forma masiva" +
+                "\r\n\t-rm                : parametro que indica que se procesen los ficheros de la ruta como modelos" +
+                "\r\n\t-rl                : parametro que indica que se procesen los ficheros de la rut como documentos laborales" +
+                "\r\n\r\n\r\nPulse una tecla para salir";
+
+            Console.WriteLine(mensaje);
+            Console.ReadKey();
+        }
+
     }
 }

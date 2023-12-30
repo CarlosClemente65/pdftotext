@@ -4,10 +4,24 @@ de los modelos de Hacienda y de documentos laborales para su archivado en el GAD
 En la carpeta /ejemplos_modelos estan los PDFs y documentos de texto con los que se han hecho las pruebas
 
 Uso:
+	dsepdfatexto -h
 	dsedatosmodelos.exe fichero.pdf -t salidaTextoCompleto.txt -m salidaDatosModelos.txt -l salidaDatosLaboral.txt
+	dsepdfatexto ruta [-rm | rl]
+	
+	Parametros:
+    -h                 : Esta ayuda
+    fichero.pdf        : nombre del fichero PDF a procesar (unico fichero)
+    -t textoPDF.txt    : nombre del fichero en el que grabar el texto completo del PDF
+    -m datosModelo.txt : nombre del fichero en el que grabar los campos localizados del modelo
+    -l datosLaboral.txt: nombre del fichero en el que grabar los campos localizados del modelo laboral
+    carpeta            : carpeta donde estan todos los ficheros PDF a procesar de forma masiva
+    -rm                : parametro que indica que se procesen los ficheros de la ruta como modelos
+    -rl                : parametro que indica que se procesen los ficheros de la rut como documentos laborales
 
-Notas: 	1. El fichero.pdf y al menos uno de los 3 parametros siguientes son obligatorios (el orden de los parametros no importa)
-		2. El parametro -t graba el texto completo del PDF y debe ir seguido de la ruta del fichero a grabar
-		3. El parametro -m extrae los datos del modelo y debe ir seguido de la ruta del fichero a grabar
-		4. El parametro -l extrae los datos de los documentos de laboral y debe ir seguido de la ruta del fichero a grabar.
+Notas: 	* Si se pasa como primer parametro una carpeta, se procesan los ficheros como modelos (parametro -rm) o como documentos de laboral (parametro -rl)
+		* Si se pasa como primer parametro -h se muestra la ayuda del programa. Tambien se muestra la ayuda si se ejecuta desde windows
+		* Si se pasa el fichero.pdf al menos uno de los 3 parametros siguientes son obligatorios (el orden de los parametros es indiferente)
+		* El parametro -t va seguido del nombre del fichero con el texto completo del PDF
+		* El parametro -m va seguido del nombre del fichero con los campos localizados del modelo
+		* El parametro -l va seguido del nombre del fichero con los campos localizados del modelo laboral
 		
