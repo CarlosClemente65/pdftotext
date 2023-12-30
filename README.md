@@ -25,7 +25,7 @@ Permite extraer los datos de un PDF a un fichero de texto, y buscar las variable
 * dsepdfatexto carpeta [-rm | -rl]
 	
  Parametros
-	-h                 : Esta ayuda
+    -h                 : Esta ayuda
     fichero.pdf        : Nombre del fichero PDF a procesar (unico fichero)
     -t textoPDF.txt    : Nombre del fichero en el que grabar el texto completo del PDF
     -m datosModelo.txt : Nombre del fichero en el que grabar los campos localizados del modelo
