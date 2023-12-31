@@ -18,9 +18,7 @@ namespace pdftotext
         public List<string> archivosPDF = new List<string>(); //Lista con todos los ficheros a procesar
 
         //Variables para la gestion de parametros
-        public bool procesaModelo = false; //Si se pasa el parametro -m se procesan los datos del modelo
         public bool grabaTexto = false; //Si se pasa el parametro -t se graba el texto completo en un fichero
-        public bool procesaLaboral = false;//Si se pasa el parametro -l se procesan los documentos laborales 
         public string tipoProceso = string.Empty;
         //Añadir nuevas variables para otros usos en el futuro
 
@@ -34,6 +32,7 @@ namespace pdftotext
 
         public void extraeTextoPDF()
         {
+            extractedText.Clear();
             using (PdfDocument pdfDoc = new PdfDocument(new PdfReader(ficheroPDF)))
             {
                 lastpage = pdfDoc.GetNumberOfPages();

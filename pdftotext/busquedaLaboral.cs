@@ -41,7 +41,7 @@ namespace pdftotext
         #region patrones de busqueda
         //Definicion de patrones de busqueda de datos
 
-        string patronNif = @"\b(?=(?:\w*[A-Z]){0,2})(?=\w*\d)\w{9,10}\b"; //Busca una palabra de 9 o 10 caracteres (\w{9,10}) y obliga a que haya alguna letra mayuscula y algun numero, pero el primer caracter es opcional (en los documentos laborales le pueden poner un cero delante)
+        string patronNif = @"\b(?=(?:\w*[A-Z]){1,2})(?=\w*\d)\w{9,10}\b"; //Busca una palabra de 9 o 10 caracteres (\w{9,10}) y obliga a que haya alguna letra mayuscula y algun numero, pero el primer caracter es opcional (en los documentos laborales le pueden poner un cero delante)
 
         string patronPeriodo = @"Fecha: \d{2}[-/.]\d{2}[-/.]\d{4}"; //Busca el texto seguido de una fecha separada por un guion, una barra inclinada o un punto
 
@@ -52,7 +52,7 @@ namespace pdftotext
         string patronTipoModelo = @"L\d{2}(.+)"; //Busca una L seguida de 2 digitos, seguida de un caracter y seguida de cero o mas palabras.   L\d{2}.\w*
 
 
-        string patronCCC = @"\d{4}[-. ]\d{2}[-. ]?\d{7}[-. ]?\d{2}"; //Busca 4 digitos, seguido de un guion, un punto o un espacio, seguido de 2 digitos, seguido de un guion, un punto o un espacio (es opcional), seguido de 7 digitos, seguido de un guion, un punto o un espacio (es opcional) y seguido de 2 digitos; (en algunos documentos el CCC le ponen guiones para separar.
+        string patronCCC = @"\d{4}[-. \n]\d{2}[-. ]?\d{7}[-. ]?\d{2}"; //Busca 4 digitos, seguido de un guion, un punto o un espacio, seguido de 2 digitos, seguido de un guion, un punto o un espacio (es opcional), seguido de 7 digitos, seguido de un guion, un punto o un espacio (es opcional) y seguido de 2 digitos; (en algunos documentos el CCC le ponen guiones para separar.
 
         string patronCCCHuella = @"(\d\s){6}\d{7}(\s\d){2}"; //Busca 6 digitos separados por espacio, seguido de 7 digitos y seguido de 2 digitos separados por espacio (en la huella el CCC viene separado por espacios)
 
@@ -217,7 +217,7 @@ namespace pdftotext
 
                     if (match.Success)
                     {
-                        Observaciones1 = "COMUNICACION DE MODIFICACION DE CONTRATO DE TRABAJO";
+                        Observaciones1 = "COMUNICACION SOBRE MODIFICACION DE CONTRATO DE TRABAJO";
                         Observaciones2 = match.Groups[2].Value;
                     }
                     CampoLibre1 = Observaciones1 + " - " + Observaciones2;
@@ -374,23 +374,46 @@ namespace pdftotext
         private void BuscarPeriodoRLCyRNT()
         {
             //Busqueda del periodo en el campo "Periodo liquidacion": el L03 se coje de la fecha de control, el resto del periodo de liquidacion.
-            if (TipoModelo == "L03")
+            switch (TipoModelo)
             {
-                string periodoTmp = procesosPDF.ProcesaPatron(patronPeriodoL03, 1, Modelo, TipoModelo);
-                if (periodoTmp.Length > 0)
-                {
-                    Ejercicio = periodoTmp.Substring(periodoTmp.Length - 4);
-                    Periodo = periodoTmp.Substring(periodoTmp.Length - 7, 2);
-                }
-            }
-            else
-            {
-                string periodoTmp = procesosPDF.ProcesaPatron(patronPeriodoL00, 1, Modelo, TipoModelo);
-                if (periodoTmp.Length > 0)
-                {
-                    Ejercicio = periodoTmp.Substring(3, 4);
-                    Periodo = periodoTmp.Substring(0, 2);
-                }
+                case "L03":
+                    string periodoL03 = string.Empty;
+                    periodoL03 = procesosPDF.ProcesaPatron(patronPeriodoL03, 1, Modelo, TipoModelo);
+                    if (periodoL03.Length > 0)
+                    {
+                        Ejercicio = periodoL03.Substring(periodoL03.Length - 4);
+                        Periodo = periodoL03.Substring(periodoL03.Length - 7, 2);
+                    }
+                    break;
+
+                case "L90":
+                    string periodoL90 = string.Empty;
+                    if (Modelo == "RLC")
+                    {
+                        //Si el modelo es el RLC la fecha aparece en segunda posicion y se tiene que pasar la posicion del valor a extraer
+                        periodoL90 = procesosPDF.ProcesaPatron(patronPeriodoL00, 1, Modelo, TipoModelo, 1);
+                    }
+                    else
+                    {
+                        //Si el modelo es el RNT solo aparece una fecha y no se pasa la posicion del valor a extraer
+                        periodoL90 = procesosPDF.ProcesaPatron(patronPeriodoL00, 1, Modelo, TipoModelo);
+                    }
+                    if (periodoL90.Length > 0)
+                    {
+                        Ejercicio = periodoL90.Substring(3, 4);
+                        Periodo = periodoL90.Substring(0, 2);
+                    }
+                    break;
+
+                default:
+                    string periodoTmp = procesosPDF.ProcesaPatron(patronPeriodoL00, 1, Modelo, TipoModelo);
+                    if (periodoTmp.Length > 0)
+                    {
+                        Ejercicio = periodoTmp.Substring(3, 4);
+                        Periodo = periodoTmp.Substring(0, 2);
+                    }
+                    break;
+
             }
         }
 

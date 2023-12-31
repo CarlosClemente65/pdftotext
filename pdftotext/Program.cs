@@ -97,30 +97,30 @@ namespace pdftotext
                     //Si los parametros pasados son correctos realiza los procesos que se hayan pasado como parametros
                     if (continuar)
                     {
-                        proceso.extraeTextoPDF();
-                        //Graba el fichero con el texto completo
-                        if (proceso.grabaTexto)
-                        {
-                            proceso.grabaFichero(proceso.ficheroTexto, textoCompleto);
-                        }
-
                         switch (proceso.tipoProceso)
                         {
                             case "Modelos":
+                                proceso.extraeTextoPDF();
+                                proceso.grabaFichero(proceso.ficheroTexto, textoCompleto);
                                 proceso.extraeDatosModelo();
                                 break;
 
                             case "Laboral":
+                                proceso.extraeTextoPDF();
+                                proceso.grabaFichero(proceso.ficheroTexto, textoCompleto);
                                 proceso.extraeDatosLaboral();
                                 break;
 
                             case "Masivo":
                                 foreach (string fichero in proceso.archivosPDF)
                                 {
+                                    paginasPDF.Clear();
+                                    textoCompleto = string.Empty;
                                     proceso.ficheroPDF = fichero;
                                     string nombreFichero = Path.ChangeExtension(fichero, null);
                                     proceso.ficheroTexto = nombreFichero + "_TXT.txt";
                                     proceso.ficheroDatos = nombreFichero + "_DATOS.txt";
+                                    proceso.extraeTextoPDF();
                                     proceso.grabaFichero(proceso.ficheroTexto, textoCompleto);
 
                                     switch (args[1])
@@ -136,6 +136,8 @@ namespace pdftotext
                                 }
                                 break;
                         }
+
+                        
                     }
                     break;
             }
@@ -188,7 +190,6 @@ namespace pdftotext
                             if (parametros[i + 1].Length > 2)
                             {
                                 proceso.ficheroDatos = parametros[i + 1];
-                                proceso.procesaModelo = true;
                                 proceso.tipoProceso = "Modelos";
                                 controlParametros++;
                             }
@@ -204,7 +205,6 @@ namespace pdftotext
                             if (parametros[i + 1].Length > 2)
                             {
                                 proceso.ficheroDatos = parametros[i + 1];
-                                proceso.procesaLaboral = true;
                                 proceso.tipoProceso = "Laboral";
                                 controlParametros++;
                             }
