@@ -221,6 +221,10 @@ namespace pdftotext
                     ModeloNum = "992";
                     TipoModelo = "00";
                     break;
+
+                case "000":
+                    ModeloNum = "Modelo no reconocido";
+                    break;
             }
         }
 
@@ -228,6 +232,7 @@ namespace pdftotext
         #region Metodos de busqueda
         private void BuscarModelo()
         {
+            Modelo = "000";
             try
             {
                 AFIA = procesosPDF.ProcesaPatron(patronAFIA, 1);
@@ -355,12 +360,12 @@ namespace pdftotext
                         Observaciones1 = observacionesHUE.Substring(0);
                     }
                 }
+
             }
-            catch
+            catch (Exception ex)
             {
-                //Si no se encuentran los datos, se graba un fichero con el error.
-                //procesosPDF.grabaFichero("error_proceso.txt", "Documento no reconocido");
-                Modelo = "Modelo no reconocido";
+                //Si se produce alguna excepcion, se graba un fichero con el error.
+                procesosPDF.grabaFichero("error_proceso.txt", "Error al buscar el numero de modelo.\r\n" + ex.Message);
             }
         }
 

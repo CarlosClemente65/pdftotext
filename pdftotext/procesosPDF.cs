@@ -106,10 +106,11 @@ namespace pdftotext
             busquedaLaboral buscar = new busquedaLaboral(Program.textoCompleto, Program.paginasPDF);
 
             //Hacemos la llamada al metodo buscarDatos para que se almacenen los datos del PDF
-            buscar.buscarDatos();
+                buscar.buscarDatos();
 
             //Almacena el texto a grabar en el fichero
             string texto = string.Empty;
+
             texto += $"Modelo: {buscar.ModeloNum}";
             texto += $"\r\nTipo modelo: {buscar.TipoModelo}";
             texto += $"\r\nCodigo cuenta cotizacion: {buscar.CCC}";
@@ -162,7 +163,7 @@ namespace pdftotext
 
                 catch (Exception ex)
                 {
-                    grabaFichero("error_proceso.txt", "No hay ningun fichero PDF en la carpeta seleccionada\r\n"+ ex);
+                    grabaFichero("error_proceso.txt", "No hay ningun fichero PDF en la carpeta seleccionada\r\n" + ex);
                     Environment.Exit(0);
                 }
             }
