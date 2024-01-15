@@ -177,6 +177,7 @@ namespace pdftotext
                 case "037":
                     BuscarFecha036();
                     break;
+
             }
 
             //Valida que el modelo encontrado esta en la lista de modelos validos
@@ -211,6 +212,11 @@ namespace pdftotext
             BuscarExpediente();
             BuscarCsv();
             BuscarComplementaria();
+            //Se cambia al modelo 110 porque no tenemos el 111 en ipmodelo
+            if (Modelo == "111")
+            {
+                Modelo = "110";
+            }
 
         }
 

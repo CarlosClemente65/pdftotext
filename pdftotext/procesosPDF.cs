@@ -110,135 +110,19 @@ namespace pdftotext
 
             //Almacena el texto a grabar en el fichero
             string texto = string.Empty;
-
-            switch (buscar.Modelo)
-            {
-                case "CER":
-                    texto += "Modelo: 993";
-                    texto += "\r\nTipo: 03";
-                    texto += $"\r\nCIF: {buscar.Nif}";
-                    texto += $"\r\nEjercicio: {buscar.Ejercicio}";
-                    texto += $"\r\nPeriodo: {buscar.Periodo}";
-                    break;
-
-                case "RLC":
-                case "RNT":
-                    if (buscar.Modelo == "RLC")
-                    {
-                        texto += "Modelo: 997";
-                    }
-                    else
-                    {
-                        texto += "Modelo: 996";
-                    }
-
-                    switch (buscar.TipoModelo)
-                    {
-                        case "L00":
-                            texto += "\r\nTipo: 00";
-                            break;
-
-                        case "L13":
-                            texto += "\r\nTipo: 02";
-                            break;
-
-                        case "L03":
-                            texto += "\r\nTipo: 05";
-                            break;
-
-                        case "L90":
-                            texto += "\r\nTipo: 90";
-                            break;
-                    }
-
-                    texto += $"\r\nCIF: {buscar.Nif}";
-                    texto += $"\r\nEjercicio: {buscar.Ejercicio}";
-                    texto += $"\r\nPeriodo: {buscar.Periodo}";
-                    break;
-
-                case "AFIA":
-                    texto += "Modelo: 991";
-                    texto += "\r\nTipo: 00";
-                    texto += $"\r\nCodigo cuenta cotizacion: {buscar.CCC}";
-                    texto += $"\r\nNIF trabajador: {buscar.DniTrabajador}";
-                    texto += $"\r\nFecha efecto: {buscar.FechaEfecto}";
-                    break;
-
-                case "AFIB":
-                    texto += "Modelo: 991";
-                    texto += "\r\nTipo: 01";
-                    texto += $"\r\nCodigo cuenta cotizacion: {buscar.CCC}";
-                    texto += $"\r\nNIF trabajador: {buscar.DniTrabajador}";
-                    texto += $"\r\nFecha efecto: {buscar.FechaEfecto}";
-                    break;
-
-                //Esta pendiente de desarrollo por falta de documento de ejemplo (faltaria el patron de busqueda)
-                //case "AFIV": 
-                //    texto += "Modelo: 991";
-                //    texto += "\r\nTipo: 02";
-                //    texto += $"\r\nCodigo cuenta cotizacion: {buscar.CCC}";
-                //    texto += $"\r\nNIF trabajador: {buscar.DniTrabajador}";
-                //    texto += $"\r\nFecha efecto: {buscar.FechaEfecto}";
-                //    break;
-
-                case "AFIC":
-                    texto += "Modelo: 991";
-                    texto += "\r\nTipo: 03";
-                    texto += $"\r\nCodigo cuenta cotizacion: {buscar.CCC}";
-                    texto += $"\r\nNIF trabajador: {buscar.DniTrabajador}";
-                    texto += $"\r\nFecha efecto: {buscar.FechaEfecto}";
-                    break;
-
-                case "IDC":
-                    texto += "Modelo: 991";
-                    texto += $"\r\nTipo: {buscar.TipoIDC}";
-                    texto += $"\r\nCodigo cuenta cotizacion: {buscar.CCC}";
-                    texto += $"\r\nNIF trabajador: {buscar.DniTrabajador} ";
-                    texto += $"\r\nFecha efecto: {buscar.PeriodoIDC}";
-                    break;
-
-                case "ITA":
-                    texto += "Modelo: 991";
-                    texto += "\r\nTipo: 07";
-                    texto += $"\r\nCIF: {buscar.Nif}";
-                    texto += $"\r\nEjercicio: {buscar.Ejercicio}";
-                    texto += $"\r\nPeriodo: {buscar.Periodo}";
-                    break;
-
-
-                case "HUE":
-                    texto += "Modelo: 992";
-                    texto += "\r\nTipo: 00";
-                    texto += $"\r\nCodigo cuenta cotizacion: {buscar.CCC}";
-                    texto += $"\r\nNIF trabajador: {buscar.DniTrabajador}";
-                    texto += $"\r\nFecha efecto: {buscar.FechaEfecto}";
-                    break;
-            }
-
-            if (!string.IsNullOrEmpty(buscar.Observaciones1))
-            {
-                texto += $"\r\nObservaciones1: {buscar.Observaciones1}";
-            }
-
-            if (!string.IsNullOrEmpty(buscar.Observaciones2))
-            {
-                texto += $"\r\nObservaciones2: {buscar.Observaciones2}";
-            }
-
-            if (!string.IsNullOrEmpty(buscar.Observaciones3))
-            {
-                texto += $"\r\nObservaciones3: {buscar.Observaciones3}";
-            }
-
-            if (!string.IsNullOrEmpty(buscar.CampoLibre1))
-            {
-                texto += $"\r\nCampo libre 1: {buscar.CampoLibre1}";
-            }
-
-            if (!string.IsNullOrEmpty(buscar.CampoLibre2))
-            {
-                texto += $"\r\nCampo libre 2: {buscar.CampoLibre2}";
-            }
+            texto += $"Modelo: {buscar.ModeloNum}";
+            texto += $"\r\nTipo modelo: {buscar.TipoModelo}";
+            texto += $"\r\nCodigo cuenta cotizacion: {buscar.CCC}";
+            texto += $"\r\nCIF empresa: {buscar.Nif}";
+            texto += $"\r\nNIF trabajador: {buscar.DniTrabajador}";
+            texto += $"\r\nEjercicio: {buscar.Ejercicio}";
+            texto += $"\r\nPeriodo: {buscar.Periodo}";
+            texto += $"\r\nFecha efecto: {buscar.FechaEfecto}";
+            texto += $"\r\nObservaciones1: {buscar.Observaciones1}";
+            texto += $"\r\nObservaciones2: {buscar.Observaciones2}";
+            texto += $"\r\nObservaciones3: {buscar.Observaciones3}";
+            texto += $"\r\nCampo libre 1: {buscar.CampoLibre1}";
+            texto += $"\r\nCampo libre 2: {buscar.CampoLibre2}";
 
             //Graba el fichero de datos con el texto creado
             grabaFichero(ficheroDatos, texto);

@@ -9,6 +9,7 @@ namespace pdftotext
 
         //Definicion de variables para extraer datos
         public string Modelo { get; private set; }
+        public string ModeloNum { get; private set; }
         public string TipoModelo { get; private set; }
         public string Nif { get; private set; }
         public string Ejercicio { get; private set; }
@@ -99,6 +100,7 @@ namespace pdftotext
             Program.textoCompleto = textoCompleto;
             Program.paginasPDF = paginasPDF;
             this.Modelo = string.Empty;
+            this.ModeloNum = string.Empty;
             this.TipoModelo = string.Empty;
             this.Nif = string.Empty;
             this.Ejercicio = string.Empty;
@@ -125,6 +127,8 @@ namespace pdftotext
                     // Certificado estar al corriente de pago
                     BuscarPeriodoCER();
                     BuscarNif();
+                    ModeloNum = "993";
+                    TipoModelo = "03";
                     break;
 
                 case "ITA":
@@ -132,6 +136,8 @@ namespace pdftotext
                     BuscarNif();
                     BuscarCCC();
                     CampoLibre1 = $"CCC: {CCC}";
+                    ModeloNum = "991";
+                    TipoModelo = "07";
                     break;
 
                 case "RNT":
@@ -142,6 +148,33 @@ namespace pdftotext
                     BuscarPeriodoRLCyRNT();
                     BuscarCCC();
                     CampoLibre1 = $"CCC: {CCC}";
+                    if (Modelo == "RNT")
+                    {
+                        ModeloNum = "996";
+                    }
+                    else
+                    {
+                        ModeloNum = "997";
+                    }
+
+                    switch (TipoModelo)
+                    {
+                        case "L00":
+                            TipoModelo = "00";
+                            break;
+
+                        case "L13":
+                            TipoModelo = "02";
+                            break;
+
+                        case "L03":
+                            TipoModelo = "05";
+                            break;
+
+                        case "L90":
+                            TipoModelo = "90";
+                            break;
+                    }
                     break;
 
                 case "AFIA"://Documento AFI de alta
@@ -151,10 +184,25 @@ namespace pdftotext
                     BuscarFechaEfecto();
                     BuscarCCC();
                     CampoLibre2 = FechaEfecto;
+                    ModeloNum = "991";
+                    if (Modelo == "AFIA")
+                    {
+                        TipoModelo = "00";
+                    }
+                    else if (Modelo == "AFIB")
+                    {
+                        TipoModelo = "01";
+                    }
+                    else
+                    {
+                        TipoModelo = "03";
+                    }
                     break;
 
                 case "AFIV":
                     //Documento AFI de variacion (de este tipo no tenemos documento de ejemplo)
+                    ModeloNum = "991";
+                    TipoModelo = "02";
                     break;
 
                 case "IDC":
@@ -162,6 +210,7 @@ namespace pdftotext
                     BuscarDniTrabajador();
                     BuscarFechaIDC();
                     BuscarCCC();
+                    ModeloNum = "991";
                     break;
 
                 case "HUE":
@@ -169,6 +218,8 @@ namespace pdftotext
                     BuscarDniTrabajador();
                     BuscarFechaEfecto();
                     BuscarCCC();
+                    ModeloNum = "992";
+                    TipoModelo = "00";
                     break;
             }
         }
@@ -308,7 +359,8 @@ namespace pdftotext
             catch
             {
                 //Si no se encuentran los datos, se graba un fichero con el error.
-                procesosPDF.grabaFichero("error_proceso.txt", "Documento no reconocido");
+                //procesosPDF.grabaFichero("error_proceso.txt", "Documento no reconocido");
+                Modelo = "Modelo no reconocido";
             }
         }
 
@@ -430,6 +482,7 @@ namespace pdftotext
             if (periodoIDC.Length > 0)
             {
                 PeriodoIDC = periodoIDC.Substring(periodoIDC.Length - 10);
+                FechaEfecto = PeriodoIDC;
                 CampoLibre2 = PeriodoIDC;
             }
 
@@ -458,6 +511,7 @@ namespace pdftotext
                     TipoIDC = "04";
                 }
             }
+            TipoModelo = TipoIDC;
         }
 
 
