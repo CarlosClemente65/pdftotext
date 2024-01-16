@@ -228,6 +228,17 @@ namespace pdftotext
             }
         }
 
+        public string quitaRaros(string texto)
+        {
+            string cadena = texto.ToUpper();
+            cadena = cadena.Replace('Á', 'A')
+                  .Replace('É', 'E')
+                  .Replace('Í', 'I')
+                  .Replace('Ó', 'O')
+                  .Replace('Ú', 'U');
+            return cadena;
+        }
+
 
         #region Metodos de busqueda
         private void BuscarModelo()
@@ -243,10 +254,10 @@ namespace pdftotext
 
                     if (match.Success)
                     {
-                        Observaciones1 = match.Groups[1].Value;
-                        Observaciones2 = match.Groups[2].Value;
+                        Observaciones1 = quitaRaros(match.Groups[1].Value);
+                        Observaciones2 = quitaRaros(match.Groups[2].Value);
                     }
-                    CampoLibre1 = AFIA;
+                    CampoLibre1 = quitaRaros(AFIA);
                     Modelo = "AFIA";
                 }
 
@@ -258,10 +269,10 @@ namespace pdftotext
 
                     if (match.Success)
                     {
-                        Observaciones1 = match.Groups[1].Value;
-                        Observaciones2 = match.Groups[2].Value;
+                        Observaciones1 = quitaRaros(match.Groups[1].Value);
+                        Observaciones2 = quitaRaros(match.Groups[2].Value);
                     }
-                    CampoLibre1 = AFIB;
+                    CampoLibre1 = quitaRaros(AFIB);
                     Modelo = "AFIB";
                 }
 
@@ -274,7 +285,7 @@ namespace pdftotext
                     if (match.Success)
                     {
                         Observaciones1 = "COMUNICACION SOBRE MODIFICACION DE CONTRATO DE TRABAJO";
-                        Observaciones2 = match.Groups[2].Value;
+                        Observaciones2 = quitaRaros(match.Groups[2].Value);
                     }
                     CampoLibre1 = Observaciones1 + " - " + Observaciones2;
                     Modelo = "AFIC";
@@ -317,7 +328,7 @@ namespace pdftotext
                         string formatoFechaTexto = " dd MM yyyy";
                         DateTime fecha = DateTime.ParseExact(fechaTmp, formatoFechaTexto, System.Globalization.CultureInfo.GetCultureInfo("es-ES")); //Se convierte la fecha en texto a fecha numerica
                         //fecha = fechaDT.ToString("dd/MM/yyyy");//Se convierte la fecha numeria a texto para almacenarla en la variable
-                        Observaciones1 = match.Groups[1].Value + " " + fecha.ToString("dd/MM/yyyy");
+                        Observaciones1 = quitaRaros(match.Groups[1].Value) + " " + fecha.ToString("dd/MM/yyyy");
                     }
                     Modelo = "ITA";
                     Ejercicio = ITA.Substring(ITA.Length - 4);
@@ -332,9 +343,9 @@ namespace pdftotext
 
                     if (match.Success)
                     {
-                        Observaciones1 = match.Groups[1].Value;
-                        Observaciones2 = match.Groups[2].Value;
-                        CampoLibre1 = IDC;
+                        Observaciones1 = quitaRaros(match.Groups[1].Value);
+                        Observaciones2 = quitaRaros(match.Groups[2].Value);
+                        CampoLibre1 = quitaRaros(IDC);
                     }
                     Modelo = "IDC";
                 }
@@ -346,18 +357,18 @@ namespace pdftotext
                     string observacionesHUE = HUE.Replace("\n", " ");
                     if (observacionesHUE.Length > 100)
                     {
-                        Observaciones1 = observacionesHUE.Substring(0, 50);
-                        Observaciones2 = observacionesHUE.Substring(50, 50);
-                        Observaciones3 = observacionesHUE.Substring(100);
+                        Observaciones1 = quitaRaros(observacionesHUE.Substring(0, 50));
+                        Observaciones2 = quitaRaros(observacionesHUE.Substring(50, 50));
+                        Observaciones3 = quitaRaros(observacionesHUE.Substring(100));
                     }
                     else if (observacionesHUE.Length > 50)
                     {
-                        Observaciones1 = observacionesHUE.Substring(0, 50);
-                        Observaciones2 = observacionesHUE.Substring(50);
+                        Observaciones1 = quitaRaros(observacionesHUE.Substring(0, 50));
+                        Observaciones2 = quitaRaros(observacionesHUE.Substring(50));
                     }
                     else
                     {
-                        Observaciones1 = observacionesHUE.Substring(0);
+                        Observaciones1 = quitaRaros(observacionesHUE.Substring(0));
                     }
                 }
 
