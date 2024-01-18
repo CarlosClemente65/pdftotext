@@ -53,7 +53,7 @@ namespace pdftotext
         string patronTipoModelo = @"L\d{2}(.+)"; //Busca una L seguida de 2 digitos, seguida de un caracter y seguida de cero o mas palabras.   L\d{2}.\w*
 
 
-        string patronCCC = @"\d{4}[-. \n]\d{2}[-. ]?\d{7}[-. ]?\d{2}"; //Busca 4 digitos, seguido de un guion, un punto o un espacio, seguido de 2 digitos, seguido de un guion, un punto o un espacio (es opcional), seguido de 7 digitos, seguido de un guion, un punto o un espacio (es opcional) y seguido de 2 digitos; (en algunos documentos el CCC le ponen guiones para separar.
+        string patronCCC = @"\d{4}[-. \n]\d{2}[-. \n]?\d{7}[-. ]?\d{2}"; //Busca 4 digitos, seguido de un guion, un punto o un espacio, seguido de 2 digitos, seguido de un guion, un punto o un espacio (es opcional), seguido de 7 digitos, seguido de un guion, un punto o un espacio (es opcional) y seguido de 2 digitos; (en algunos documentos el CCC le ponen guiones para separar.
 
         string patronCCCHuella = @"(\d\s){6}\d{7}(\s\d){2}"; //Busca 6 digitos separados por espacio, seguido de 7 digitos y seguido de 2 digitos separados por espacio (en la huella el CCC viene separado por espacios)
 
@@ -546,7 +546,7 @@ namespace pdftotext
 
             if (cccTmp.Length > 0)
             {
-                cccTmp = cccTmp.Replace(" ", "").Replace("-", "");
+                cccTmp = cccTmp.Replace(" ", "").Replace("-", "").Replace("\n","");
                 CCC = cccTmp.Substring(cccTmp.Length - 11); //Solo se cogen los ultimos 11 digitos porque en algun modelo el CCC no le ponen los 4 digitos del Regimen de la empresa
             }
         }
