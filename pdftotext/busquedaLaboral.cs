@@ -54,6 +54,7 @@ namespace pdftotext
 
 
         string patronCCC = @"\d{4}[-. \n]\d{2}[-. \n]?\d{7}[-. ]?\d{2}"; //Busca 4 digitos, seguido de un guion, un punto o un espacio, seguido de 2 digitos, seguido de un guion, un punto o un espacio (es opcional), seguido de 7 digitos, seguido de un guion, un punto o un espacio (es opcional) y seguido de 2 digitos; (en algunos documentos el CCC le ponen guiones para separar.
+        string patronCCCIDC = @"C\.?C\.?C\.?: \d{2}[-. \n]?\d{7}[-. ]?\d{2}";
 
         string patronCCCHuella = @"(\d\s){6}\d{7}(\s\d){2}"; //Busca 6 digitos separados por espacio, seguido de 7 digitos y seguido de 2 digitos separados por espacio (en la huella el CCC viene separado por espacios)
 
@@ -73,7 +74,7 @@ namespace pdftotext
 
         string patronAFIC = @"COMUNICACIÓN SOBRE\s+(\w+\s+)*\nCONTRATO DE TRABAJO\s+([\w+\s]+)$*"; //Documento de afiliacion de variacion. Busca el texto seguido de uno o varios espacios, seguido de una o varias palabras separadas por espacios, seguido de un salto de linea, seguido del texto, seguido de uno o varios espacios, seguido de una o varias palabras que estan al final de la linea
 
-        string patronFechaEfecto = @"se indica a continuación: (\d{2} de \S+ de \d{4})"; //Busca el texto seguido de la fecha en formato dia de mes de año
+        string patronFechaEfecto = @"se indica a continuación: (\d{1,2} de \S+ de \d{4})"; //Busca el texto seguido de la fecha en formato dia de mes de año
 
         string patronFechaEfectoAFIC = @"con efectos de \d{2}[-/.]\d{2}[-/.]\d{4}"; //Busca el texto seguido de una fecha separada por un guion, una barra inclinada o un punto.
 
@@ -535,18 +536,26 @@ namespace pdftotext
         {
             //Hace falta para los modelos anteriores y en los nuevos por si hay varios centros de trabajo
             string cccTmp = string.Empty;
-            if (Modelo == "HUE")
+
+            switch (Modelo)
             {
-                cccTmp = procesosPDF.ProcesaPatron(patronCCCHuella, 1);
-            }
-            else
-            {
-                cccTmp = procesosPDF.ProcesaPatron(patronCCC, 1);
+                case "HUE":
+                    cccTmp = procesosPDF.ProcesaPatron(patronCCCHuella, 1);
+                    break;
+
+                case "IDC":
+                    cccTmp = procesosPDF.ProcesaPatron(patronCCCIDC, 1);
+                    break;
+
+                default:
+                    cccTmp = procesosPDF.ProcesaPatron(patronCCC, 1);
+                    break;
+
             }
 
             if (cccTmp.Length > 0)
             {
-                cccTmp = cccTmp.Replace(" ", "").Replace("-", "").Replace("\n","");
+                cccTmp = cccTmp.Replace(" ", "").Replace("-", "").Replace("\n", "");
                 CCC = cccTmp.Substring(cccTmp.Length - 11); //Solo se cogen los ultimos 11 digitos porque en algun modelo el CCC no le ponen los 4 digitos del Regimen de la empresa
             }
         }
@@ -600,7 +609,7 @@ namespace pdftotext
                         {
                             fechaEfectoTmp = match.Groups[2].Value;
                         }
-                        string formatoFechaTexto = "dd 'de' MMMM 'de' yyyy";
+                        string formatoFechaTexto = "d 'de' MMMM 'de' yyyy";
                         DateTime fecha = DateTime.ParseExact(fechaEfectoTmp, formatoFechaTexto, System.Globalization.CultureInfo.GetCultureInfo("es-ES")); //Se convierte la fecha en texto a fecha numerica
                         FechaEfecto = fecha.ToString("dd/MM/yyyy");//Se convierte la fecha numeria a texto para almacenarla en la variable
 
