@@ -78,6 +78,8 @@ namespace pdftotext
 
         string patronFechaEfectoAFIC = @"con efectos de \d{2}[-/.]\d{2}[-/.]\d{4}"; //Busca el texto seguido de una fecha separada por un guion, una barra inclinada o un punto.
 
+        string patronFechaEfectoRNTRLC = @"(\d{2}-\d{2}-\d{4})\s+(?:\w+\s+)?\d{2}:\d{2}:\d{2}";
+
         string patronFechaHuella = @"Fecha de Inicio (\w+\s+)*:\s\d{2}[-/.]\d{2}[-/.]\d{4}"; //Busca el texto seguido de una o varias palabras separadas por espacios, seguido de dos puntos, seguido de un espacio, seguido de una fecha separada por guiones, barra inclinada o puntos.
 
         string patronIDC = "Informe de Datos para la Cotización(.+)"; //Busca el texto seguido de cualquier caracter
@@ -147,6 +149,7 @@ namespace pdftotext
                     BuscarNif();
                     BuscarTipoDocumento();
                     BuscarPeriodoRLCyRNT();
+                    BuscarFechaEfecto();
                     BuscarCCC();
                     CampoLibre1 = $"CCC: {CCC}";
                     if (Modelo == "RNT")
@@ -594,6 +597,20 @@ namespace pdftotext
                             //FechaEfecto = fechaEfectoTmp.Substring(fechaEfectoTmp.Length - 10);
                         }
                         //FechaEfecto = fechaEfectoTmp.Substring(fechaEfectoTmp.Length - 10);
+                    }
+                    break;
+                case "RLC":
+                case "RNT":
+                    fechaEfectoTmp = procesosPDF.ProcesaPatron(patronFechaEfectoRNTRLC, 1);
+                    if (fechaEfectoTmp.Length > 0)
+                    {
+                        string pattern = @"(.*)(\d{2}[-/.]\d{2}[-/.]\d{4})";
+                        Match match = Regex.Match(fechaEfectoTmp, pattern);
+
+                        if (match.Success)
+                        {
+                            FechaEfecto = match.Groups[2].Value;
+                        }
                     }
                     break;
 
