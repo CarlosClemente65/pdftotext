@@ -5,7 +5,7 @@ namespace pdftotext
     public class busquedaModelo
     {
         ////Definicion de variables necesarias para procesar datos
-        
+
         //Instanciacion de la clase procesosPDF para usar sus metodos en esta
         procesosPDF procesosPDF = new procesosPDF();
 
@@ -39,7 +39,7 @@ namespace pdftotext
 
         //El NIF suele estar seguido del nombre y se busca siempre en la pagina 2 porque en la pagina 1 esta el presentador que puede ser distinto. La expresion se asegura que haya alguna letra mayuscula, la primera palabra debe ser el NIF (empieza por letra o numero, le siguen 7 numeros y termina con letra o numero), y la segunda parte busca hasta un total de 4 palabras que se supone que es el nombre; en todo caso el nombre luego no se usa.
         //string patronNif = @"(?=.*[A-Z])\b[A-Z0-9]\d{7}[A-Z0-9]\b(?:\s*\S+[ \t]*){0,4}"; //Este patron tambien busca el NIF de otro modo
-		string patronNif= @"\b(?=(?:\w*[A-Z]){1,2})(?=(?:\w*\d){2,})\w{9}\b"; //Este patron busca una cadena de 9 caracteres en la que haya al menos 1 o 2 letras mayusculas y el resto seran numeros
+        string patronNif = @"\b(?=(?:\w*[A-Z]){1,2})(?=(?:\w*\d){2,})\w{9}\b"; //Este patron busca una cadena de 9 caracteres en la que haya al menos 1 o 2 letras mayusculas y el resto seran numeros
 
         //Busca si se trata de una renta conjunta en todo el texto ya que en la pagina 2 solo estan las equis de las casillas pero no se puede saber cual corresponde, por eso se busca el texto de la casilla 0461 en la liquidacion y si existe es porque ha aplicado la reduccion y por lo tanto es conjunta.
         string patronRentaConjunta = "Reducción por tributación conjunta";
@@ -165,6 +165,9 @@ namespace pdftotext
                 Modelo = Justificante.Substring(0, 3);
             }
 
+            BuscarExpediente();
+            BuscarCsv();
+
             //Bucle para procesos especificos segun el modelo 
             switch (Modelo)
             {
@@ -209,8 +212,6 @@ namespace pdftotext
                 BuscarNif();
             }
 
-            BuscarExpediente();
-            BuscarCsv();
             BuscarComplementaria();
             //Se cambia al modelo 110 porque no tenemos el 111 en ipmodelo
             if (Modelo == "111")
@@ -395,42 +396,72 @@ namespace pdftotext
 
             try
             {
-                //En la renta el NIF del titular aparece en segundo lugar, y el del conyuge en primer lugar, por eso si la renta es conjunta se devuelve el segundo NIF encontrado (indice 1) para el titular y el del conyuge es el primero (indice 0)
-                regex = new Regex(patronNif);
-                MatchCollection matches2 = regex.Matches(Program.paginasPDF[1]);
-
-                if (matches2.Count >= 2)
+                switch (Ejercicio)
                 {
-                    //NIF del titular
-                    if (matches2[1].Value.Length >= 9)
-                    {
-                        Nif = matches2[1].Value.Substring(0, 9);
-                    }
-                    else
-                    {
-                        Nif = "No encontrado";
-                    }
-
-                    //Si la tributacion es conjunta se almacena el Nif del conyuge
-                    if (TributacionConjunta)
-                    {
-                        if (matches2[0].Value.Length >= 9)
+                    case "2023":
+                        //NIF del primer titular
+                        string patronNifTitular = @"Primer declarante\s*\nNIF\s*" + patronNif;
+                        regex = new Regex(patronNifTitular);
+                        MatchCollection matches23t = regex.Matches(Program.paginasPDF[1]);
+                        if (matches23t.Count > 0)
                         {
-                            NifConyuge = matches2[0].Value.Substring(0, 9);
+                            Nif = matches23t[0].Value.Substring(matches23t[0].Length-9);
+                        }
+
+                        //NIf del conyuge
+                        if (TributacionConjunta)
+                        {
+                            string patronNifConyuge = @"Cónyuge\s.*\nNIF\s*" + patronNif; 
+                            regex = new Regex(patronNifConyuge);
+                            MatchCollection matches23c = regex.Matches(Program.paginasPDF[1]);
+                            if (matches23c.Count > 0)
+                            {
+                                NifConyuge = matches23c[0].Value.Substring(matches23c[0].Length - 9);
+                            }
+                        }
+                        break;
+
+                    default:
+                        //En la renta el NIF del titular aparece en segundo lugar, y el del conyuge en primer lugar, por eso si la renta es conjunta se devuelve el segundo NIF encontrado (indice 1) para el titular y el del conyuge es el primero (indice 0)
+                        regex = new Regex(patronNif);
+                        MatchCollection matches2 = regex.Matches(Program.paginasPDF[1]);
+
+                        if (matches2.Count >= 2)
+                        {
+                            //NIF del titular
+                            if (matches2[1].Value.Length >= 9)
+                            {
+                                Nif = matches2[1].Value.Substring(0, 9);
+                            }
+                            else
+                            {
+                                Nif = "No encontrado";
+                            }
+
+                            //Si la tributacion es conjunta se almacena el Nif del conyuge
+                            if (TributacionConjunta)
+                            {
+                                if (matches2[0].Value.Length >= 9)
+                                {
+                                    NifConyuge = matches2[0].Value.Substring(0, 9);
+                                }
+                                else
+                                {
+                                    NifConyuge = "No encontrado";
+                                }
+                            }
                         }
                         else
                         {
-                            NifConyuge = "No encontrado";
+                            if (matches2[0].Value.Length >= 9)
+                            {
+                                Nif = matches2[0].Value.Substring(0, 9);
+                            }
                         }
-                    }
+                        break;
                 }
-                else
-                {
-                    if (matches2[0].Value.Length >= 9)
-                    {
-                        Nif = matches2[0].Value.Substring(0, 9);
-                    }
-                }
+
+
             }
             catch
             {
@@ -503,6 +534,6 @@ namespace pdftotext
 
         #endregion
 
-        
+
     }
 }
