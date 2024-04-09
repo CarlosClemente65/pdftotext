@@ -5,8 +5,8 @@
 [assembly: AssemblyDescription("Convierte un PDF en texto y extrae los datos de los modelos de Hacienda")]
 //[assembly: AssemblyCompany("Diagram Software Europa S.L.")]
 [assembly: AssemblyCopyright("© 2023 - Diagram Software Europa S.L.")]
-[assembly: AssemblyVersion("1.2.3.1")]
-[assembly: AssemblyFileVersion("1.2.3.1")]
+[assembly: AssemblyVersion("1.2.3.2")]
+[assembly: AssemblyFileVersion("1.2.3.2")]
 
 
 namespace pdftotext

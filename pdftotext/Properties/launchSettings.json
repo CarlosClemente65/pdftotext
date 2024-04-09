@@ -2,8 +2,8 @@
   "profiles": {
     "pdftotext": {
       "commandName": "Project",
-      "commandLineArgs": "115-0822.pdf -t 115-0822_txt.txt -m 115-0822_datos.txt",
-      "workingDirectory": "D:\\Programacion\\C#\\pdftotext\\pdftotext\\bin\\Debug\\net48"
+      "commandLineArgs": "100_con-23.pdf -t 100_con-23_txt.txt -m 100_con-23_datos.txt",
+      "workingDirectory": "C:\\Programacion\\c#\\pdftotext\\pdftotext\\bin\\Debug\\net48"
     }
   }
 }

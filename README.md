@@ -11,12 +11,13 @@ Permite extraer los datos de un PDF a un fichero de texto, y buscar las variable
 
 ### Control versiones
 
-* v1.0.0 Primera versión que extrae el texto completo del PDF
-* v1.1.0 Incorporada la opción para la extracción de datos de modelos
-* v1.2.0 Incorporada la opción para la extracción de datos de documentos laborales
-* v1.2.1 Incorporada la opción para el proceso masivo de documentos de una carpeta y poder mostrar la ayuda
-* v1.2.2 Modificada la salida de los resultados de los documentos laborales para unificar etiquetas. Revisión modelo 111
-* v1.2.3 Añadido método quitaRaros
+* v1.0.0.0 Primera versión que extrae el texto completo del PDF
+* v1.1.0.0 Incorporada la opción para la extracción de datos de modelos
+* v1.2.0.0 Incorporada la opción para la extracción de datos de documentos laborales
+* v1.2.1.0 Incorporada la opción para el proceso masivo de documentos de una carpeta y poder mostrar la ayuda
+* v1.2.2.0 Modificada la salida de los resultados de los documentos laborales para unificar etiquetas. Revisión modelo 111
+* v1.2.3.1 Añadido método quitaRaros
+* v1.2.3.2 Añadida diferenciacion para el modelo 100 del ejercicio 2023
 <br><br>
 
 
