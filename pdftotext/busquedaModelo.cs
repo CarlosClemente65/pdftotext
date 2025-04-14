@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Org.BouncyCastle.Bcpg.OpenPgp;
 
 namespace pdftotext
 {
@@ -160,7 +161,7 @@ namespace pdftotext
             BuscarJustificante();
 
             //El modelo siempre son los 3 primeros digitos del justificante
-            if (Justificante.Length >= 3)
+            if(Justificante.Length >= 3)
             {
                 Modelo = Justificante.Substring(0, 3);
             }
@@ -169,7 +170,7 @@ namespace pdftotext
             BuscarCsv();
 
             //Bucle para procesos especificos segun el modelo 
-            switch (Modelo)
+            switch(Modelo)
             {
                 case "890":
                 case "893":
@@ -184,7 +185,7 @@ namespace pdftotext
             }
 
             //Valida que el modelo encontrado esta en la lista de modelos validos
-            if (!modelosValidos.Contains(Modelo))
+            if(!modelosValidos.Contains(Modelo))
             {
                 Modelo = "Modelo no encontrado";
                 Periodo = "Periodo no encontrado";
@@ -192,7 +193,7 @@ namespace pdftotext
             else
             {
                 //Si se trata de un modelo anual fija el periodo a 0A y sino se busca
-                if (modelosAnuales.Contains(Modelo))
+                if(modelosAnuales.Contains(Modelo))
                 {
                     Periodo = "0A";
                 }
@@ -203,7 +204,7 @@ namespace pdftotext
             }
 
             //Si se trata de la renta, hay que buscar el tipo de tributacion y ademas devolver el NIF del conyuge, en otro caso se busca solo el NIF.
-            if (Modelo == "100")
+            if(Modelo == "100")
             {
                 BuscarDatosRenta();
             }
@@ -214,7 +215,7 @@ namespace pdftotext
 
             BuscarComplementaria();
             //Se cambia al modelo 110 porque no tenemos el 111 en ipmodelo
-            if (Modelo == "111")
+            if(Modelo == "111")
             {
                 Modelo = "110";
             }
@@ -228,7 +229,7 @@ namespace pdftotext
             try
             {
                 Justificante = procesosPDF.ProcesaPatron(patronJustificante, 1);
-                if (Justificante == "")
+                if(Justificante == "")
                 {
                     Justificante = "No encontrado";
                 }
@@ -246,7 +247,7 @@ namespace pdftotext
                 //El expediente es una cadena que empieza por el año, le sigue el modelo y el resto son letras mayusculas o numeros hasta el final de la linea, por eso se asigna al ejercicio los 4 primeros digitos
 
                 //En el modelo 036 el codigo de modelo del expediente es C36
-                if (Modelo == "036")
+                if(Modelo == "036")
                 {
                     patronExpediente = "20\\d{2}C36[A-Z\\d].*";
                 }
@@ -256,7 +257,7 @@ namespace pdftotext
                 }
 
                 Expediente = procesosPDF.ProcesaPatron(patronExpediente, 1);
-                if (Expediente.Length >= 4)
+                if(Expediente.Length >= 4)
                 {
                     Ejercicio = Expediente.Substring(0, 4);
                 }
@@ -281,13 +282,13 @@ namespace pdftotext
                 //La siguiente expresion no funciona si el periodo esta en una segunda linea pero la dejo para consultas.
                 //string patronRegex = @"\b20\d{2}[\s]\d[\d|T]";
 
-                switch (Modelo)
+                switch(Modelo)
                 {
                     //En el modelo 210 el periodo viene antes del año
                     case "210":
                         patronPeriodo = @"\b(\d[0-9A-Z])(\s)20\d{2}\b";
                         Periodo = procesosPDF.ProcesaPatron(patronPeriodo, 2);
-                        if (Periodo.Length >= 7)
+                        if(Periodo.Length >= 7)
                         {
                             Periodo = Periodo.Substring(0, 2);
                         }
@@ -302,7 +303,7 @@ namespace pdftotext
                     case "349":
                         patronPeriodo = @"\b[0-9\d]{13}\b\s\d[0-9A-Z]\b";
                         Periodo = procesosPDF.ProcesaPatron(patronPeriodo, 2);
-                        if (Periodo.Length >= 16)
+                        if(Periodo.Length >= 16)
                         {
                             Periodo = Periodo.Substring(Periodo.Length - 2);
                         }
@@ -315,7 +316,7 @@ namespace pdftotext
                     default:
                         patronPeriodo = @"\b20\d{2}(\s)(\d[0-9A-Z])\b";
                         Periodo = procesosPDF.ProcesaPatron(patronPeriodo, 2);
-                        if (Periodo.Length >= 7)
+                        if(Periodo.Length >= 7)
                         {
                             Periodo = Periodo.Substring(5, 2);
                         }
@@ -326,7 +327,7 @@ namespace pdftotext
                         break;
                 }
 
-                if (!periodosValidos.Contains(Periodo))
+                if(!periodosValidos.Contains(Periodo))
                 {
                     Periodo = "No encontrado";
                 }
@@ -342,7 +343,7 @@ namespace pdftotext
             try
             {
                 Csv = procesosPDF.ProcesaPatron(patronCsv, 1);
-                if (Csv.Length >= 16)
+                if(Csv.Length >= 16)
                 {
                     Csv = Csv.Substring(Csv.Length - 16, 16);
                 }
@@ -364,7 +365,7 @@ namespace pdftotext
             {
                 string NifNombre = procesosPDF.ProcesaPatron(patronNif, 2);
                 NifNombre = NifNombre.Replace("\r\n", " ").Replace("\n", " ").Replace("\r", " ");
-                if (NifNombre.Length >= 9)
+                if(NifNombre.Length >= 9)
                 {
                     Nif = NifNombre.Substring(0, 9);
                 }
@@ -385,8 +386,9 @@ namespace pdftotext
             try
             {
                 regex = new Regex(patronRentaConjunta);
+
                 MatchCollection matches1 = regex.Matches(Program.textoCompleto);
-                if (matches1.Count > 0)
+                if(matches1.Count > 0)
                 {
                     TributacionConjunta = true;
                 }
@@ -396,40 +398,17 @@ namespace pdftotext
 
             try
             {
-                switch (Ejercicio)
+                switch(Ejercicio)
                 {
-                    case "2023":
-                        //NIF del primer titular
-                        string patronNifTitular = @"Primer declarante\s*\nNIF\s*" + patronNif;
-                        regex = new Regex(patronNifTitular);
-                        MatchCollection matches23t = regex.Matches(Program.paginasPDF[1]);
-                        if (matches23t.Count > 0)
-                        {
-                            Nif = matches23t[0].Value.Substring(matches23t[0].Length-9);
-                        }
-
-                        //NIf del conyuge
-                        if (TributacionConjunta)
-                        {
-                            string patronNifConyuge = @"Cónyuge\s.*\nNIF\s*" + patronNif; 
-                            regex = new Regex(patronNifConyuge);
-                            MatchCollection matches23c = regex.Matches(Program.paginasPDF[1]);
-                            if (matches23c.Count > 0)
-                            {
-                                NifConyuge = matches23c[0].Value.Substring(matches23c[0].Length - 9);
-                            }
-                        }
-                        break;
-
-                    default:
+                    case "2022":
                         //En la renta el NIF del titular aparece en segundo lugar, y el del conyuge en primer lugar, por eso si la renta es conjunta se devuelve el segundo NIF encontrado (indice 1) para el titular y el del conyuge es el primero (indice 0)
                         regex = new Regex(patronNif);
                         MatchCollection matches2 = regex.Matches(Program.paginasPDF[1]);
 
-                        if (matches2.Count >= 2)
+                        if(matches2.Count >= 2)
                         {
                             //NIF del titular
-                            if (matches2[1].Value.Length >= 9)
+                            if(matches2[1].Value.Length >= 9)
                             {
                                 Nif = matches2[1].Value.Substring(0, 9);
                             }
@@ -439,9 +418,9 @@ namespace pdftotext
                             }
 
                             //Si la tributacion es conjunta se almacena el Nif del conyuge
-                            if (TributacionConjunta)
+                            if(TributacionConjunta)
                             {
-                                if (matches2[0].Value.Length >= 9)
+                                if(matches2[0].Value.Length >= 9)
                                 {
                                     NifConyuge = matches2[0].Value.Substring(0, 9);
                                 }
@@ -453,14 +432,37 @@ namespace pdftotext
                         }
                         else
                         {
-                            if (matches2[0].Value.Length >= 9)
+                            if(matches2[0].Value.Length >= 9)
                             {
                                 Nif = matches2[0].Value.Substring(0, 9);
                             }
                         }
                         break;
-                }
 
+                    default:
+                        //NIF del primer titular
+                        string patronNifTitular = @"Primer declarante\s*\nNIF\s*" + patronNif;
+                        regex = new Regex(patronNifTitular);
+                        MatchCollection busquedaTitular = regex.Matches(Program.paginasPDF[1]);
+                        if(busquedaTitular.Count > 0)
+                        {
+                            Nif = busquedaTitular[0].Value.Substring(busquedaTitular[0].Length - 9);
+                        }
+                        else
+                        {
+                            Nif = "No encontrado";
+                        }
+
+                        //NIf del conyuge. Se busca aunque no sea la conjunta para incluirlos en el caso de rentas individuales de matrimonios
+                        string patronNifConyuge = @"Cónyuge\s.*\nNIF\s*" + patronNif;
+                        regex = new Regex(patronNifConyuge);
+                        MatchCollection busquedaConyuge = regex.Matches(Program.paginasPDF[1]);
+                        if(busquedaConyuge.Count > 0)
+                        {
+                            NifConyuge = busquedaConyuge[0].Value.Substring(busquedaConyuge[0].Length - 9);
+                        }
+                        break;
+                }
 
             }
             catch
@@ -475,9 +477,9 @@ namespace pdftotext
             try
             {
                 fecha036 = procesosPDF.ProcesaPatron(patronFecha036, 1);
-                if (!string.IsNullOrEmpty(fecha036))
+                if(!string.IsNullOrEmpty(fecha036))
                 {
-                    if (fecha036.Length >= 10)
+                    if(fecha036.Length >= 10)
                     {
                         fecha036 = fecha036.Substring(0, 10);
                     }
@@ -501,11 +503,11 @@ namespace pdftotext
                 Regex regex = new Regex(patronJustificante);
                 MatchCollection matches = regex.Matches(Program.textoCompleto.ToString());
 
-                switch (Modelo)
+                switch(Modelo)
                 {
                     //En el modelo 200 el justificante de la complementaria aparece en segunda posicion (indice 1)
                     case "200":
-                        if (matches.Count > 1)
+                        if(matches.Count > 1)
                         {
                             justificanteComplementaria = matches[1].Value;
                         }
@@ -513,7 +515,7 @@ namespace pdftotext
 
                     //En el resto de modelos el justificante de la complementaria aparece en tercera posicion (indice 2)
                     default:
-                        if (matches.Count > 2)
+                        if(matches.Count > 2)
                         {
                             justificanteComplementaria = matches[2].Value;
                         }
@@ -521,7 +523,7 @@ namespace pdftotext
                 }
 
                 //No es posible que el justificante de la complementaria sea igual al de la declaracion, por lo tanto ha debido haber un error al buscarlo y se deja vacio
-                if (justificanteComplementaria != "" && justificanteComplementaria != Justificante)
+                if(justificanteComplementaria != "" && justificanteComplementaria != Justificante)
                 {
                     complementaria = true;
                 }

@@ -2,7 +2,7 @@
   "profiles": {
     "pdftotext": {
       "commandName": "Project",
-      "commandLineArgs": "100_con-23.pdf -t 100_con-23_txt.txt -m 100_con-23_datos.txt",
+      "commandLineArgs": "C:\\doc-dsarchi\\no_reconocidos\\2024\\renta_10059_conjunta.pdf -t C:\\doc-dsarchi\\no_reconocidos\\2024\\renta_10059_conjunta.txt -m C:\\doc-dsarchi\\no_reconocidos\\2024\\renta_10059_conjunta_datos.txt",
       "workingDirectory": "C:\\Programacion\\c#\\pdftotext\\pdftotext\\bin\\Debug\\net48"
     }
   }
