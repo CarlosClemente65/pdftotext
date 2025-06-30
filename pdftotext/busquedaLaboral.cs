@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Reflection.Emit;
+using System.Security;
+using System.Text.RegularExpressions;
 
 namespace pdftotext
 {
@@ -68,6 +70,8 @@ namespace pdftotext
 
         string patronAFIA = "RESOLUCIÓN SOBRE RECONOCIMIENTO DE ALTA(.+)";//Documento de afiliacion de alta
 
+        string patronAFIA_1 = "INFORME DE SITUACIÓN DE ALTA(.+)";//Documento de afiliacion de alta (version de junio-2025)
+
         string patronAFIB = "RESOLUCIÓN SOBRE RECONOCIMIENTO DE BAJA(.+)";//Documento de afiliacion de baja
 
         string patronAFIV = ""; //Documento de afiliacion de variacion (no hay documento de ejemplo)
@@ -94,6 +98,65 @@ namespace pdftotext
 
         string patronHuella = @"COMUNICACIÓN[\s\S]*DEL CONTRATO DE[\s\S]*?\n(.+)"; //Busca el texto seguido cualquier espacio o caracter (\S es lo contrario de un espacio), seguido de un salto de linea, seguido de cualquier caracter que no sea un salto de linea.
 
+
+        #endregion
+
+        #region Nuevos patrones de busqueda
+
+        Dictionary<string, string[]> PatronesBusquedaLaboral = new Dictionary<string, string[]>
+        {
+            {
+                "AFIA", new[]{
+                "RESOLUCIÓN SOBRE RECONOCIMIENTO DE ALTA(.+)", //Documento de afiliacion de alta
+                "INFORME DE SITUACIÓN DE ALTA(.+)" //Documento de afiliacion de alta (version de junio-2025)//
+                }
+            },
+            {
+                "AFIB", new []{
+                "RESOLUCIÓN SOBRE RECONOCIMIENTO DE BAJA(.+)"//Documento de afiliacion de baja}
+                }
+            },
+            {
+                "AFIC", new []{
+                @"COMUNICACIÓN SOBRE\s+(\w+\s+)*\nCONTRATO DE TRABAJO\s+([\w+\s]+)$*"//Documento de afiliacion de variacion. Busca el texto seguido de uno o varios espacios, seguido de una o varias palabras separadas por espacios, seguido de un salto de linea, seguido del texto, seguido de uno o varios espacios, seguido de una o varias palabras que estan al final de la linea
+                }
+            },
+            {
+                "AFIV", new []{
+                "" //Documento de afiliacion de variacion (no hay documento de ejemplo)
+                }
+            },
+            {
+                "CER", new []{
+                "CERTIFICADO DE ESTAR AL CORRIENTE"
+                }
+            },
+            {
+                "RNT", new []{
+                "[A-Z]RNT\\d{10}\\b" //Busca una letra mayuscula, seguida de RNT y seguida de 10 digitos que terminan la palabra.
+                }
+            },
+            {
+                "RLC", new []{
+                @"[A-Z]RLC\d{10}\b" //Busca una letra mayuscula, seguida de RLC y seguida de 10 digitos que terminan la palabra.
+                }
+            },
+            {
+                "ITA", new []{
+                @"INFORME DE TRABAJADORES EN ALTA A FECHA: \d{2}.\d{2}.\d{4}" //Busca el texto seguido dos digitos, seguido de un caracter, seguido de dos digitos, seguido de un caracter y seguido de 4 caracteres.
+                }
+            },
+            {
+                "IDC", new []{
+                "RESOLUCIÓN SOBRE RECONOCIMIENTO DE BAJA(.+)"//Documento de afiliacion de baja}
+                }
+            },
+            {
+                "HUE", new []{
+                @"COMUNICACIÓN[\s\S]*DEL CONTRATO DE[\s\S]*?\n(.+)" //Busca el texto seguido cualquier espacio o caracter (\S es lo contrario de un espacio), seguido de un salto de linea, seguido de cualquier caracter que no sea un salto de linea.
+                }
+            }
+        };
 
         #endregion
 
@@ -124,7 +187,7 @@ namespace pdftotext
         {
             BuscarModelo();
 
-            switch (Modelo)
+            switch(Modelo)
             {
                 case "CER":
                     // Certificado estar al corriente de pago
@@ -152,7 +215,7 @@ namespace pdftotext
                     BuscarFechaEfecto();
                     BuscarCCC();
                     CampoLibre1 = $"CCC: {CCC}";
-                    if (Modelo == "RNT")
+                    if(Modelo == "RNT")
                     {
                         ModeloNum = "996";
                     }
@@ -161,7 +224,7 @@ namespace pdftotext
                         ModeloNum = "997";
                     }
 
-                    switch (TipoModelo)
+                    switch(TipoModelo)
                     {
                         case "L00":
                             TipoModelo = "00";
@@ -189,11 +252,11 @@ namespace pdftotext
                     BuscarCCC();
                     CampoLibre2 = FechaEfecto;
                     ModeloNum = "991";
-                    if (Modelo == "AFIA")
+                    if(Modelo == "AFIA")
                     {
                         TipoModelo = "00";
                     }
-                    else if (Modelo == "AFIB")
+                    else if(Modelo == "AFIB")
                     {
                         TipoModelo = "01";
                     }
@@ -251,27 +314,48 @@ namespace pdftotext
             try
             {
                 AFIA = procesosPDF.ProcesaPatron(patronAFIA, 1);
-                if (!string.IsNullOrEmpty(AFIA))
+                if(AFIA == "")
                 {
-                    string pattern = @"(.+?)\s*:\s*(.+)";
-                    Match match = Regex.Match(AFIA, pattern);
-
-                    if (match.Success)
+                    AFIA = procesosPDF.ProcesaPatron(patronAFIA_1, 1);
+                }
+                if(!string.IsNullOrEmpty(AFIA))
+                {
+                    if(AFIA.Contains(":"))
                     {
-                        Observaciones1 = quitaRaros(match.Groups[1].Value);
-                        Observaciones2 = quitaRaros(match.Groups[2].Value);
+                        string[] partes = AFIA.Split(new[] { ':' });
+                        Observaciones1 = partes[0].Trim();
+                        Observaciones2 = partes[1].Trim();
+
                     }
+                    else
+                    {
+                        Observaciones1 = patronAFIA_1.Substring(0, patronAFIA_1.Length - 4);
+                        Observaciones2 = AFIA.Substring(Observaciones1.Length).Trim();
+                    }
+
+                    Observaciones1 = quitaRaros(Observaciones1);
+                    Observaciones2 = quitaRaros(Observaciones2);
+
+
+                    //string pattern = @"(.+?)\s*:\s*(.+)";
+                    //Match match = Regex.Match(AFIA, pattern);
+
+                    //if (match.Success)
+                    //{
+                    //Observaciones1 = quitaRaros(match.Groups[1].Value);
+                    //Observaciones2 = quitaRaros(match.Groups[2].Value);
+                    //}
                     CampoLibre1 = quitaRaros(AFIA);
                     Modelo = "AFIA";
                 }
 
                 AFIB = procesosPDF.ProcesaPatron(patronAFIB, 1);
-                if (!string.IsNullOrEmpty(AFIB))
+                if(!string.IsNullOrEmpty(AFIB))
                 {
                     string pattern = @"(.+?)\s*:\s*(.+)";
                     Match match = Regex.Match(AFIB, pattern);
 
-                    if (match.Success)
+                    if(match.Success)
                     {
                         Observaciones1 = quitaRaros(match.Groups[1].Value);
                         Observaciones2 = quitaRaros(match.Groups[2].Value);
@@ -281,12 +365,12 @@ namespace pdftotext
                 }
 
                 AFIC = procesosPDF.ProcesaPatron(patronAFIC, 1);
-                if (!string.IsNullOrEmpty(AFIC))
+                if(!string.IsNullOrEmpty(AFIC))
                 {
                     string pattern = @"(TESORERIA GENERAL DE LA SEGURIDAD SOCIAL)(.+)";
                     Match match = Regex.Match(AFIC, pattern);
 
-                    if (match.Success)
+                    if(match.Success)
                     {
                         Observaciones1 = "COMUNICACION SOBRE MODIFICACION DE CONTRATO DE TRABAJO";
                         Observaciones2 = quitaRaros(match.Groups[2].Value);
@@ -303,30 +387,30 @@ namespace pdftotext
                 //}
 
                 CER = procesosPDF.ProcesaPatron(patronCER, 1);
-                if (!string.IsNullOrEmpty(CER))
+                if(!string.IsNullOrEmpty(CER))
                 {
                     Modelo = "CER";
                 }
 
                 RNT = procesosPDF.ProcesaPatron(patronRNT, 1);
-                if (!string.IsNullOrEmpty(RNT))
+                if(!string.IsNullOrEmpty(RNT))
                 {
                     Modelo = "RNT";
                 }
 
                 RLC = procesosPDF.ProcesaPatron(patronRLC, 1);
-                if (!string.IsNullOrEmpty(RLC))
+                if(!string.IsNullOrEmpty(RLC))
                 {
                     Modelo = "RLC";
                 }
 
                 ITA = procesosPDF.ProcesaPatron(patronITA, 1);
-                if (!string.IsNullOrEmpty(ITA))
+                if(!string.IsNullOrEmpty(ITA))
                 {
                     string pattern = @"(.+):(.+)";
                     Match match = Regex.Match(ITA, pattern);
 
-                    if (match.Success)
+                    if(match.Success)
                     {
                         string fechaTmp = match.Groups[2].Value;
                         string formatoFechaTexto = " dd MM yyyy";
@@ -340,12 +424,12 @@ namespace pdftotext
                 }
 
                 IDC = procesosPDF.ProcesaPatron(patronIDC, 1);
-                if (!string.IsNullOrEmpty(IDC))
+                if(!string.IsNullOrEmpty(IDC))
                 {
                     string pattern = @"(.+)-(.+)";
                     Match match = Regex.Match(IDC, pattern);
 
-                    if (match.Success)
+                    if(match.Success)
                     {
                         Observaciones1 = quitaRaros(match.Groups[1].Value);
                         Observaciones2 = quitaRaros(match.Groups[2].Value);
@@ -355,17 +439,17 @@ namespace pdftotext
                 }
 
                 HUE = procesosPDF.ProcesaPatron(patronHuella, 1);
-                if (!string.IsNullOrEmpty(HUE))
+                if(!string.IsNullOrEmpty(HUE))
                 {
                     Modelo = "HUE";
                     string observacionesHUE = HUE.Replace("\n", " ");
-                    if (observacionesHUE.Length > 100)
+                    if(observacionesHUE.Length > 100)
                     {
                         Observaciones1 = quitaRaros(observacionesHUE.Substring(0, 50));
                         Observaciones2 = quitaRaros(observacionesHUE.Substring(50, 50));
                         Observaciones3 = quitaRaros(observacionesHUE.Substring(100));
                     }
-                    else if (observacionesHUE.Length > 50)
+                    else if(observacionesHUE.Length > 50)
                     {
                         Observaciones1 = quitaRaros(observacionesHUE.Substring(0, 50));
                         Observaciones2 = quitaRaros(observacionesHUE.Substring(50));
@@ -377,7 +461,7 @@ namespace pdftotext
                 }
 
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 //Si se produce alguna excepcion, se graba un fichero con el error.
                 procesosPDF.grabaFichero("error_proceso.txt", "Error al buscar el numero de modelo.\r\n" + ex.Message);
@@ -385,10 +469,58 @@ namespace pdftotext
         }
 
 
+        private void BuscarModeloLaboral()
+        {
+            try
+            {
+                foreach(var modelo in PatronesBusquedaLaboral.Keys)
+                {
+                    string patronUsado;
+                    string textoEncontrado = BuscarPrimerPatronValido(PatronesBusquedaLaboral[modelo], 1, out patronUsado);
+                    if(!string.IsNullOrEmpty(textoEncontrado))
+                    {
+                        Modelo = modelo;
+
+                        if(procesadoresPorModelo.ContainsKey(modelo))
+                        {
+                            procesadoresPorModelo[modelo].Invoke(textoEncontrado);
+                        }
+                        else
+                        {
+                            // Procesamiento genérico o por defecto
+                            CampoLibre1 = quitaRaros(textoEncontrado);
+                        }
+
+                        break; // Para tras encontrar el primer modelo válido
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        public string BuscarPrimerPatronValido(string[] patrones, int pagina, out string patronEncontrado)
+        {
+            foreach(string patron in patrones)
+            {
+                string resultado = ProcesaPatron(patron, pagina);
+                if(!string.IsNullOrEmpty(resultado))
+                {
+                    patronEncontrado = patron;
+                    return resultado; // devuelve el texto que coincide con ese patrón
+                }
+            }
+            patronEncontrado = null;
+            return ""; // no encontró nada
+        }
+
+
         private void BuscarNif()
         {
             Nif = procesosPDF.ProcesaPatron(patronNif, 1);
-            if (Nif.Length > 0)
+            if(Nif.Length > 0)
             {
                 Nif = Nif.Substring(1, 9);
             }
@@ -397,7 +529,7 @@ namespace pdftotext
         private void BuscarDniTrabajador()
         {
             //Busqueda del DNI del trabajador
-            if (Modelo == "HUE")
+            if(Modelo == "HUE")
             {
                 DniTrabajador = procesosPDF.ProcesaPatron(patronNif, 1, Modelo, "", 1);
             }
@@ -406,7 +538,7 @@ namespace pdftotext
                 DniTrabajador = procesosPDF.ProcesaPatron(patronNif, 1, Modelo, "", 0);
             }
 
-            if (DniTrabajador.Length > 0)
+            if(DniTrabajador.Length > 0)
             {
                 DniTrabajador = DniTrabajador.Substring(DniTrabajador.Length - 9);
             }
@@ -417,7 +549,7 @@ namespace pdftotext
         {
             //Busqueda del tipo de documento. L00 => 00, L13 => 02, L03 => 5, L90 => 90
             string tipoModeloTmp = procesosPDF.ProcesaPatron(patronTipoModelo, 1);
-            if (tipoModeloTmp.Length > 0)
+            if(tipoModeloTmp.Length > 0)
             {
                 TipoModelo = tipoModeloTmp.Substring(0, 3);
                 Observaciones1 = Modelo + " - " + tipoModeloTmp;
@@ -428,12 +560,12 @@ namespace pdftotext
         {
             //Periodo para el documento de certificado
             string periodoTmp = procesosPDF.ProcesaPatron(patronPeriodo, 1);
-            if (periodoTmp.Length > 0)
+            if(periodoTmp.Length > 0)
             {
                 string pattern = @"(.+)(\d{2}[-/.]\d{2}[-/.]\d{4})";
                 Match match = Regex.Match(periodoTmp, pattern);
 
-                if (match.Success)
+                if(match.Success)
                 {
                     Observaciones1 = "CERTIFICADO CORRIENTE DE PAGO EN LA SEG.SOCIAL";
                     Observaciones2 = match.Groups[2].Value;
@@ -446,12 +578,12 @@ namespace pdftotext
         private void BuscarPeriodoRLCyRNT()
         {
             //Busqueda del periodo en el campo "Periodo liquidacion": el L03 se coje de la fecha de control, el resto del periodo de liquidacion.
-            switch (TipoModelo)
+            switch(TipoModelo)
             {
                 case "L03":
                     string periodoL03 = string.Empty;
                     periodoL03 = procesosPDF.ProcesaPatron(patronPeriodoL03, 1, Modelo, TipoModelo);
-                    if (periodoL03.Length > 0)
+                    if(periodoL03.Length > 0)
                     {
                         Ejercicio = periodoL03.Substring(periodoL03.Length - 4);
                         Periodo = periodoL03.Substring(periodoL03.Length - 7, 2);
@@ -460,7 +592,7 @@ namespace pdftotext
 
                 case "L90":
                     string periodoL90 = string.Empty;
-                    if (Modelo == "RLC")
+                    if(Modelo == "RLC")
                     {
                         //Si el modelo es el RLC la fecha aparece en segunda posicion y se tiene que pasar la posicion del valor a extraer
                         periodoL90 = procesosPDF.ProcesaPatron(patronPeriodoL00, 1, Modelo, TipoModelo, 1);
@@ -470,7 +602,7 @@ namespace pdftotext
                         //Si el modelo es el RNT solo aparece una fecha y no se pasa la posicion del valor a extraer
                         periodoL90 = procesosPDF.ProcesaPatron(patronPeriodoL00, 1, Modelo, TipoModelo);
                     }
-                    if (periodoL90.Length > 0)
+                    if(periodoL90.Length > 0)
                     {
                         Ejercicio = periodoL90.Substring(3, 4);
                         Periodo = periodoL90.Substring(0, 2);
@@ -479,7 +611,7 @@ namespace pdftotext
 
                 default:
                     string periodoTmp = procesosPDF.ProcesaPatron(patronPeriodoL00, 1, Modelo, TipoModelo);
-                    if (periodoTmp.Length > 0)
+                    if(periodoTmp.Length > 0)
                     {
                         Ejercicio = periodoTmp.Substring(3, 4);
                         Periodo = periodoTmp.Substring(0, 2);
@@ -493,13 +625,13 @@ namespace pdftotext
         {
             //En el IDC se necesitan buscar las fechas de alta, periodo,baja o fecha contrato para luego saber si es una variacion o baja
             string altaIDC = procesosPDF.ProcesaPatron(patronAltaIDC, 1);
-            if (altaIDC.Length > 0)
+            if(altaIDC.Length > 0)
             {
                 altaIDC = altaIDC.Substring(altaIDC.Length - 10);
             }
 
             string periodoIDC = procesosPDF.ProcesaPatron(patronPeriodoIDC, 1);
-            if (periodoIDC.Length > 0)
+            if(periodoIDC.Length > 0)
             {
                 PeriodoIDC = periodoIDC.Substring(periodoIDC.Length - 10);
                 FechaEfecto = PeriodoIDC;
@@ -507,20 +639,20 @@ namespace pdftotext
             }
 
             string fechaIDC = procesosPDF.ProcesaPatron(patronFechaIDC, 1);
-            if (fechaIDC.Length > 0)
+            if(fechaIDC.Length > 0)
             {
                 fechaIDC = fechaIDC.Substring(fechaIDC.Length - 10);
             }
 
             string bajaIDC = procesosPDF.ProcesaPatron(patronBajaIDC, 1);
-            if (bajaIDC.Length > 0)
+            if(bajaIDC.Length > 0)
             {
                 TipoIDC = "05";
                 //bajaIDCTmp = bajaIDCTmp.Substring(bajaIDCTmp.Length - 10);
             }
             else
             {
-                if (altaIDC != PeriodoIDC || PeriodoIDC != fechaIDC || altaIDC != fechaIDC)
+                if(altaIDC != PeriodoIDC || PeriodoIDC != fechaIDC || altaIDC != fechaIDC)
                 {
                     //Si alguna de las fechas es diferente se trata de un IDC de variacion
                     TipoIDC = "06";
@@ -540,7 +672,7 @@ namespace pdftotext
             //Hace falta para los modelos anteriores y en los nuevos por si hay varios centros de trabajo
             string cccTmp = string.Empty;
 
-            switch (Modelo)
+            switch(Modelo)
             {
                 case "HUE":
                     cccTmp = procesosPDF.ProcesaPatron(patronCCCHuella, 1);
@@ -556,7 +688,7 @@ namespace pdftotext
 
             }
 
-            if (cccTmp.Length > 0)
+            if(cccTmp.Length > 0)
             {
                 cccTmp = cccTmp.Replace(" ", "").Replace("-", "").Replace("\n", "");
                 CCC = cccTmp.Substring(cccTmp.Length - 11); //Solo se cogen los ultimos 11 digitos porque en algun modelo el CCC no le ponen los 4 digitos del Regimen de la empresa
@@ -567,16 +699,16 @@ namespace pdftotext
         {
             //Hace falta para los modelos anteriores.
             string fechaEfectoTmp = string.Empty;
-            switch (Modelo)
+            switch(Modelo)
             {
                 case "AFIC":
                     fechaEfectoTmp = procesosPDF.ProcesaPatron(patronFechaEfectoAFIC, 1);
-                    if (fechaEfectoTmp.Length > 0)
+                    if(fechaEfectoTmp.Length > 0)
                     {
                         string pattern = @"(.*)(\d{2}[-/.]\d{2}[-/.]\d{4})";
                         Match match = Regex.Match(fechaEfectoTmp, pattern);
 
-                        if (match.Success)
+                        if(match.Success)
                         {
                             FechaEfecto = match.Groups[2].Value;
                             //FechaEfecto = fechaEfectoTmp.Substring(fechaEfectoTmp.Length - 10);
@@ -586,12 +718,12 @@ namespace pdftotext
 
                 case "HUE":
                     fechaEfectoTmp = procesosPDF.ProcesaPatron(patronFechaHuella, 1);
-                    if (fechaEfectoTmp.Length > 0)
+                    if(fechaEfectoTmp.Length > 0)
                     {
                         string pattern = @"(.*)(\d{2}[-/.]\d{2}[-/.]\d{4})";
                         Match match = Regex.Match(fechaEfectoTmp, pattern);
 
-                        if (match.Success)
+                        if(match.Success)
                         {
                             FechaEfecto = match.Groups[2].Value;
                             //FechaEfecto = fechaEfectoTmp.Substring(fechaEfectoTmp.Length - 10);
@@ -602,12 +734,12 @@ namespace pdftotext
                 case "RLC":
                 case "RNT":
                     fechaEfectoTmp = procesosPDF.ProcesaPatron(patronFechaEfectoRNTRLC, 1);
-                    if (fechaEfectoTmp.Length > 0)
+                    if(fechaEfectoTmp.Length > 0)
                     {
                         string pattern = @"(.*)(\d{2}[-/.]\d{2}[-/.]\d{4})";
                         Match match = Regex.Match(fechaEfectoTmp, pattern);
 
-                        if (match.Success)
+                        if(match.Success)
                         {
                             FechaEfecto = match.Groups[2].Value;
                         }
@@ -616,13 +748,13 @@ namespace pdftotext
 
                 default:
                     fechaEfectoTmp = procesosPDF.ProcesaPatron(patronFechaEfecto, 1);
-                    if (fechaEfectoTmp.Length > 0)
+                    if(fechaEfectoTmp.Length > 0)
                     {
                         //Al texto que le llega del PDF le hace un regex para obtener unicamente la fecha (segunda parte del patron)
                         string pattern = @"(.*:\s*)(\d{1,2}\s+de\s+[^\s]+\s+de\s+\d{4})";
                         Match match = Regex.Match(fechaEfectoTmp, pattern);
 
-                        if (match.Success)
+                        if(match.Success)
                         {
                             fechaEfectoTmp = match.Groups[2].Value;
                         }
