@@ -3,7 +3,6 @@ using iText.Kernel.Pdf.Canvas.Parser;
 using iText.Kernel.Pdf;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Diagnostics;
 
 namespace pdftotext
 {
@@ -64,46 +63,46 @@ namespace pdftotext
             buscar.buscarDatos();
 
             //Almacena el texto a grabar en el fichero
-            string texto = string.Empty;
-            texto += ($"NIF: {buscar.Nif} \r\n");
+            StringBuilder texto = new StringBuilder();
+            texto.AppendLine($"NIF: {buscar.Nif}");
             if(buscar.NifConyuge != "")
             {
-                texto += ($"NIF conyuge: {buscar.NifConyuge} \r\n");
+                texto.AppendLine($"NIF conyuge: {buscar.NifConyuge}");
             }
-            texto += ($"Modelo: {buscar.Modelo} \r\n");
-            texto += ($"Ejercicio: {buscar.Ejercicio} \r\n");
-            texto += ($"Periodo: {buscar.Periodo} \r\n");
+            texto.AppendLine($"Modelo: {buscar.Modelo}");
+            texto.AppendLine($"Ejercicio: {buscar.Ejercicio}");
+            texto.AppendLine($"Periodo: {buscar.Periodo}");
             if(buscar.Modelo == "100")
             {
                 if(buscar.TributacionConjunta)
                 {
-                    texto += ("Tributacion: conjunta \r\n");
+                    texto.AppendLine("Tributacion: conjunta");
                 }
                 else
                 {
-                    texto += ("Tributacion: individual \r\n");
+                    texto.AppendLine("Tributacion: individual");
                 }
             }
-            texto += ($"Justificante: {buscar.Justificante} \r\n");
-            texto += ($"CSV: {buscar.Csv} \r\n");
-            texto += ($"Expediente: {buscar.Expediente} \r\n");
+            texto.AppendLine($"Justificante: {buscar.Justificante}");
+            texto.AppendLine($"CSV: {buscar.Csv}");
+            texto.AppendLine($"Expediente: {buscar.Expediente}");
             if(!string.IsNullOrEmpty(buscar.fecha036))
             {
-                texto += ($"Fecha presentacion 036/037: {buscar.fecha036} \r\n");
+                texto.AppendLine($"Fecha presentacion 036/037: {buscar.fecha036}");
             }
             if(buscar.complementaria)
             {
-                texto += ($"Complementaria: SI \r\n");
+                texto.AppendLine($"Complementaria: SI");
             }
 
             //Graba el fichero de datos con el texto creado
-            grabaFichero(ficheroDatos, texto);
+            grabaFichero(ficheroDatos, texto.ToString());
         }
 
         public void extraeDatosLaboral()
         {
             //Instanciacion de la clase busqueda para usar los metodos
-            busquedaLaboral buscar = new busquedaLaboral(Program.textoCompleto, Program.paginasPDF);
+            busquedaLaboral buscar = new busquedaLaboral();
 
             //Hacemos la llamada al metodo buscarDatos para que se almacenen los datos del PDF
             buscar.buscarDatos();
@@ -130,16 +129,25 @@ namespace pdftotext
 
         }
 
-        public string ProcesaPatron(string patronRegex, int pagina, string Modelo = "", string TipoModelo = "", int valor = 0)
+        public string ProcesaPatron(string patronRegex, int pagina, string Modelo = "", string TipoModelo = "", int indice = 0)
         {
             //Metodo para extraer el texto segun el patron de busqueda pasado. Opcionalmente se puede pasar el modelo, tipo de modelo y el indice del texto encontrado a devolver
             Regex regex = new Regex(patronRegex);
             MatchCollection matches = regex.Matches(Program.paginasPDF[pagina - 1].ToString());
+            
+            // Numero de ocurrecias del texto encontradas
+            int ocurrenciasTexto = matches.Count;
+
+            // Si se pasa un indice superior al de ocurrencias, se devuelve la ultima encontrada
+            if (indice > ocurrenciasTexto -1 && ocurrenciasTexto > 0) //Se resta 1 porque el indice empieza por cero
+            {
+                indice = ocurrenciasTexto - 1;
+            }
 
             //Si encuentra algo 
-            if(matches.Count > 0)
+            if(ocurrenciasTexto > 0)
             {
-                return matches[valor].Value; //Se pasa por parametro el valor que se quiere devolver porque en algunos casos no es el primero (valor 0), sino que puede ser el segundo (valor 1) o siguientes
+                return matches[indice].Value; //Se pasa por parametro el valor que se quiere devolver porque en algunos casos no es el primero (valor 0), sino que puede ser el segundo (valor 1) o siguientes
             }
             else
             {
