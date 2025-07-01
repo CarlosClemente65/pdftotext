@@ -10,34 +10,34 @@ namespace pdftotext
         procesosPDF procesosPDF = new procesosPDF();
 
         //Definicion de variables para extraer datos
-        public string Modelo { get; private set; }
-        public string ModeloNum { get; private set; }
-        public string TipoModelo { get; private set; }
-        public string Nif { get; private set; }
-        public string Ejercicio { get; private set; }
-        public string Periodo { get; private set; }
-        public string CCC { get; private set; }
-        public string DniTrabajador { get; private set; }
-        public string FechaEfecto { get; private set; }
-        public string PeriodoIDC { get; private set; }
-        public string TipoIDC { get; private set; }
-        public string Observaciones1 { get; private set; }
-        public string Observaciones2 { get; private set; }
-        public string Observaciones3 { get; private set; }
-        public string CampoLibre1 { get; private set; }
-        public string CampoLibre2 { get; private set; }
+        public static string Modelo { get; set; }
+        public string ModeloNum { get; set; }
+        public string TipoModelo { get; set; }
+        public string Nif { get; set; }
+        public string Ejercicio { get; set; }
+        public string Periodo { get; set; }
+        public string CCC { get; set; }
+        public string DniTrabajador { get; set; }
+        public string FechaEfecto { get; set; }
+        public string PeriodoIDC { get; set; }
+        public string TipoIDC { get; set; }
+        public static string Observaciones1 { get; set; }
+        public static string Observaciones2 { get; set; }
+        public static string Observaciones3 { get; set; }
+        public static string CampoLibre1 { get; set; }
+        public static string CampoLibre2 { get; set; }
 
         //Tipos de documento
-        string CER = string.Empty; //Documento de certificado de corriente de pago
-        string RLC = string.Empty; //Documento de Recibo de liquidacion de coticaciones (antiguo TC1)
-        string RNT = string.Empty; //Documento de Relacion nominal de trabajadores (antiguo TC2)
-        string ITA = string.Empty; //Documento de Trabajadores en alta
-        string AFIA = string.Empty; //Documento de afiliacion - alta
-        string AFIB = string.Empty; //Documento de afiliacion - baja
-        string AFIV = string.Empty; //Documento de afiliacion - variacion
-        string AFIC = string.Empty; //Documento de afiliacion - cambio de contrato
-        string IDC = string.Empty; //Documento de Informe de datos para la cotizacion
-        string HUE = string.Empty; //Documento de huella de contrato
+        public string CER = string.Empty; //Documento de certificado de corriente de pago
+        public string RLC = string.Empty; //Documento de Recibo de liquidacion de coticaciones (antiguo TC1)
+        public string RNT = string.Empty; //Documento de Relacion nominal de trabajadores (antiguo TC2)
+        public string ITA = string.Empty; //Documento de Trabajadores en alta
+        public static string AFIA = string.Empty; //Documento de afiliacion - alta
+        public string AFIB = string.Empty; //Documento de afiliacion - baja
+        public string AFIV = string.Empty; //Documento de afiliacion - variacion
+        public string AFIC = string.Empty; //Documento de afiliacion - cambio de contrato
+        public string IDC = string.Empty; //Documento de Informe de datos para la cotizacion
+        public string HUE = string.Empty; //Documento de huella de contrato
 
 
 
@@ -53,7 +53,6 @@ namespace pdftotext
         string patronPeriodoL03 = @"Fecha de Control: \d{2]/\d{4}\b"; //Busca el texto seguido de 2 digitos, seguido de una barra inclinada, seguido de 4 digitos y termina la palabra.
 
         string patronTipoModelo = @"L\d{2}(.+)"; //Busca una L seguida de 2 digitos, seguida de un caracter y seguida de cero o mas palabras.   L\d{2}.\w*
-
 
         string patronCCC = @"\d{4}[-. \n]\d{2}[-. \n]?\d{7}[-. ]?\d{2}"; //Busca 4 digitos, seguido de un guion, un punto o un espacio, seguido de 2 digitos, seguido de un guion, un punto o un espacio (es opcional), seguido de 7 digitos, seguido de un guion, un punto o un espacio (es opcional) y seguido de 2 digitos; (en algunos documentos el CCC le ponen guiones para separar.
         string patronCCCIDC = @"C\.?C\.?C\.?: \d{2}[-. \n]?\d{7}[-. ]?\d{2}";
@@ -103,60 +102,7 @@ namespace pdftotext
 
         #region Nuevos patrones de busqueda
 
-        Dictionary<string, string[]> PatronesBusquedaLaboral = new Dictionary<string, string[]>
-        {
-            {
-                "AFIA", new[]{
-                "RESOLUCIÓN SOBRE RECONOCIMIENTO DE ALTA(.+)", //Documento de afiliacion de alta
-                "INFORME DE SITUACIÓN DE ALTA(.+)" //Documento de afiliacion de alta (version de junio-2025)//
-                }
-            },
-            {
-                "AFIB", new []{
-                "RESOLUCIÓN SOBRE RECONOCIMIENTO DE BAJA(.+)"//Documento de afiliacion de baja}
-                }
-            },
-            {
-                "AFIC", new []{
-                @"COMUNICACIÓN SOBRE\s+(\w+\s+)*\nCONTRATO DE TRABAJO\s+([\w+\s]+)$*"//Documento de afiliacion de variacion. Busca el texto seguido de uno o varios espacios, seguido de una o varias palabras separadas por espacios, seguido de un salto de linea, seguido del texto, seguido de uno o varios espacios, seguido de una o varias palabras que estan al final de la linea
-                }
-            },
-            {
-                "AFIV", new []{
-                "" //Documento de afiliacion de variacion (no hay documento de ejemplo)
-                }
-            },
-            {
-                "CER", new []{
-                "CERTIFICADO DE ESTAR AL CORRIENTE"
-                }
-            },
-            {
-                "RNT", new []{
-                "[A-Z]RNT\\d{10}\\b" //Busca una letra mayuscula, seguida de RNT y seguida de 10 digitos que terminan la palabra.
-                }
-            },
-            {
-                "RLC", new []{
-                @"[A-Z]RLC\d{10}\b" //Busca una letra mayuscula, seguida de RLC y seguida de 10 digitos que terminan la palabra.
-                }
-            },
-            {
-                "ITA", new []{
-                @"INFORME DE TRABAJADORES EN ALTA A FECHA: \d{2}.\d{2}.\d{4}" //Busca el texto seguido dos digitos, seguido de un caracter, seguido de dos digitos, seguido de un caracter y seguido de 4 caracteres.
-                }
-            },
-            {
-                "IDC", new []{
-                "RESOLUCIÓN SOBRE RECONOCIMIENTO DE BAJA(.+)"//Documento de afiliacion de baja}
-                }
-            },
-            {
-                "HUE", new []{
-                @"COMUNICACIÓN[\s\S]*DEL CONTRATO DE[\s\S]*?\n(.+)" //Busca el texto seguido cualquier espacio o caracter (\S es lo contrario de un espacio), seguido de un salto de linea, seguido de cualquier caracter que no sea un salto de linea.
-                }
-            }
-        };
+
 
         #endregion
 
@@ -165,27 +111,28 @@ namespace pdftotext
             //Construcctor de la clase que inicializa las variables
             Program.textoCompleto = textoCompleto;
             Program.paginasPDF = paginasPDF;
-            this.Modelo = string.Empty;
-            this.ModeloNum = string.Empty;
-            this.TipoModelo = string.Empty;
-            this.Nif = string.Empty;
-            this.Ejercicio = string.Empty;
-            this.Periodo = string.Empty;
-            this.CCC = string.Empty;
-            this.DniTrabajador = string.Empty;
-            this.FechaEfecto = string.Empty;
-            this.PeriodoIDC = string.Empty; //En los IDC se necesita esta fecha para comparar con el alta y la fecha del contrato para saber si es una variacion.
-            this.TipoIDC = string.Empty; //Controla el tipo de IDC (alta, baja o variacion)
-            this.Observaciones1 = string.Empty; //Permite pasar observaciones al GAD
-            this.Observaciones2 = string.Empty; //Permite pasar observaciones al GAD
-            this.Observaciones3 = string.Empty; //Permite pasar observaciones al GAD
-            this.CampoLibre1 = string.Empty; //Permite pasar observaciones al GAD
-            this.CampoLibre2 = string.Empty; //Permite pasar observaciones al GAD
+            Modelo = string.Empty;
+            ModeloNum = string.Empty;
+            TipoModelo = string.Empty;
+            Nif = string.Empty;
+            Ejercicio = string.Empty;
+            Periodo = string.Empty;
+            CCC = string.Empty;
+            DniTrabajador = string.Empty;
+            FechaEfecto = string.Empty;
+            PeriodoIDC = string.Empty; //En los IDC se necesita esta fecha para comparar con el alta y la fecha del contrato para saber si es una variacion.
+            TipoIDC = string.Empty; //Controla el tipo de IDC (alta, baja o variacion)
+            Observaciones1 = string.Empty; //Permite pasar observaciones al GAD
+            Observaciones2 = string.Empty; //Permite pasar observaciones al GAD
+            Observaciones3 = string.Empty; //Permite pasar observaciones al GAD
+            CampoLibre1 = string.Empty; //Permite pasar observaciones al GAD
+            CampoLibre2 = string.Empty; //Permite pasar observaciones al GAD
         }
 
         public void buscarDatos()
         {
-            BuscarModelo();
+            //BuscarModelo();
+            BuscarModeloLaboral();
 
             switch(Modelo)
             {
@@ -305,7 +252,6 @@ namespace pdftotext
                   .Replace('Ú', 'U');
             return cadena;
         }
-
 
         #region Metodos de busqueda
         private void BuscarModelo()
@@ -468,36 +414,49 @@ namespace pdftotext
             }
         }
 
-
         private void BuscarModeloLaboral()
         {
+            Modelo = "000"; //Inicializa el modelo a 000 para que no de error si no encuentra ningun modelo
+            ProcesosModelosLaboral procesosLaboral = new ProcesosModelosLaboral();
             try
             {
-                foreach(var modelo in PatronesBusquedaLaboral.Keys)
+                foreach(var modelo in procesosLaboral.PatronesBusquedaLaboral.Keys)
                 {
-                    string patronUsado;
-                    string textoEncontrado = BuscarPrimerPatronValido(PatronesBusquedaLaboral[modelo], 1, out patronUsado);
-                    if(!string.IsNullOrEmpty(textoEncontrado))
+                    switch(modelo)
                     {
-                        Modelo = modelo;
+                        case "AFIA":
+                            procesosLaboral.ProcesarAFIA();
+                            break;
+                        case "AFIB":
+                            break;
+                        case "AFIC":
+                            break;
+                        case "CER":
+                            break;
+                        case "RNT":
+                            break;
+                        case "RLC":
+                            break;
+                        case "ITA":
+                            break;
+                        case "IDC":
+                            break;
+                        case "HUE":
+                            break;
+                        default:
+                            break;
+                    }
 
-                        if(procesadoresPorModelo.ContainsKey(modelo))
-                        {
-                            procesadoresPorModelo[modelo].Invoke(textoEncontrado);
-                        }
-                        else
-                        {
-                            // Procesamiento genérico o por defecto
-                            CampoLibre1 = quitaRaros(textoEncontrado);
-                        }
-
-                        break; // Para tras encontrar el primer modelo válido
+                    if(Modelo != "000") // Si ya ha encontrado un modelo, sale del bucle
+                    {
+                        break;
                     }
                 }
             }
             catch(Exception ex)
             {
-
+                //Si se produce alguna excepcion, se graba un fichero con el error.
+                procesosPDF.grabaFichero("error_proceso.txt", "Error al buscar el numero de modelo.\r\n" + ex.Message);
             }
         }
 
@@ -505,7 +464,7 @@ namespace pdftotext
         {
             foreach(string patron in patrones)
             {
-                string resultado = ProcesaPatron(patron, pagina);
+                string resultado = procesosPDF.ProcesaPatron(patron, pagina);
                 if(!string.IsNullOrEmpty(resultado))
                 {
                     patronEncontrado = patron;
@@ -766,8 +725,14 @@ namespace pdftotext
                     break;
             }
         }
-    }
 
-    #endregion
+        #endregion
+
+        #region Procesadores por modelo
+
+
+
+        #endregion
+    }
 }
 

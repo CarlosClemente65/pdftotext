@@ -2,7 +2,7 @@
   "profiles": {
     "pdftotext": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\doc-dsarchi\\laboral\\no_reconocidos\\AFIA1.pdf -t C:\\doc-dsarchi\\laboral\\no_reconocidos\\AFIA1_txt.txt -l C:\\doc-dsarchi\\laboral\\no_reconocidos\\AFIA1_datos.txt",
+      "commandLineArgs": "C:\\doc-dsarchi\\laboral\\no_reconocidos\\alta_1.pdf -t C:\\doc-dsarchi\\laboral\\no_reconocidos\\alta_1_txt.txt -l C:\\doc-dsarchi\\laboral\\no_reconocidos\\alta_1_datos.txt",
       "workingDirectory": "C:\\doc-dsarchi\\laboral\\no_reconocidos"
     }
   }
