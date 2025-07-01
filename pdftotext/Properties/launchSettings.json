@@ -2,8 +2,8 @@
   "profiles": {
     "pdftotext": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\doc-dsarchi\\no_reconocidos\\2024\\renta_10059_conjunta.pdf -t C:\\doc-dsarchi\\no_reconocidos\\2024\\renta_10059_conjunta.txt -m C:\\doc-dsarchi\\no_reconocidos\\2024\\renta_10059_conjunta_datos.txt",
-      "workingDirectory": "C:\\Programacion\\c#\\pdftotext\\pdftotext\\bin\\Debug\\net48"
+      "commandLineArgs": "prorroga.pdf -t prorroga_txt.txt -l prorroga_datos.txt",
+      "workingDirectory": "C:\\doc-dsarchi\\laboral\\no_reconocidos"
     }
   }
 }
