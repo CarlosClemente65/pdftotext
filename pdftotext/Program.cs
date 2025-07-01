@@ -5,8 +5,8 @@
 [assembly: AssemblyDescription("Convierte un PDF en texto y extrae los datos de los modelos de Hacienda")]
 //[assembly: AssemblyCompany("Diagram Software Europa S.L.")]
 [assembly: AssemblyCopyright("© 2023 - Diagram Software Europa S.L.")]
-[assembly: AssemblyVersion("1.3.0.1")]
-[assembly: AssemblyFileVersion("1.3.0.1")]
+[assembly: AssemblyVersion("1.3.0.2")]
+[assembly: AssemblyFileVersion("1.3.0.2")]
 
 
 namespace pdftotext
@@ -258,6 +258,17 @@ namespace pdftotext
 
             Console.WriteLine(mensaje);
             Console.ReadKey();
+        }
+
+        public static string quitaRaros(string texto)
+        {
+            string cadena = texto.ToUpper();
+            cadena = cadena.Replace('Á', 'A')
+                  .Replace('É', 'E')
+                  .Replace('Í', 'I')
+                  .Replace('Ó', 'O')
+                  .Replace('Ú', 'U');
+            return cadena;
         }
 
     }

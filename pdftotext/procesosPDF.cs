@@ -33,12 +33,12 @@ namespace pdftotext
         public void extraeTextoPDF()
         {
             extractedText.Clear();
-            using (PdfDocument pdfDoc = new PdfDocument(new PdfReader(ficheroPDF)))
+            using(PdfDocument pdfDoc = new PdfDocument(new PdfReader(ficheroPDF)))
             {
                 lastpage = pdfDoc.GetNumberOfPages();
 
                 //Extrae el texto de las paginas del PDF y lo almacena en la variable extractedText
-                for (int i = firstpage; i <= lastpage; i++)
+                for(int i = firstpage; i <= lastpage; i++)
                 {
                     ITextExtractionStrategy extractionStrategy = new SimpleTextExtractionStrategy();
                     string pageText = PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(i), extractionStrategy);
@@ -66,16 +66,16 @@ namespace pdftotext
             //Almacena el texto a grabar en el fichero
             string texto = string.Empty;
             texto += ($"NIF: {buscar.Nif} \r\n");
-            if (buscar.NifConyuge != "")
+            if(buscar.NifConyuge != "")
             {
                 texto += ($"NIF conyuge: {buscar.NifConyuge} \r\n");
             }
             texto += ($"Modelo: {buscar.Modelo} \r\n");
             texto += ($"Ejercicio: {buscar.Ejercicio} \r\n");
             texto += ($"Periodo: {buscar.Periodo} \r\n");
-            if (buscar.Modelo == "100")
+            if(buscar.Modelo == "100")
             {
-                if (buscar.TributacionConjunta)
+                if(buscar.TributacionConjunta)
                 {
                     texto += ("Tributacion: conjunta \r\n");
                 }
@@ -87,11 +87,11 @@ namespace pdftotext
             texto += ($"Justificante: {buscar.Justificante} \r\n");
             texto += ($"CSV: {buscar.Csv} \r\n");
             texto += ($"Expediente: {buscar.Expediente} \r\n");
-            if (!string.IsNullOrEmpty(buscar.fecha036))
+            if(!string.IsNullOrEmpty(buscar.fecha036))
             {
                 texto += ($"Fecha presentacion 036/037: {buscar.fecha036} \r\n");
             }
-            if (buscar.complementaria)
+            if(buscar.complementaria)
             {
                 texto += ($"Complementaria: SI \r\n");
             }
@@ -106,27 +106,27 @@ namespace pdftotext
             busquedaLaboral buscar = new busquedaLaboral(Program.textoCompleto, Program.paginasPDF);
 
             //Hacemos la llamada al metodo buscarDatos para que se almacenen los datos del PDF
-                buscar.buscarDatos();
+            buscar.buscarDatos();
 
             //Almacena el texto a grabar en el fichero
-            string texto = string.Empty;
+            StringBuilder texto = new StringBuilder();
 
-            texto += $"Modelo: {buscar.ModeloNum}";
-            texto += $"\r\nTipo modelo: {buscar.TipoModelo}";
-            texto += $"\r\nCodigo cuenta cotizacion: {buscar.CCC}";
-            texto += $"\r\nCIF empresa: {buscar.Nif}";
-            texto += $"\r\nNIF trabajador: {buscar.DniTrabajador}";
-            texto += $"\r\nEjercicio: {buscar.Ejercicio}";
-            texto += $"\r\nPeriodo: {buscar.Periodo}";
-            texto += $"\r\nFecha efecto: {buscar.FechaEfecto}";
-            texto += $"\r\nObservaciones1: {buscar.Observaciones1}";
-            texto += $"\r\nObservaciones2: {buscar.Observaciones2}";
-            texto += $"\r\nObservaciones3: {buscar.Observaciones3}";
-            texto += $"\r\nCampo libre 1: {buscar.CampoLibre1}";
-            texto += $"\r\nCampo libre 2: {buscar.CampoLibre2}";
+            texto.AppendLine($"Modelo: {busquedaLaboral.ModeloNum}");
+            texto.AppendLine($"Tipo modelo: {busquedaLaboral.TipoModelo}");
+            texto.AppendLine($"Codigo cuenta cotizacion: {busquedaLaboral.CCC}");
+            texto.AppendLine($"CIF empresa: {busquedaLaboral.Nif}");
+            texto.AppendLine($"NIF trabajador: {busquedaLaboral.DniTrabajador}");
+            texto.AppendLine($"Ejercicio: {busquedaLaboral.Ejercicio}");
+            texto.AppendLine($"Periodo: {busquedaLaboral.Periodo}");
+            texto.AppendLine($"Fecha efecto: {busquedaLaboral.FechaEfecto}");
+            texto.AppendLine($"Observaciones1: {busquedaLaboral.Observaciones1}");
+            texto.AppendLine($"Observaciones2: {busquedaLaboral.Observaciones2}");
+            texto.AppendLine($"Observaciones3: {busquedaLaboral.Observaciones3}");
+            texto.AppendLine($"Campo libre 1: {busquedaLaboral.CampoLibre1}");
+            texto.AppendLine($"Campo libre 2: {busquedaLaboral.CampoLibre2}");
 
             //Graba el fichero de datos con el texto creado
-            grabaFichero(ficheroDatos, texto);
+            grabaFichero(ficheroDatos, texto.ToString());
 
         }
 
@@ -137,7 +137,7 @@ namespace pdftotext
             MatchCollection matches = regex.Matches(Program.paginasPDF[pagina - 1].ToString());
 
             //Si encuentra algo 
-            if (matches.Count > 0)
+            if(matches.Count > 0)
             {
                 return matches[valor].Value; //Se pasa por parametro el valor que se quiere devolver porque en algunos casos no es el primero (valor 0), sino que puede ser el segundo (valor 1) o siguientes
             }
@@ -154,14 +154,14 @@ namespace pdftotext
 
         public void ProcesoMasivo(string rutaPDF)
         {
-            if (Directory.Exists(rutaPDF))
+            if(Directory.Exists(rutaPDF))
             {
                 try
                 {
                     archivosPDF.AddRange(Directory.GetFiles(rutaPDF, "*.pdf"));
                 }
 
-                catch (Exception ex)
+                catch(Exception ex)
                 {
                     grabaFichero("error_proceso.txt", "No hay ningun fichero PDF en la carpeta seleccionada\r\n" + ex);
                     Environment.Exit(0);

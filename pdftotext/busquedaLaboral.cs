@@ -11,16 +11,16 @@ namespace pdftotext
 
         //Definicion de variables para extraer datos
         public static string Modelo { get; set; }
-        public string ModeloNum { get; set; }
-        public string TipoModelo { get; set; }
-        public string Nif { get; set; }
-        public string Ejercicio { get; set; }
-        public string Periodo { get; set; }
-        public string CCC { get; set; }
-        public string DniTrabajador { get; set; }
-        public string FechaEfecto { get; set; }
-        public string PeriodoIDC { get; set; }
-        public string TipoIDC { get; set; }
+        public static string ModeloNum { get; set; }
+        public static string TipoModelo { get; set; }
+        public static string Nif { get; set; }
+        public static string Ejercicio { get; set; }
+        public static string Periodo { get; set; }
+        public static string CCC { get; set; }
+        public static string DniTrabajador { get; set; }
+        public static string FechaEfecto { get; set; }
+        public static string PeriodoIDC { get; set; }
+        public static string TipoIDC { get; set; }
         public static string Observaciones1 { get; set; }
         public static string Observaciones2 { get; set; }
         public static string Observaciones3 { get; set; }
@@ -55,6 +55,7 @@ namespace pdftotext
         string patronTipoModelo = @"L\d{2}(.+)"; //Busca una L seguida de 2 digitos, seguida de un caracter y seguida de cero o mas palabras.   L\d{2}.\w*
 
         string patronCCC = @"\d{4}[-. \n]\d{2}[-. \n]?\d{7}[-. ]?\d{2}"; //Busca 4 digitos, seguido de un guion, un punto o un espacio, seguido de 2 digitos, seguido de un guion, un punto o un espacio (es opcional), seguido de 7 digitos, seguido de un guion, un punto o un espacio (es opcional) y seguido de 2 digitos; (en algunos documentos el CCC le ponen guiones para separar.
+        
         string patronCCCIDC = @"C\.?C\.?C\.?: \d{2}[-. \n]?\d{7}[-. ]?\d{2}";
 
         string patronCCCHuella = @"(\d\s){6}\d{7}(\s\d){2}"; //Busca 6 digitos separados por espacio, seguido de 7 digitos y seguido de 2 digitos separados por espacio (en la huella el CCC viene separado por espacios)
@@ -242,16 +243,16 @@ namespace pdftotext
             }
         }
 
-        public string quitaRaros(string texto)
-        {
-            string cadena = texto.ToUpper();
-            cadena = cadena.Replace('Á', 'A')
-                  .Replace('É', 'E')
-                  .Replace('Í', 'I')
-                  .Replace('Ó', 'O')
-                  .Replace('Ú', 'U');
-            return cadena;
-        }
+        //public string quitaRaros(string texto)
+        //{
+        //    string cadena = texto.ToUpper();
+        //    cadena = cadena.Replace('Á', 'A')
+        //          .Replace('É', 'E')
+        //          .Replace('Í', 'I')
+        //          .Replace('Ó', 'O')
+        //          .Replace('Ú', 'U');
+        //    return cadena;
+        //}
 
         #region Metodos de busqueda
         private void BuscarModelo()
@@ -279,8 +280,8 @@ namespace pdftotext
                         Observaciones2 = AFIA.Substring(Observaciones1.Length).Trim();
                     }
 
-                    Observaciones1 = quitaRaros(Observaciones1);
-                    Observaciones2 = quitaRaros(Observaciones2);
+                    Observaciones1 = Program.quitaRaros(Observaciones1);
+                    Observaciones2 = Program.quitaRaros(Observaciones2);
 
 
                     //string pattern = @"(.+?)\s*:\s*(.+)";
@@ -291,7 +292,7 @@ namespace pdftotext
                     //Observaciones1 = quitaRaros(match.Groups[1].Value);
                     //Observaciones2 = quitaRaros(match.Groups[2].Value);
                     //}
-                    CampoLibre1 = quitaRaros(AFIA);
+                    CampoLibre1 = Program.quitaRaros(AFIA);
                     Modelo = "AFIA";
                 }
 
@@ -303,10 +304,10 @@ namespace pdftotext
 
                     if(match.Success)
                     {
-                        Observaciones1 = quitaRaros(match.Groups[1].Value);
-                        Observaciones2 = quitaRaros(match.Groups[2].Value);
+                        Observaciones1 = Program.quitaRaros(match.Groups[1].Value);
+                        Observaciones2 = Program.quitaRaros(match.Groups[2].Value);
                     }
-                    CampoLibre1 = quitaRaros(AFIB);
+                    CampoLibre1 = Program.quitaRaros(AFIB);
                     Modelo = "AFIB";
                 }
 
@@ -319,7 +320,7 @@ namespace pdftotext
                     if(match.Success)
                     {
                         Observaciones1 = "COMUNICACION SOBRE MODIFICACION DE CONTRATO DE TRABAJO";
-                        Observaciones2 = quitaRaros(match.Groups[2].Value);
+                        Observaciones2 = Program.quitaRaros(match.Groups[2].Value);
                     }
                     CampoLibre1 = Observaciones1 + " - " + Observaciones2;
                     Modelo = "AFIC";
@@ -362,7 +363,7 @@ namespace pdftotext
                         string formatoFechaTexto = " dd MM yyyy";
                         DateTime fecha = DateTime.ParseExact(fechaTmp, formatoFechaTexto, System.Globalization.CultureInfo.GetCultureInfo("es-ES")); //Se convierte la fecha en texto a fecha numerica
                         //fecha = fechaDT.ToString("dd/MM/yyyy");//Se convierte la fecha numeria a texto para almacenarla en la variable
-                        Observaciones1 = quitaRaros(match.Groups[1].Value) + " " + fecha.ToString("dd/MM/yyyy");
+                        Observaciones1 = Program.quitaRaros(match.Groups[1].Value) + " " + fecha.ToString("dd/MM/yyyy");
                     }
                     Modelo = "ITA";
                     Ejercicio = ITA.Substring(ITA.Length - 4);
@@ -377,9 +378,9 @@ namespace pdftotext
 
                     if(match.Success)
                     {
-                        Observaciones1 = quitaRaros(match.Groups[1].Value);
-                        Observaciones2 = quitaRaros(match.Groups[2].Value);
-                        CampoLibre1 = quitaRaros(IDC);
+                        Observaciones1 = Program.quitaRaros(match.Groups[1].Value);
+                        Observaciones2 = Program.quitaRaros(match.Groups[2].Value);
+                        CampoLibre1 = Program.quitaRaros(IDC);
                     }
                     Modelo = "IDC";
                 }
@@ -391,18 +392,18 @@ namespace pdftotext
                     string observacionesHUE = HUE.Replace("\n", " ");
                     if(observacionesHUE.Length > 100)
                     {
-                        Observaciones1 = quitaRaros(observacionesHUE.Substring(0, 50));
-                        Observaciones2 = quitaRaros(observacionesHUE.Substring(50, 50));
-                        Observaciones3 = quitaRaros(observacionesHUE.Substring(100));
+                        Observaciones1 = Program.quitaRaros(observacionesHUE.Substring(0, 50));
+                        Observaciones2 = Program.quitaRaros(observacionesHUE.Substring(50, 50));
+                        Observaciones3 = Program.quitaRaros(observacionesHUE.Substring(100));
                     }
                     else if(observacionesHUE.Length > 50)
                     {
-                        Observaciones1 = quitaRaros(observacionesHUE.Substring(0, 50));
-                        Observaciones2 = quitaRaros(observacionesHUE.Substring(50));
+                        Observaciones1 = Program.quitaRaros(observacionesHUE.Substring(0, 50));
+                        Observaciones2 = Program.quitaRaros(observacionesHUE.Substring(50));
                     }
                     else
                     {
-                        Observaciones1 = quitaRaros(observacionesHUE.Substring(0));
+                        Observaciones1 = Program.quitaRaros(observacionesHUE.Substring(0));
                     }
                 }
 
@@ -427,15 +428,27 @@ namespace pdftotext
                         case "AFIA":
                             procesosLaboral.ProcesarAFIA();
                             break;
+
                         case "AFIB":
+                            procesosLaboral.ProcesarAFIB();
                             break;
+
                         case "AFIC":
+                            procesosLaboral.ProcesarAFIC();
                             break;
+
+                        case "AFIV":
+                            procesosLaboral.ProcesarAFIV();
+                            break;
+
                         case "CER":
+                            procesosLaboral.ProcesarCER();
                             break;
                         case "RNT":
+                            procesosLaboral.ProcesarRNT();
                             break;
                         case "RLC":
+                            procesosLaboral.ProcesarRLC();
                             break;
                         case "ITA":
                             break;
@@ -459,6 +472,8 @@ namespace pdftotext
                 procesosPDF.grabaFichero("error_proceso.txt", "Error al buscar el numero de modelo.\r\n" + ex.Message);
             }
         }
+
+        
 
         public string BuscarPrimerPatronValido(string[] patrones, int pagina, out string patronEncontrado)
         {
