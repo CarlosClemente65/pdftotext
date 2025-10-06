@@ -2,8 +2,8 @@
   "profiles": {
     "pdftotext": {
       "commandName": "Project",
-      "commandLineArgs": "prorroga.pdf -t prorroga_txt.txt -l prorroga_datos.txt",
-      "workingDirectory": "C:\\doc-dsarchi\\laboral\\no_reconocidos"
+      "commandLineArgs": "\"C:\\Programacion\\c#\\pdftotext\\ejemplos_modelos\\Contratos\" -rd",
+      "workingDirectory": "C:\\Programacion\\c#\\pdftotext\\ejemplos_modelos\\Contratos"
     }
   }
 }

@@ -18,14 +18,18 @@ Permite extraer los datos de un PDF a un fichero de texto, y buscar las variable
 * v1.2.2.0 Modificada la salida de los resultados de los documentos laborales para unificar etiquetas. Revisión modelo 111
 * v1.2.3.1 Añadido método quitaRaros
 * v1.2.3.2 Añadida diferenciacion para el modelo 100 del ejercicio 2023
+* v1.2.3.3 Modificado la busqueda en la renta para incluir el NIF del conyuge
+* v1.3.0.0 Modificada la busqueda de modelos laborales para incluir la busqueda de varios modelos
+* v1.3.1.0 Actualizado proceso de busqueda de modelos laborales con un diccionario de patrones de busqueda. Revision general del proceso
+* v1.4.0.0 Incorporada la opcion para la extraccion masiva de datos de contratos del despacho (dsedespa)
 <br><br>
 
 
 ### Uso:
 ```
 * dsepdfatexto.exe -h
-* dsepdfatexto.exe fichero.pdf -t textoPDF.txt -m datosModelo.txt -l datosLaboral.txt 
-* dsepdfatexto carpeta [-rm | -rl]
+* dsepdfatexto.exe fichero.pdf -t textoPDF.txt -m datosModelo.txt -l datosLaboral.txt
+* dsepdfatexto carpeta [-rm | -rl | -rd]
 	
  Parametros
     -h                 : Esta ayuda
@@ -36,6 +40,7 @@ Permite extraer los datos de un PDF a un fichero de texto, y buscar las variable
     carpeta            : Carpeta donde están todos los ficheros PDF a procesar de forma masiva
     -rm                : Parámetro que indica que se procesen los ficheros de la carpeta como modelos
     -rl                : Parámetro que indica que se procesen los ficheros de la carpeta como documentos laborales
+	-rd				   : Parametro que indica que se procesen los ficheros de la carpeta como contratos del despacho
 
 ```
 <br>

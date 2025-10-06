@@ -4,22 +4,20 @@
 [assembly: AssemblyProduct("dsepdfatexto")]
 [assembly: AssemblyDescription("Convierte un PDF en texto y extrae los datos de los modelos de Hacienda")]
 //[assembly: AssemblyCompany("Diagram Software Europa S.L.")]
-[assembly: AssemblyCopyright("© 06-2025 - Diagram Software Europa S.L.")]
-[assembly: AssemblyVersion("1.3.1.0")]
-[assembly: AssemblyFileVersion("1.3.1.0")]
+[assembly: AssemblyCopyright("© 10-2025 - Diagram Software Europa S.L.")]
+[assembly: AssemblyVersion("1.4.0.0")]
+[assembly: AssemblyFileVersion("1.4.0.0")]
 
 
 namespace pdftotext
 {
     /*
     Aplicacion para convertir a texto un PDF y buscar los datos de los modelos de Hacienda para archivarlos en el GAD.
-    Con la version 1.2 se incluye la extraccion de datos de los modelos laborales
-    Desarrollada por Carlos Clemente - 12/2023
     
     Uso:
         dsepdfatexto -h
-        dsepdfatexto fichero.pdf -t textoPDF.txt -m datosModelo.txt  -l datosLaboral.txt
-        dsepdfatexto carpeta [-rm | rl]
+        dsepdfatexto fichero.pdf -t textoPDF.txt -m datosModelo.txt  -l datosLaboral.txt 
+        dsepdfatexto carpeta [-rm | -rl | -rd]
 
     Parametros:
         -h                 : Esta ayuda
@@ -29,7 +27,8 @@ namespace pdftotext
         -l datosLaboral.txt: nombre del fichero en el que grabar los campos localizados del modelo laboral
         carpeta            : carpeta donde estan todos los ficheros PDF a procesar de forma masiva
         -rm                : parametro que indica que se procesen los ficheros de la ruta como modelos
-        -rl                : parametro que indica que se procesen los ficheros de la rut como documentos laborales
+        -rl                : parametro que indica que se procesen los ficheros de la ruta como documentos laborales
+        -rd                : parametro que indica que se procesen los ficheros de la ruta como contratos del despacho
 
      */
 
@@ -132,12 +131,14 @@ namespace pdftotext
                                         case "-rl":
                                             proceso.extraeDatosLaboral();
                                             break;
+
+                                        case "-rd":
+                                            proceso.extraeDatosContrato();
+                                            break;
                                     }
                                 }
                                 break;
                         }
-
-                        
                     }
                     break;
             }
@@ -147,9 +148,9 @@ namespace pdftotext
         static bool gestionParametros(string[] parametros)
         {
             int totalParametros = parametros.Length;
-            if (parametros[1] == "-rl" || parametros[1] == "-rm")
+            if (parametros[1] == "-rl" || parametros[1] == "-rm" || parametros[1] == "-rd")
             {
-                //Si el primer parametro es -rm (ruta de modelos) o -rl (ruta de documentos laborales) se va a procesar la ruta completa, que se controla desde la gestion de parametros. 
+                //Si el primer parametro es -rm (ruta de modelos), -rl (ruta de documentos laborales) o -rd (ruta de contratos del despacho) se va a procesar la ruta completa, que se controla desde la gestion de parametros. 
             }
             else
             {
@@ -213,6 +214,7 @@ namespace pdftotext
 
                     case "-rl":
                     case "-rm":
+                    case "-rd":
                         //Proceso de ficheros de la ruta indicada
                         if (totalParametros > i)
                         {
@@ -244,7 +246,7 @@ namespace pdftotext
             string mensaje =
                 "\r\nUso:" +
                 "\r\n\tdsepdfatexto fichero.pdf -t textoPDF.txt -m datosModelo.txt  -l datosLaboral.txt" +
-                "\r\n\tdsepdfatexto carpeta [-rm | rl]" +
+                "\r\n\tdsepdfatexto carpeta [-rm | -rl | -rd]" +
                 "\r\n\r\nParametros:" +
                 "\r\n\t-h                 : Esta ayuda" +
                 "\r\n\tfichero.pdf        : nombre del fichero PDF a procesar (unico fichero)" +
@@ -253,7 +255,8 @@ namespace pdftotext
                 "\r\n\t-l datosLaboral.txt: nombre del fichero en el que grabar los campos localizados del modelo laboral" +
                 "\r\n\tcarpeta            : carpeta donde estan todos los ficheros PDF a procesar de forma masiva" +
                 "\r\n\t-rm                : parametro que indica que se procesen los ficheros de la ruta como modelos" +
-                "\r\n\t-rl                : parametro que indica que se procesen los ficheros de la rut como documentos laborales" +
+                "\r\n\t-rl                : parametro que indica que se procesen los ficheros de la ruta como documentos laborales" +
+                "\r\n\t-rd                : parametro que indica que se procesen los ficheros de la ruta como contratos del despacho" +
                 "\r\n\r\n\r\nPulse una tecla para salir";
 
             Console.WriteLine(mensaje);
