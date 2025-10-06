@@ -129,17 +129,35 @@ namespace pdftotext
 
         }
 
-        public string ProcesaPatron(string patronRegex, int pagina, string Modelo = "", string TipoModelo = "", int indice = 0)
+        public void extraeDatosContrato()
         {
-            //Metodo para extraer el texto segun el patron de busqueda pasado. Opcionalmente se puede pasar el modelo, tipo de modelo y el indice del texto encontrado a devolver
+            //Instanciacion de la clase busqueda para usar los metodos
+            busquedaContrato buscar = new busquedaContrato(Program.textoCompleto, Program.paginasPDF);
+
+            //Hacemos la llamada al metodo buscarDatos para que se almacenen los datos del PDF y se slmacena el texto a grabar en el fichero
+            StringBuilder texto = new StringBuilder(buscar.buscarDatos());
+
+            //Graba el fichero de datos con el texto creado
+            grabaFichero(ficheroDatos, texto.ToString());
+
+        }
+
+        public string ProcesaPatron(string patronRegex, int pagina, string Modelo = "", string TipoModelo = "", int indice = 0, bool esContrato = false)
+        {
+            //Metodo para extraer el texto segun el patron de busqueda pasado. Opcionalmente se puede pasar el modelo, tipo de modelo y el indice del texto encontrado a devolver. 
+
+            //Se pasa por parametro el valor (indice) que se quiere devolver porque en algunos casos no es el primero (valor 0), sino que puede ser el segundo (valor 1) o siguientes
+
+            // El parametro 'esContrato' se ha añadido porque en el patron se hace un grupo de captura y solo se quiere devolver el grupo1 que es donde esta el nº contrato
+
             Regex regex = new Regex(patronRegex);
             MatchCollection matches = regex.Matches(Program.paginasPDF[pagina - 1].ToString());
-            
+
             // Numero de ocurrecias del texto encontradas
             int ocurrenciasTexto = matches.Count;
 
             // Si se pasa un indice superior al de ocurrencias, se devuelve la ultima encontrada
-            if (indice > ocurrenciasTexto -1 && ocurrenciasTexto > 0) //Se resta 1 porque el indice empieza por cero
+            if(indice > ocurrenciasTexto - 1 && ocurrenciasTexto > 0) //Se resta 1 porque el indice empieza por cero
             {
                 indice = ocurrenciasTexto - 1;
             }
@@ -147,7 +165,16 @@ namespace pdftotext
             //Si encuentra algo 
             if(ocurrenciasTexto > 0)
             {
-                return matches[indice].Value; //Se pasa por parametro el valor que se quiere devolver porque en algunos casos no es el primero (valor 0), sino que puede ser el segundo (valor 1) o siguientes
+                if(esContrato && matches[indice].Groups.Count > 0)
+                {
+                    // Cuando se busca el texto en un contrato solo se devuelve la captura del grupo1 (se busca un texto pero solo se necesita el numero)
+                    return matches[indice].Groups[1].Value;
+                }
+                else
+                {
+                    // En otro caso se devuelve el valor segun el indice pasado
+                    return matches[indice].Value;
+                }
             }
             else
             {
