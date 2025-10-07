@@ -19,7 +19,7 @@ namespace pdftotext
         //Definicion de patrones de busqueda de datos
 
         //El numero de contrato siempre es la cadena "Ref.contrato: " seguida de un numero de 6 digitos con ceros por la izquierda
-        private string patronContrato = @"^Ref\.contrato:\s*(\d{6})";
+        private string patronContrato = @"Ref\.contrato:\s*(\d{6})";
 
         // Constructor de la clase
         public busquedaContrato(string textoCompleto, List<string> paginasPDF)
