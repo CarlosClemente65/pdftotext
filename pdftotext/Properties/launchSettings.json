@@ -2,8 +2,8 @@
   "profiles": {
     "pdftotext": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Programacion\\c#\\pdftotext\\ejemplos_modelos\\Contratos\" -rd",
-      "workingDirectory": "C:\\Programacion\\c#\\pdftotext\\ejemplos_modelos\\Contratos"
+      "commandLineArgs": "\"C:\\Programacion\\c#\\pdftotext\\ejemplos_modelos\\Fiscal\\345-25.pdf\" -t 345-25.txt -m 345-25_datos.txt",
+      "workingDirectory": "C:\\Programacion\\c#\\pdftotext\\ejemplos_modelos\\Fiscal"
     }
   }
 }

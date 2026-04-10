@@ -4,9 +4,9 @@
 [assembly: AssemblyProduct("dsepdfatexto")]
 [assembly: AssemblyDescription("Convierte un PDF en texto y extrae los datos de los modelos de Hacienda")]
 //[assembly: AssemblyCompany("Diagram Software Europa S.L.")]
-[assembly: AssemblyCopyright("© 10-2025 - Diagram Software Europa S.L.")]
-[assembly: AssemblyVersion("1.4.0.0")]
-[assembly: AssemblyFileVersion("1.4.0.0")]
+[assembly: AssemblyCopyright("© 04-2026 - Diagram Software Europa S.L.")]
+[assembly: AssemblyVersion("1.4.0.2")]
+[assembly: AssemblyFileVersion("1.4.0.2")]
 
 
 namespace pdftotext
