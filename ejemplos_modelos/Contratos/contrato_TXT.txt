@@ -1,0 +1,44 @@
+Ref.contrato: 000073 Página: 1 de 1 
+ANEXO I 
+ORDEN DE DOMICILIACION DE RECIBOS SEPA 
+ 
+DATOS DEL ACREEDOR 
+Ref.Orden domiciliación:   Fecha firma: 01.01.0000 
+NIF del acreedor: 05196375P Identificación del acreedor: ES8822205196375P 
+Nombre del acreedor: ASESORIA DE FACTURACION 
+Domicilio del acreedor: CALLE, 1 - 02002 ALBACETE (ALBACETE) 
+ 
+DATOS DEL DEUDOR 
+NIF del deudor: 05126963X Código cliente: 00006 
+Nombre del deudor: NARANJO RUIZ, MARIA JOSE 
+Dirección del deudor: CL CALLE, 1 - 02002 ALBACETE (ALBACETE) 
+Nombre entidad bancaria:  
+Domicilio entidad bancaria:  
+Numero cuenta IBAN:  SWIT-BIC:  
+Tipo de pago: Recurrente 
+ Mediante la firma de esta orden de domiciliación, el deudor autoriza a: 
+ A) Al acreedor a enviar órdenes a la entidad bancaria del deudor cuyos datos constan en el apartado de 
+datos del deudor, para adeudar en su cuenta todos los recibos correspondientes a las facturas que se originen 
+como consecuencia de la relación comercial entre ambas empresas, desde la fecha de la presente y según el tipo 
+de pago indicado. 
+ B) A la entidad bancaria del deudor para efectuar los adeudos en su cuenta siguiendo las instrucciones 
+del acreedor. 
+Como parte de sus derechos, el deudor está legitimado al reembolso por su entidad en los términos y 
+condiciones del contrato suscrito con la misma. La solicitud de reembolso deberá efectuarse dentro de las ocho 
+semanas que siguen a la fecha del adeudo en cuenta. Podrá obtener información detallada del procedimiento 
+en su entidad financiera. 
+FIRMA DEL REPRESENTANTE / TITULAR DE LA EMPRESA 
+Confirma el firmante que tiene poderes suficientes para la firma de la presente autorización. 
+En ALBACETE, a 17 de noviembre de 2023 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Nombre firmante: NARANJO RUIZ, MARIA JOSE - NIF: 05126963X 
+Nota: Una vez firmado esta orden de domiciliación debe ser enviada al acreedor para su custodia. Este documento está confeccionado según la normativa SEPA 
+(Zona Única de Pagos en Euros) y contiene los datos imprescindibles para la correcta ejecución de las ordenes de domiciliación bancaria que se efectúen. Para 
+más información puede consultar la página web: http://www.sepaesp.es/sepa/es/

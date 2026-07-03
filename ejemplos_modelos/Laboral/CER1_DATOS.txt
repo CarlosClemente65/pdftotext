@@ -1,0 +1,13 @@
+Modelo: 993
+Tipo modelo: 03
+Codigo cuenta cotizacion: 
+CIF empresa: J55682967
+NIF trabajador: 
+Ejercicio: 2023
+Periodo: 11
+Fecha efecto: 
+Observaciones1: CERTIFICADO CORRIENTE DE PAGO EN LA SEG.SOCIAL
+Observaciones2: 23/11/2023
+Observaciones3: 
+Campo libre 1: 
+Campo libre 2: 

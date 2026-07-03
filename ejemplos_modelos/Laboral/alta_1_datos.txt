@@ -1,0 +1,13 @@
+Modelo: 991
+Tipo modelo: 00
+Codigo cuenta cotizacion: 46160377578
+CIF empresa: 
+NIF trabajador: Z2393075E
+Ejercicio: 
+Periodo: 
+Fecha efecto: 01/07/2025
+Observaciones1: INFORME DE SITUACION DE ALTA
+Observaciones2: REGIMEN GENERAL
+Observaciones3: 
+Campo libre 1: INFORME DE SITUACION DE ALTA REGIMEN GENERAL
+Campo libre 2: 01/07/2025

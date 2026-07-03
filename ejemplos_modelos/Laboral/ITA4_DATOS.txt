@@ -1,0 +1,13 @@
+Modelo: 991
+Tipo modelo: 07
+Codigo cuenta cotizacion: 43101593423
+CIF empresa: B43427285
+NIF trabajador: 
+Ejercicio: 2023
+Periodo: 12
+Fecha efecto: 
+Observaciones1: INFORME DE TRABAJADORES EN ALTA A FECHA 01/12/2023
+Observaciones2: 
+Observaciones3: 
+Campo libre 1: CCC: 43101593423
+Campo libre 2: 

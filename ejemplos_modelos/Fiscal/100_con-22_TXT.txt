@@ -1,0 +1,330 @@
+INFORMACIÓN DE LA PRESENTACIÓN DE LA DECLARACIÓN
+Modelo 100                 Ejercicio 2022
+Registro
+Presentación realizada el: 05-05-2023 a las 21:21:52
+Expediente/Referencia (nº registro asignado): 202210036230748M
+Código Seguro de Verificación: WHLNERGQ8T33A2GQ
+Número de justificante: 1003319013051
+Vía de entrada: Presentación por Internet
+Presentador 1
+NIF Presentador: 05036235V
+Apellidos y Nombre / Razón social: RODRIGUEZ SANCHEZ ANTONIO
+En calidad de: Titular
+Presentador 2
+NIF Presentador: 05084971Q
+Apellidos y Nombre / Razón social: BONIFACIO TOLEDO, JUANA
+En calidad de: Titular
+SOLICITUD DE DEVOLUCIÓN
+La autenticidad de este documento puede ser comprobada mediante el Código Seguro
+ de Verificación WHLNERGQ8T33A2GQ en https://sede.agenciatributaria.gob.es
+1Cónyuge (los datos identificativos del cónyuge son obligatorios en caso de matrimonio no separado legalmente)
+Divorciado/a o
+separado/a legalmente Soltero/a Casado/a Viudo/a
+Grado de discapacidad. Clave...........…..............................................................................………………………………………………………………………….……………......
+06 08 09 10
+11
+07
+Estado civil (el 31-12-2022)
+Fecha de nacimiento
+Sexo del primer declarante: 
+H: hombre
+05
+M: mujer
+NIF Apellidos y nombre
+01 02
+Primer declarante y cónyuge, en caso de matrimonio no separado legalmente  
+Si su domicilio está situado en el extranjero indique el país de residencia en la UE o EEE en 2022 (excepto España)………………………………….….…...
+Grado de discapacidad
+del cónyuge. Clave 
+60 61
+Fecha de nacimiento del
+cónyuge
+59
+Sexo del cónyuge:
+62
+64
+Cónyuge no residente que reside en un país de la UE o del EEE, y se aplica la deducción por unidades familiares formadas por residentes fiscales en la UE o del EEE …….....….
+NIF
+13
+43 Si su domicilio está situado en el extranjero indique el país de residencia en la UE o EEE en 2022 (excepto España)  .....................................................................................
+Representante  
+Apellidos y nombre o razón social NIF
+65 66
+Fecha de finalización del período impositivo ................................................................................................................................................................................................
+Fecha de fallecimiento
+67
+Tributación individual.........
+Tributación conjunta...........
+68
+69
+Atención: solamente podrán optar por el régimen de tributación conjunta los contribuyentes integrados en una unidad familiar.
+Indique la opción de tributación elegida (marque con una “X“ la casilla que proceda) ...............................................................................................................
+Clave de la Comunidad Autónoma o de la Ciudad con Estatuto de Autonomía en la que tuvo/tuvieron su residencia habitual en 2022 ............................................................................
+Comunidad o Ciudad Autónoma de residencia en el ejercicio 2022
+70
+Atención: este apartado únicamente se cumplimentará en las declaraciones individuales de contribuyentes fallecidos en el ejercicio 2022 con anterioridad al día 31 de diciembre.
+Devengo
+Opción de tributación
+Si desea que se destine un 0,7 por 100 de la cuota íntegra a las actividades previstas en el Real Decreto-Ley 7/2013, de 28 de junio (BOE del 29), marque con una “X” esta casilla….…
+Asignación tributaria a la Iglesia Católica
+Si desea que se destine un 0,7 por 100 de la cuota íntegra al sostenimiento económico de la Iglesia Católica, marque con una “X” esta casilla ...................................................................
+Asignación de cantidades a actividades de interés general consideradas de interés social
+Atención: Esta asignación es independiente y compatible con la asignación tributaria a la Iglesia Católica.
+105
+106
+Atención: Esta asignación es independiente y compatible con la asignación tributaria a actividades de interés general consideradas de interés social.
+Primer declarante
+H: hombre
+M: mujer
+14
+D-100
+12
+Cónyuge no residente que no es contribuyente del IRPF ................................................................................................................................................................................. 
+Impuesto sobre la Renta de las Personas Físicas
+100
+Modelo
+Ejercicio 2022
+Apellidos y nombre
+Agencia Tributaria
+Teléfono: 915 54 87 70 / 901 33 55 33
+sede.agenciatributaria.gob.es
+X
+X
+07
+M 28/05/1944 3
+05084971Q BONIFACIO TOLEDO, JUANA
+H X 05/04/1939
+05036235V RODRIGUEZ SANCHEZ, ANTONIO
+La autenticidad de este documento puede ser comprobada mediante el Código Seguro
+ de Verificación WHLNERGQ8T33A2GQ en https://sede.agenciatributaria.gob.es
+2Impuesto sobre la Renta de las Personas Físicas
+Ejercicio 2022 100
+Modelo
+Agencia Tributaria
+Teléfono: 915 54 87 70 / 901 33 55 33
+sede.agenciatributaria.gob.es
+Rendimientos del trabajo
+Contribuyente que obtiene los rendimientos DECLARANTE 0001
+Retribuciones dinerarias 15.179,36 0003
+Total ingresos íntegros computables [(03)+(07)+(08)+(24)+(09)+(10)-(11)] 15.179,36 0012
+Rendimiento neto previo [(12)-(13)-(14)-(15)-(16)] 15.179,36 0017
+Contribuyente que obtiene los rendimientos CÓNYUGE 0001
+Retribuciones dinerarias 6.430,27 0003
+Total ingresos íntegros computables [(03)+(07)+(08)+(24)+(09)+(10)-(11)] 6.430,27 0012
+Rendimiento neto previo [(12)-(13)-(14)-(15)-(16)] 6.430,27 0017
+Suma de rendimientos netos previos 21.609,63 0018
+Otros gastos deducibles 2.000,00 0019
+Rendimiento neto [(18)-(19)-(20)-(21)] 19.609,63 0022
+Rendimiento neto reducido [(22)-(23)] 19.609,63 0025
+Bienes inmuebles
+RENTAS INMUEBLES A DISPOSICIÓN DE SUS TITULARES, ARRENDADOS, CEDIDOS A TERCEROS, O AFECTOS A AAEE
+Inmueble 1
+Contribuyente titular. DECLARANTE 0062
+Porcentaje de propiedad. 50,00 0063
+Situación. 1 0065
+Referencia catastral. 0377411YH0307E0015AT 0066
+Urbana. X 0067
+Dirección del inmueble CL AURELIO COQUILLAT PASCUAL 0041 1 03 0 0069
+A disposición de sus titulares. X 0073
+Valor catastral del inmueble 7.967,80 0083
+Valor catastral revisado (Si/No) NO 0084
+Nº de días a disposición del contribuyente. 365 0085
+Renta inmobiliaria imputada. 159,36 0089
+Inmueble 2
+Contribuyente titular. CÓNYUGE 0062
+Porcentaje de propiedad. 50,00 0063
+Situación. 1 0065
+Referencia catastral. 0377411YH0307E0015AT 0066
+Urbana. X 0067
+Dirección del inmueble CL AURELIO COQUILLAT PASCUAL 0041 1 03 0 0069
+A disposición de sus titulares. X 0073
+Valor catastral del inmueble 7.967,80 0083
+Valor catastral revisado (Si/No) NO 0084
+Nº de días a disposición del contribuyente. 365 0085
+Renta inmobiliaria imputada. 159,36 0089
+Rentas totales derivadas de bienes inmuebles no afectos a actividades económicas
+Suma de imputaciones de rentas inmobiliarias 318,72 0155
+Base imponible general y base imponible del ahorro
+BASE IMPONIBLE GENERAL
+Saldo neto de rendimientos a integrar en la base imponible general y de las imputaciones de renta 19.928,35 0432
+Base imponible general [(420)-(431)+(432)-(433)-(434)] 19.928,35 0435
+BASE IMPONIBLE DEL AHORRO
+Base imponible del ahorro 0,00 0460
+Reducciones de la base imponible
+REDUCCIÓN POR TRIBUTACIÓN CONJUNTA
+Reducción por tributación conjunta 3.400,00 0461
+Base liquidable general y base liquidable del ahorro
+DETERMINACIÓN DE LA BASE LIQUIDABLE GENERAL
+Base imponible general [(420)-(431)+(432)-(433)-(434)] 19.928,35 0435
+Reducción por tributación conjunta 3.400,00 0491
+Base liquidable general [(435)-(491)-(492)-(493)-(494)-(495)-(496)-(497)] 16.528,35 0500
+Base liquidable general sometida a gravamen [(500)-(501)] 16.528,35 0505
+DETERMINACIÓN DE LA BASE LIQUIDABLE DEL AHORRO
+La autenticidad de este documento puede ser comprobada mediante el Código Seguro
+ de Verificación WHLNERGQ8T33A2GQ en https://sede.agenciatributaria.gob.es
+3Impuesto sobre la Renta de las Personas Físicas
+Ejercicio 2022 100
+Modelo
+Agencia Tributaria
+Teléfono: 915 54 87 70 / 901 33 55 33
+sede.agenciatributaria.gob.es
+Base imponible del ahorro 0,00 0460
+Base liquidable del ahorro [(460)-(506)-(507)] 0,00 0510
+Adecuación del impuesto a las circunstancias personales y familiares
+Mínimo contribuyente. Importe estatal 10.650,00 0511
+Mínimo contribuyente. Importe autonómico 10.650,00 0512
+Mínimo por discapacidad. Importe estatal 12.000,00 0517
+Mínimo por discapacidad. Importe autonómico 12.000,00 0518
+Mínimo personal y familiar para calcular el gravamen estatal 22.650,00 0519
+Mínimo personal y familiar para calcular el gravamen autonómico 22.650,00 0520
+Mínimo personal y familiar de la base liquidable general para calcular el gravamen estatal 16.528,35 0521
+Mínimo personal y familiar de la base liquidable del ahorro para calcular el gravamen estatal 0,00 0522
+Mínimo personal y familiar de la base liquidable general para calcular el gravamen autonómico 16.528,35 0523
+Mínimo personal y familiar de la base liquidable del ahorro para calcular el gravamen autonómico 0,00 0524
+Cálculo del impuesto y resultado de la declaración
+Cuota estatal correspondiente a la base liquidable general sometida a gravamen 1.672,15 0528
+Cuota autonómica correspondiente a la base liquidable general sometida a gravamen 1.672,15 0529
+Cuota estatal correspondiente al mínimo personal y familiar de B.L. general 1.672,15 0530
+Cuota autonómica correspondiente al mínimo personal y familiar de la B.L. general 1.672,15 0531
+Cuota estatal correspondiente a la base liquidable general 0,00 0532
+Cuota autonómica correspondiente a la base liquidable general 0,00 0533
+Tipo medio estatal 0,00 0534
+Tipo medio autonómico 0,00 0535
+Cuota estatal correspondiente a la base liquidable del ahorro sometida a gravamen 0,00 0536
+Cuota autonómica correspondiente a la base liquidable del ahorro sometida a gravamen 0,00 0537
+Cuota estatal correspondiente al mínimo personal y familiar de B.L. del ahorro 0,00 0538
+Cuota autonómica correspondiente al mínimo personal y familiar de la B.L. del ahorro 0,00 0539
+Cuota estatal correspondiente a la base liquidable del ahorro 0,00 0540
+Cuota autonómica correspondiente a la base liquidable del ahorro 0,00 0541
+Tipo medio estatal 0,00 0542
+Tipo medio autonómico 0,00 0543
+Cuota íntegra estatal [(532)+(540)] 0,00 0545
+Cuota íntegra autonómica [(533)+(541)] 0,00 0546
+Deducciones
+Suma de deducciones autonómicas 600,00 0564
+Deducciones autonómicas de la Comunidad de Castilla-La Mancha
+Por discapacidad del contribuyente 300,00 0958
+Para compensar los efectos de la inflación 300,00 1907
+Suma de deducciones autonómicas 600,00 0564
+Determinación de cuotas líquidas y resultados
+CUOTAS LÍQUIDAS
+Cuota líquida estatal[(545)-(547)-(549)-(550)-(552)-(554)-(556)-(558)-(560)-(544)-(562)-(567)-(565)] 0,00 0570
+Cuota líquida autonómica [(546)-(548)-(551)-(553)-(555)-(557)-(559)-(561)-(584)-(563)-(564)-(566)] 0,00 0571
+Cuota líquida estatal incrementada [(570)+(568)+(582)+(572)+(573)+(574)+(576)] 0,00 0585
+Cuota líquida autonómica incrementada [(571)+(569)+(583)+(577)+(578)+(579)+(581)] 0,00 0586
+CUOTA RESULTANTE DE LA AUTOLIQUIDACIÓN
+Cuota líquida incrementada total [(585)+(586)] 0,00 0587
+Cuota resultante de la autoliquidación [(587)-(588)-(589)-(590)-(591)] 0,00 0595
+RETENCIONES Y DEMÁS PAGOS A CUENTA
+Total pagos a cuenta [suma de (592) + (593)+ (594) + (596) a (606)] 0,00 0609
+RESULTADO DE LA DECLARACIÓN
+Cuota diferencial [(595)-(609)] 0,00 0610
+Deducción por cónyuge no separado legalmente con discapacidad
+Deducción por cónyuge 1
+NIF del cónyuge 05084971Q 0240
+Nombre del cónyuge JUANA 0241
+Fecha de inicio de la discapacidad. 01/01/2021 0242
+Si la vigencia del matrimonio es todo el año, marque X en esta casilla X 0245
+La autenticidad de este documento puede ser comprobada mediante el Código Seguro
+ de Verificación WHLNERGQ8T33A2GQ en https://sede.agenciatributaria.gob.es
+4Impuesto sobre la Renta de las Personas Físicas
+Ejercicio 2022 100
+Modelo
+Agencia Tributaria
+Teléfono: 915 54 87 70 / 901 33 55 33
+sede.agenciatributaria.gob.es
+Importe de la deducción por cónyuge con discapacidad a cargo. 1.200,00 0248
+Cantidades recibidas abono anticipado deducción por cónyuge con discapacidad 2022. 0,00 0249
+Resultado de la declaración -1.200,00 0670
+Importe del IRPF que corresponde a la Comunidad Autónoma de residencia del contribuyente
+Importe del IRPF que corresponde a la Comunidad Autónoma de residencia del contribuyente 0,00 0675
+La autenticidad de este documento puede ser comprobada mediante el Código Seguro
+ de Verificación WHLNERGQ8T33A2GQ en https://sede.agenciatributaria.gob.es
+5Mediante transferencia a cuenta bancaria abierta en España: 
+Resumen de la declaración
+Resultado a ingresar o devolver (casilla [0670] o casilla [0695] de la declaración) …..........................................................................................................................
+7 (Solicitud de suspensión del ingreso de un cónyuge / Renuncia del otro cónyuge al cobro de la devolución), indíquelo marcando con una “X” esta casilla……………..…..…………………….…...
+Importante: si la cantidad consignada en la casilla [0695] ha sido determinada como consecuencia de la cumplimentación del apartado P de la declaración 
+0695
+Base liquidable general
+sometida a gravamen
+69 68
+Tributación individual ……………………….................…………. Tributación conjunta ……………………….......…………………….…….…..….….
+0505
+Base liquidable del ahorro Cuota íntegra estatal Cuota íntegra autonómica
+0510 0545 0546 0570
+Cuota líquida estatal Cuota líquida autonómica
+0571
+Declaración complementaria
+Resultado de la declaración complementaria (se cumplimentará exclusivamente en caso de declaración complementaria del ejercicio 2022 de la que se derive 
+una cantidad a ingresar) ………………………………………………………………………………………………………………………………………………………….……
+0680
+Importante: en las declaraciones complementarias no podrá fraccionarse el pago en dos plazos.
+Fraccionamiento del pago e ingreso
+NO FRACCIONA el pago................................................................................….....
+Ingreso efectuado a favor del Tesoro Público: Cuenta restringida de colaboración en la recaudación de la Agencia Estatal de Administración Tributaria de autoliquidaciones.
+Importe (de la totalidad o del primer plazo) ……………………………………………………………………………………………………………..……………..………….....
+I
+1
+Si el importe consignado en la casilla [0695] es una cantidad positiva, marque con una  “X”  la casilla correspondiente para indicar si desea o no fraccionar el pago en dos plazos. Recuerde que si 
+opta por domiciliar la totalidad o el primer plazo, dicho importe se cargará en cuenta el 30 de junio.
+SÍ FRACCIONA el pago en dos plazos...............................................
+En caso de domiciliación, cumplimente los datos de una cuenta bancaria abierta en España de la que sea titular y en la que desea que le sea cargado el correspondiente pago. 
+Recuerde que el plazo para efectuar el ingreso es hasta el 30 de junio de 2023, inclusive.  
+1 6
+Consigne en la casilla  I
+1
+el importe que vaya a ingresar: la totalidad, si no fracciona el pago, o el 60 por 100 si fracciona el pago en dos plazos. 
+Forma de pago …
+Opciones de pago del 2.º plazo
+Si ha optado por fraccionar el pago en dos plazos, indique marcando con una “X” la casilla correspondiente, si desea o no domiciliar el pago del 2.º plazo en Entidad Colaboradora.
+I
+2 Importe del 2.º plazo (40% de la casilla [0695]) …………………
+NO DOMICILIA el pago del 2.º plazo, deberá efectuar el ingreso hasta el día 6 de noviembre de 2023, inclusive …………………………………………………………...........................................
+SI DOMICILIA el pago del 2.º plazo en Entidad Colaboradora, consigne en la casilla I
+2
+el importe de dicho plazo. En caso de no haber domiciliado el primer plazo, cumplimente los datos de
+una cuenta bancaria abierta en España de la que sea titular y en la que desea que le sea cargado el correspondiente pago. En este caso, el importe se cargará en cuenta el 6 de Noviembre
+3
+2
+Devolución
+Devolución Importe D
+Si el importe consignado en la casilla [0695] es una cantidad negativa, indique si solicita devolución o renuncia a ella:
+Importante: si solicita la devolución, consigne en el apartado “Cuenta bancaria” los datos completos de la cuenta en la que desea recibir la transferencia bancaria.
+Código IBAN 
+Mediante transferencia a cuenta bancaria abierta en el extranjero (datos identificativos de la entidad bancaria extranjera)/By transfer to a foreing bank account (identifying data of the foreing bank):
+Código/Code IBAN Código/Code SWIFT/BIC
+U.E./SEPA:
+Resto países/
+Rest countries:
+Código/Code SWIFT/BIC Número de cuenta/Account no.
+Banco/Name of de bank Dirección del Banco/Adress of the bank
+Ciudad/City País/Country Código País/Country code
+Impuesto sobre la Renta de las Personas Físicas
+Ejercicio 2022 - Documento de ingreso o devolución 100
+Modelo
+Código IBAN 
+Cónyuge
+Apellidos y Nombre NIF
+Primer declarante
+Apellidos y Nombre NIF
+Datos de la autoliquidación
+2022
+Ejercicio Número de Justificante Periodo
+0A
+Código IBAN 
+Agencia Tributaria
+Teléfono: 915 54 87 70 / 901 33 55 33
+sede.agenciatributaria.gob.es
+ES8000810250970006631573
+SOLICITA LA DEVOLUCIÓN POR TRANSFERENCIA
+1.200,00
+ X
+-1.200,00
+16.528,35 0,00 0,00 0,00 0,00 0,00
+1003319013051
+05084971Q BONIFACIO TOLEDO, JUANA
+05036235V RODRIGUEZ SANCHEZ, ANTONIO
+La autenticidad de este documento puede ser comprobada mediante el Código Seguro
+ de Verificación WHLNERGQ8T33A2GQ en https://sede.agenciatributaria.gob.es
+6

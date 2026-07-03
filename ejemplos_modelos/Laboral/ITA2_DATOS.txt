@@ -1,0 +1,13 @@
+Modelo: 991
+Tipo modelo: 07
+Codigo cuenta cotizacion: 46134403507
+CIF empresa: B98398282
+NIF trabajador: 
+Ejercicio: 2020
+Periodo: 10
+Fecha efecto: 
+Observaciones1: INFORME DE TRABAJADORES EN ALTA A FECHA 01/10/2020
+Observaciones2: 
+Observaciones3: 
+Campo libre 1: CCC: 46134403507
+Campo libre 2: 

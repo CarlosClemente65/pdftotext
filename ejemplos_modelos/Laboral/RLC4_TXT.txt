@@ -1,0 +1,44 @@
+Este recibo no implica el pago de las cuotas si no va  acompañado del correspondiente comprobante de ingreso de la Entidad Financiera. Este  documento recoge los cálculos realizados a la 
+fecha de la confirmación/cierre de la  liquidación.
+502,25 CONTINGENCIAS COMUNES 1.774,75
+10,65 MECANISMO EQUIDAD INTERGENERACIONAL 1.774,75
+512,90 LIQUIDO CONTINGENCIAS COMUNES 
+59,45 IT DE ACCIDENTES DE TRABAJO 1.774,75
+59,45 IMS DE ACCIDENTES DE TRABAJO 1.774,75
+118,90 LIQUIDO DE ACCIDENTES DE TRABAJO 
+141,09 OTRAS COTIZACIONES 1.774,75
+141,09 LIQUIDO DE OTRAS COTIZACIONES 
+Total
+Recibo de Liquidación de Cotizaciones
+Cuota a Liquidar
+Liquidación
+772,89 LIQUIDO DE TOTALES
+Datos de envío
+Datos identificativos de la liquidación
+Codificaciones informáticas:
+Total
+Importe
+Código de Cuenta de Cotización:
+ 
+00092056
+A.J.R. HNOS BROTONS SL
+12/2023 - 12/2023
+0111 03141662369
+L00 NORMAL
+03202400202238114
+9 0B42688853
+1
+274 - IBERMUTUA
+Cargo en Cuenta
+CRLC2401000001 10-01-2024 00:42:58 D4ECOMIL Página 1 de 1
+Razón Social:
+Período de Liquidación:
+Calificador de Liquidación:
+Fecha de Control: Modalidad Pago:
+Entidad AT/EP:
+Número de trabajadores confirmados:
+Código de Empresario:
+Número de liquidación:
+Referencia: Fecha: Hora: Huella:
+Número de autorización:
+Base Descripción

@@ -1,0 +1,13 @@
+Modelo: 991
+Tipo modelo: 03
+Codigo cuenta cotizacion: 46115758891
+CIF empresa: 
+NIF trabajador: 07538366R
+Ejercicio: 
+Periodo: 
+Fecha efecto: 15/12/2023
+Observaciones1: COMUNICACION SOBRE MODIFICACION DE CONTRATO DE TRABAJO
+Observaciones2:  REGIMEN GENERAL
+Observaciones3: 
+Campo libre 1: COMUNICACION SOBRE MODIFICACION DE CONTRATO DE TRABAJO -  REGIMEN GENERAL
+Campo libre 2: 15/12/2023

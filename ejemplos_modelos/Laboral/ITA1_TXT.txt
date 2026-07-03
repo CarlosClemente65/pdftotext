@@ -1,0 +1,61 @@
+ita
+INFORME DE TRABAJADORES EN ALTA EN UN CÓDIGO DE CUENTA DE COTIZACIÓN
+ 
+ 
+ 
+TESORERÍA GENERAL DE LA SEGURIDAD SOCIAL
+ 
+DATOS DE ENVÍO
+  
+INFORME DE TRABAJADORES EN ALTA A FECHA: 22 04 2020 CODIGO DE ENVÍO:
+ 
+ 
+DATOS DE EMPRESA
+  
+RAZÓN SOCIAL: PARQUETS VALENCIA SUELOS DE MADERA,
+DOMICILIO: AV GUILLEN DE CASTRO
+NÚMERO: 87 BIS/BLOQUE: ESC: PISO: PTA: C.P.: 46008 LOCALIDAD: VALENCIA PROVINCIA: VALÈNCIA/VALENC
+CÓDIGO EMPRESARIO: 9 0B96691472 CÓDIGO CUENTA COTIZACIÓN: 0111 46 112466248 CÓDIGO CUENTA COTIZACION PRINCIPAL: ENTIDAD DE ACCIDENTES DE TRABAJO: 015 UMIVALE
+CNAE: 4329 Otras instalaciones EMBARCACIÓN: 
+ 
+ 
+DATOS DE TRABAJADOR
+  
+APELLIDOS Y NOMBRE NAF IPF F.ALTA GC/M TC CTP CATEG. RLCE R* CE* P.IT* P.IMS* P.T* O* T.P* F/C. COL* C/M* % F.DESDE F.HASTA CLV
+CARLOS EDUARDO GARCIA VILLAO 46 1076379233 1 044922000X 10 03 2016 09/S 100 ---- ------- ---- - -- 3,35 3,35 6,70 D       I0B
+OSCAR VICENTE YANCE JARAMILLO 46 1076795424 1 026578546E 01 02 2012 08 100 ---- ------- ---- - -- 3,35 3,35 6,70 D       MSP
+JORGE FERMIN PALMA ANCHUNDIA 46 1089969337 1 044929741T 10 10 2013 09/S 189 ---- ------- ---- - -- 3,35 3,35 6,70 D       25K
+LUIS ALBERTO BORJAS LINARES 46 1112420086 1 026580033Z 02 05 2017 10 189 ---- ------- ---- - -- 3,35 3,35 6,70 D       B3D
+CRISTIAN OLIVER TUAREZ BOLAÑOS 46 1113309759 1 023887847R 08 06 2018 10/S 189 ---- ------- ---- - -- 3,35 3,35 6,70 D       62G
+* FIN DE INFORME * ********** **********                   ***
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+*- R - Relevo || CE - Causa exclusión Censo Agrario || P.IT - Porcentaje de IT || P.IMS - Porcentaje IMS || P.T. - Porcentaje total AT/EP || O - Ocupación || T.P. Tipo de peculiaridad || F/C - Fracción/Cuota || COL - Colectivo || C/M - Cuantía/Mes Total CLV KKN
+De Conformidad con los términos de la autorización número 004726, concedida en fecha 19/02/1998 a C.E. CONSULTORIA DE EMPRESAS, S.L. por la Tesoreía General de la Seguridad Social, certifico que estos datos han sido transmitidos y 
+validados por la misma e impresos de forma autorizada, surtiendo efectos en relación con el cumplimiento de las obligaciones conforme al artículo uno de la Orden ESS/484/2013 de 26 de marzo (BOE de 28 de marzo).
+El usuario principal,
+Fdo:
+ 
+CODIFICACIONES INFORMATICAS
+  
+REFERENCIA: A1172004000001 FECHA:	 22-04-2020 HORA:	 17:02:25 HUELLA: L5IJN5KC
+PÁGINA: 1 de 1
+Este documento no será válido sin las codificaciones informáticas
+A117

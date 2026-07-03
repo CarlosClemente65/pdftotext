@@ -1,0 +1,13 @@
+Modelo: 991
+Tipo modelo: 01
+Codigo cuenta cotizacion: 16103949494
+CIF empresa: 
+NIF trabajador: X8949838D
+Ejercicio: 
+Periodo: 
+Fecha efecto: 20/12/2023
+Observaciones1: RESOLUCIÓN SOBRE RECONOCIMIENTO DE BAJA
+Observaciones2: REGIMEN GENERAL -SISTEMA ESPECIAL AGRARIO ACTIVIDAD EN CCC
+Observaciones3: 
+Campo libre 1: RESOLUCIÓN SOBRE RECONOCIMIENTO DE BAJA: REGIMEN GENERAL -SISTEMA ESPECIAL AGRARIO ACTIVIDAD EN CCC
+Campo libre 2: 20/12/2023

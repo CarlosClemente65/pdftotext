@@ -1,0 +1,13 @@
+Modelo: 996
+Tipo modelo: 90
+Codigo cuenta cotizacion: 08210346445
+CIF empresa: B67299842
+NIF trabajador: 
+Ejercicio: 2023
+Periodo: 03
+Fecha efecto: 
+Observaciones1: RNT - L90-COMP. INCREM. BASES
+Observaciones2: 
+Observaciones3: 
+Campo libre 1: CCC: 08210346445
+Campo libre 2: 

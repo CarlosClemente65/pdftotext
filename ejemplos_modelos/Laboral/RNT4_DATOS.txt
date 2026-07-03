@@ -1,0 +1,13 @@
+Modelo: 996
+Tipo modelo: 00
+Codigo cuenta cotizacion: 03141662369
+CIF empresa: B42688853
+NIF trabajador: 
+Ejercicio: 2023
+Periodo: 12
+Fecha efecto: 10-01-2024
+Observaciones1: RNT - L00-NORMAL
+Observaciones2: 
+Observaciones3: 
+Campo libre 1: CCC: 03141662369
+Campo libre 2: 

@@ -1,0 +1,13 @@
+Modelo: 991
+Tipo modelo: 07
+Codigo cuenta cotizacion: 43115452396
+CIF empresa: J55682967
+NIF trabajador: 
+Ejercicio: 2023
+Periodo: 11
+Fecha efecto: 
+Observaciones1: INFORME DE TRABAJADORES EN ALTA A FECHA 23/11/2023
+Observaciones2: 
+Observaciones3: 
+Campo libre 1: CCC: 43115452396
+Campo libre 2: 

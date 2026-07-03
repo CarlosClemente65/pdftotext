@@ -1,0 +1,305 @@
+Este recibo no implica el pago de las cuotas si no va  acompañado del correspondiente comprobante de ingreso de la Entidad Financiera. Este  documento recoge los cálculos realizados a la 
+fecha de la confirmación/cierre de la  liquidación.
+54,35 CONTINGENCIAS COMUNES 192,04
+1,15 MECANISMO EQUIDAD INTERGENERACIONAL 192,04
+55,50 LIQUIDO CONTINGENCIAS COMUNES 
+1,54 IT DE ACCIDENTES DE TRABAJO 192,04
+1,34 IMS DE ACCIDENTES DE TRABAJO 192,04
+2,88 LIQUIDO DE ACCIDENTES DE TRABAJO 
+15,26 OTRAS COTIZACIONES 192,04
+15,26 LIQUIDO DE OTRAS COTIZACIONES 
+Total
+Recibo de Liquidación de Cotizaciones
+Cuota a Liquidar
+Liquidación
+73,64 LIQUIDO DE TOTALES
+Datos de envío
+Datos identificativos de la liquidación
+Codificaciones informáticas:
+Total
+Importe
+Código de Cuenta de Cotización:
+ 
+00002517
+6 DXABRIL ASSOCIATS SCP
+10/2023 - 10/2023
+0111 43115452396
+L00 NORMAL
+43202300242059566
+9 0J55682967
+1
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+Cargo en Cuenta
+CRLC2311000001 15-11-2023 06:51:47 2D6LH0RL Página 1 de 1
+Razón Social:
+Período de Liquidación:
+Calificador de Liquidación:
+Fecha de Control: Modalidad Pago:
+Entidad AT/EP:
+Número de trabajadores confirmados:
+Código de Empresario:
+Número de liquidación:
+Referencia: Fecha: Hora: Huella:
+Número de autorización:
+Base DescripciónEste recibo no implica el pago de las cuotas si no va  acompañado del correspondiente comprobante de ingreso de la Entidad Financiera. Este  documento recoge los cálculos realizados a la 
+fecha de la confirmación/cierre de la  liquidación.
+892,67 CONTINGENCIAS COMUNES 3.154,30
+18,92 MECANISMO EQUIDAD INTERGENERACIONAL 3.154,30
+911,59 LIQUIDO CONTINGENCIAS COMUNES 
+105,67 IT DE ACCIDENTES DE TRABAJO 3.154,30
+105,67 IMS DE ACCIDENTES DE TRABAJO 3.154,30
+211,34 LIQUIDO DE ACCIDENTES DE TRABAJO 
+250,76 OTRAS COTIZACIONES 3.154,30
+250,76 LIQUIDO DE OTRAS COTIZACIONES 
+Total
+Recibo de Liquidación de Cotizaciones
+Cuota a Liquidar
+Liquidación
+1.373,69 LIQUIDO DE TOTALES
+Datos de envío
+Datos identificativos de la liquidación
+Codificaciones informáticas:
+Total
+Importe
+Código de Cuenta de Cotización:
+ 
+00002517
+A.R.B. CUPEL, S.L.
+10/2023 - 10/2023
+0111 08126238250
+L00 NORMAL
+08202300480614569
+9 0B43441898
+2
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+Cargo en Cuenta
+CRLC2311000001 15-11-2023 06:51:41 672DU5DL Página 1 de 1
+Razón Social:
+Período de Liquidación:
+Calificador de Liquidación:
+Fecha de Control: Modalidad Pago:
+Entidad AT/EP:
+Número de trabajadores confirmados:
+Código de Empresario:
+Número de liquidación:
+Referencia: Fecha: Hora: Huella:
+Número de autorización:
+Base DescripciónEste recibo no implica el pago de las cuotas si no va  acompañado del correspondiente comprobante de ingreso de la Entidad Financiera. Este  documento recoge los cálculos realizados a la 
+fecha de la confirmación/cierre de la  liquidación.
+331,07 CONTINGENCIAS COMUNES 1.169,87
+7,02 MECANISMO EQUIDAD INTERGENERACIONAL 1.169,87
+338,09 LIQUIDO CONTINGENCIAS COMUNES 
+11,11 IT DE ACCIDENTES DE TRABAJO 1.169,87
+9,36 IMS DE ACCIDENTES DE TRABAJO 1.169,87
+20,47 LIQUIDO DE ACCIDENTES DE TRABAJO 
+93,01 OTRAS COTIZACIONES 1.169,87
+93,01 LIQUIDO DE OTRAS COTIZACIONES 
+Total
+Recibo de Liquidación de Cotizaciones
+Cuota a Liquidar
+Liquidación
+451,57 LIQUIDO DE TOTALES
+Datos de envío
+Datos identificativos de la liquidación
+Codificaciones informáticas:
+Total
+Importe
+Código de Cuenta de Cotización:
+ 
+00002517
+ADAN                GOMEZ TORRENTE      MARIA LUISA
+10/2023 - 10/2023
+0111 43115521613
+L00 NORMAL
+43202300242058960
+1 039713477K
+1
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+Cargo en Cuenta
+CRLC2311000001 15-11-2023 06:52:16 P3MOMDG0 Página 1 de 1
+Razón Social:
+Período de Liquidación:
+Calificador de Liquidación:
+Fecha de Control: Modalidad Pago:
+Entidad AT/EP:
+Número de trabajadores confirmados:
+Código de Empresario:
+Número de liquidación:
+Referencia: Fecha: Hora: Huella:
+Número de autorización:
+Base DescripciónEste recibo no implica el pago de las cuotas si no va  acompañado del correspondiente comprobante de ingreso de la Entidad Financiera. Este  documento recoge los cálculos realizados a la 
+fecha de la confirmación/cierre de la  liquidación.
+1.838,07 CONTINGENCIAS COMUNES 6.494,94
+38,97 MECANISMO EQUIDAD INTERGENERACIONAL 6.494,94
+1.877,04 LIQUIDO CONTINGENCIAS COMUNES 
+217,58 IT DE ACCIDENTES DE TRABAJO 6.494,94
+217,58 IMS DE ACCIDENTES DE TRABAJO 6.494,94
+435,16 LIQUIDO DE ACCIDENTES DE TRABAJO 
+516,34 OTRAS COTIZACIONES 6.494,94
+516,34 LIQUIDO DE OTRAS COTIZACIONES 
+Total
+Recibo de Liquidación de Cotizaciones
+Cuota a Liquidar
+Liquidación
+2.828,54 LIQUIDO DE TOTALES
+Datos de envío
+Datos identificativos de la liquidación
+Codificaciones informáticas:
+Total
+Importe
+Código de Cuenta de Cotización:
+ 
+00002517
+AEROKRANE,S.L.
+10/2023 - 10/2023
+0111 50118756107
+L00 NORMAL
+50202300249467784
+9 0B61313821
+3
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+Cargo en Cuenta
+CRLC2311000001 15-11-2023 06:51:09 LKNU7RZL Página 1 de 1
+Razón Social:
+Período de Liquidación:
+Calificador de Liquidación:
+Fecha de Control: Modalidad Pago:
+Entidad AT/EP:
+Número de trabajadores confirmados:
+Código de Empresario:
+Número de liquidación:
+Referencia: Fecha: Hora: Huella:
+Número de autorización:
+Base DescripciónEste recibo no implica el pago de las cuotas si no va  acompañado del correspondiente comprobante de ingreso de la Entidad Financiera. Este  documento recoge los cálculos realizados a la 
+fecha de la confirmación/cierre de la  liquidación.
+22.150,50 CONTINGENCIAS COMUNES 78.270,39
+469,61 MECANISMO EQUIDAD INTERGENERACIONAL 78.270,39
+4.681,93 COMPENSACION IT ENFERMEDAD COMUN 
+17.938,18 LIQUIDO CONTINGENCIAS COMUNES 
+2.409,99 IT DE ACCIDENTES DE TRABAJO 78.270,39
+2.388,61 IMS DE ACCIDENTES DE TRABAJO 78.270,39
+2.008,18 COMP.IT POR ACCIDENTE DE TRABAJO 
+2.790,42 LIQUIDO DE ACCIDENTES DE TRABAJO 
+6.222,48 OTRAS COTIZACIONES 78.270,39
+6.222,48 LIQUIDO DE OTRAS COTIZACIONES 
+Total
+Recibo de Liquidación de Cotizaciones
+Cuota a Liquidar
+Liquidación
+26.951,08 LIQUIDO DE TOTALES
+Datos de envío
+Datos identificativos de la liquidación
+Codificaciones informáticas:
+Total
+Importe
+Código de Cuenta de Cotización:
+ 
+00002517
+AEROKRANE,S.L.
+10/2023 - 10/2023
+0111 08118142689
+L00 NORMAL
+08202300480614367
+9 0B61313821
+28
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+Cargo en Cuenta
+CRLC2311000001 15-11-2023 06:49:35 2H487C4L Página 1 de 1
+Razón Social:
+Período de Liquidación:
+Calificador de Liquidación:
+Fecha de Control: Modalidad Pago:
+Entidad AT/EP:
+Número de trabajadores confirmados:
+Código de Empresario:
+Número de liquidación:
+Referencia: Fecha: Hora: Huella:
+Número de autorización:
+Base DescripciónEste recibo no implica el pago de las cuotas si no va  acompañado del correspondiente comprobante de ingreso de la Entidad Financiera. Este  documento recoge los cálculos realizados a la 
+fecha de la confirmación/cierre de la  liquidación.
+445,02 CONTINGENCIAS COMUNES 1.572,52
+9,44 MECANISMO EQUIDAD INTERGENERACIONAL 1.572,52
+454,46 LIQUIDO CONTINGENCIAS COMUNES 
+52,68 IT DE ACCIDENTES DE TRABAJO 1.572,52
+52,68 IMS DE ACCIDENTES DE TRABAJO 1.572,52
+105,36 LIQUIDO DE ACCIDENTES DE TRABAJO 
+125,02 OTRAS COTIZACIONES 1.572,52
+125,02 LIQUIDO DE OTRAS COTIZACIONES 
+Total
+Recibo de Liquidación de Cotizaciones
+Cuota a Liquidar
+Liquidación
+684,84 LIQUIDO DE TOTALES
+Datos de envío
+Datos identificativos de la liquidación
+Codificaciones informáticas:
+Total
+Importe
+Código de Cuenta de Cotización:
+ 
+00002517
+AEROKRANE,S.L.
+10/2023 - 10/2023
+0111 25109989064
+L00 NORMAL
+25202300226097275
+9 0B61313821
+1
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+Cargo en Cuenta
+CRLC2311000001 15-11-2023 06:49:21 J73L5MHL Página 1 de 1
+Razón Social:
+Período de Liquidación:
+Calificador de Liquidación:
+Fecha de Control: Modalidad Pago:
+Entidad AT/EP:
+Número de trabajadores confirmados:
+Código de Empresario:
+Número de liquidación:
+Referencia: Fecha: Hora: Huella:
+Número de autorización:
+Base DescripciónEste recibo no implica el pago de las cuotas si no va  acompañado del correspondiente comprobante de ingreso de la Entidad Financiera. Este  documento recoge los cálculos realizados a la 
+fecha de la confirmación/cierre de la  liquidación.
+13.285,56 CONTINGENCIAS COMUNES 46.945,49
+281,68 MECANISMO EQUIDAD INTERGENERACIONAL 46.945,49
+2.325,31 COMPENSACION IT ENFERMEDAD COMUN 
+11.241,93 LIQUIDO CONTINGENCIAS COMUNES 
+591,61 IT DE ACCIDENTES DE TRABAJO 46.945,49
+544,89 IMS DE ACCIDENTES DE TRABAJO 46.945,49
+1.136,50 LIQUIDO DE ACCIDENTES DE TRABAJO 
+3.732,16 OTRAS COTIZACIONES 46.945,49
+3.732,16 LIQUIDO DE OTRAS COTIZACIONES 
+Total
+Recibo de Liquidación de Cotizaciones
+Cuota a Liquidar
+Liquidación
+16.110,59 LIQUIDO DE TOTALES
+Datos de envío
+Datos identificativos de la liquidación
+Codificaciones informáticas:
+Total
+Importe
+Código de Cuenta de Cotización:
+ 
+00002517
+AGROPECUARIA VIGILPUJOL SL
+10/2023 - 10/2023
+0111 43110453866
+L00 NORMAL
+43202300242059162
+9 0B43992460
+31
+003 - UMIVALE ACTIVA
+Cargo en Cuenta
+CRLC2311000001 15-11-2023 06:51:30 ACVBPG5L Página 1 de 1
+Razón Social:
+Período de Liquidación:
+Calificador de Liquidación:
+Fecha de Control: Modalidad Pago:
+Entidad AT/EP:
+Número de trabajadores confirmados:
+Código de Empresario:
+Número de liquidación:
+Referencia: Fecha: Hora: Huella:
+Número de autorización:
+Base Descripción

@@ -1,0 +1,13 @@
+Modelo: 991
+Tipo modelo: 06
+Codigo cuenta cotizacion: 13112231846
+CIF empresa: 
+NIF trabajador: X6739577W
+Ejercicio: 
+Periodo: 
+Fecha efecto: 23-06-2021
+Observaciones1: Informe de Datos para la Cotización
+Observaciones2: Trabajadores por Cuenta Ajena-
+Observaciones3: 
+Campo libre 1: Informe de Datos para la Cotización-Trabajadores por Cuenta Ajena-
+Campo libre 2: 23-06-2021

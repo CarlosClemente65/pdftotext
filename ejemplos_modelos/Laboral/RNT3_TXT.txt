@@ -1,0 +1,60 @@
+Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+2
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00092056
+ 
+  
+11-12-2023 CRNT2312000001 12:39:54 K3RKPP9O Página 1 de 1
+1
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+1.875,15
+Referencia      Fecha      Hora      Huella   Página 
+A.J.R. HNOS BROTONS SL
+11/2023-11/2023
+0111 03141662369
+9 0B42688853
+L00-NORMAL
+03202300306390570
+1
+274 - IBERMUTUA
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+1.875,15
+BASE DE CONTINGENCIAS COMUNES 1.875,15
+BASE DE ACCIDENTES DE TRABAJO 1.875,15
+SALLJ
+SUMA DE COMPENSACIONES     
+Total
+30-11-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+1048298082Z 031016241262 01-11-2023

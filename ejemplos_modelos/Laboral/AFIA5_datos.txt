@@ -1,0 +1,13 @@
+Modelo: 991
+Tipo modelo: 00
+Codigo cuenta cotizacion: 46157729579
+CIF empresa: 
+NIF trabajador: 54600003G
+Ejercicio: 
+Periodo: 
+Fecha efecto: 05/02/2024
+Observaciones1: RESOLUCION SOBRE RECONOCIMIENTO DE ALTA
+Observaciones2: REGIMEN GENERAL
+Observaciones3: 
+Campo libre 1: RESOLUCION SOBRE RECONOCIMIENTO DE ALTA: REGIMEN GENERAL
+Campo libre 2: 05/02/2024

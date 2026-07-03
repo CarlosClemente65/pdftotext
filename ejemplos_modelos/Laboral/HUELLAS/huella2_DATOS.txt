@@ -1,0 +1,13 @@
+Modelo: 992
+Tipo modelo: 00
+Codigo cuenta cotizacion: 33115130494
+CIF empresa: 
+NIF trabajador: Y6886149D
+Ejercicio: 
+Periodo: 
+Fecha efecto: 12/12/2023
+Observaciones1: COMUNICACIÓN DEL CONTRATO DE TRABAJO TEMPORAL POR 
+Observaciones2: CIRCUNSTANCIAS DE LA PRODUCCIÓN TIEMPO PARCIAL
+Observaciones3: 
+Campo libre 1: 
+Campo libre 2: 

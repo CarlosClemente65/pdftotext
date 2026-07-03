@@ -1,0 +1,13 @@
+Modelo: 991
+Tipo modelo: 01
+Codigo cuenta cotizacion: 46116620272
+CIF empresa: 
+NIF trabajador: 48439001N
+Ejercicio: 
+Periodo: 
+Fecha efecto: 30/06/2025
+Observaciones1: INFORME DE SITUACION DE BAJA
+Observaciones2: REGIMEN GENERAL
+Observaciones3: 
+Campo libre 1: INFORME DE SITUACION DE BAJA REGIMEN GENERAL
+Campo libre 2: 30/06/2025

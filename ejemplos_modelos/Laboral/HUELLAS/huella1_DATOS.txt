@@ -1,0 +1,13 @@
+Modelo: 992
+Tipo modelo: 00
+Codigo cuenta cotizacion: 02100050202
+CIF empresa: 
+NIF trabajador: 47099573N
+Ejercicio: 
+Periodo: 
+Fecha efecto: 12/04/2019
+Observaciones1: COMUNICACIÓN DEL CONTRATO DE TRABAJO EVENTUAL A TI
+Observaciones2: EMPO PARCIAL CIRCUNSTANCIAS DE LA PRODUCCIÓN
+Observaciones3: 
+Campo libre 1: 
+Campo libre 2: 

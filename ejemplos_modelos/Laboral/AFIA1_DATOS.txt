@@ -1,0 +1,13 @@
+Modelo: 991
+Tipo modelo: 00
+Codigo cuenta cotizacion: 46136175876
+CIF empresa: 
+NIF trabajador: 48693158L
+Ejercicio: 
+Periodo: 
+Fecha efecto: 24/12/2023
+Observaciones1: RESOLUCION SOBRE RECONOCIMIENTO DE ALTA
+Observaciones2: REGIMEN GENERAL
+Observaciones3: 
+Campo libre 1: RESOLUCION SOBRE RECONOCIMIENTO DE ALTA: REGIMEN GENERAL
+Campo libre 2: 24/12/2023

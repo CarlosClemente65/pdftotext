@@ -1,0 +1,13 @@
+Modelo: 997
+Tipo modelo: 00
+Codigo cuenta cotizacion: 43115452396
+CIF empresa: J55682967
+NIF trabajador: 
+Ejercicio: 2023
+Periodo: 10
+Fecha efecto: 
+Observaciones1: RLC - L00 NORMAL
+Observaciones2: 
+Observaciones3: 
+Campo libre 1: CCC: 43115452396
+Campo libre 2: 

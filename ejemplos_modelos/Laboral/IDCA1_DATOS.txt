@@ -1,0 +1,13 @@
+Modelo: 991
+Tipo modelo: 04
+Codigo cuenta cotizacion: 46152480465
+CIF empresa: 
+NIF trabajador: 44925365V
+Ejercicio: 
+Periodo: 
+Fecha efecto: 21-10-2022
+Observaciones1: INFORME DE DATOS PARA LA COTIZACION
+Observaciones2: TRABAJADORES POR CUENTA AJENA-
+Observaciones3: 
+Campo libre 1: INFORME DE DATOS PARA LA COTIZACION-TRABAJADORES POR CUENTA AJENA-
+Campo libre 2: 21-10-2022

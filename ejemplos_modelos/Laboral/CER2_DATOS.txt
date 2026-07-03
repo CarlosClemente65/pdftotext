@@ -1,0 +1,13 @@
+Modelo: 993
+Tipo modelo: 03
+Codigo cuenta cotizacion: 
+CIF empresa: B43427285
+NIF trabajador: 
+Ejercicio: 2023
+Periodo: 12
+Fecha efecto: 
+Observaciones1: CERTIFICADO CORRIENTE DE PAGO EN LA SEG.SOCIAL
+Observaciones2: 01/12/2023
+Observaciones3: 
+Campo libre 1: 
+Campo libre 2: 

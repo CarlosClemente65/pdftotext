@@ -1,0 +1,13 @@
+Modelo: 991
+Tipo modelo: 00
+Codigo cuenta cotizacion: 03143940051
+CIF empresa: 
+NIF trabajador: Y7658575A
+Ejercicio: 
+Periodo: 
+Fecha efecto: 18/01/2024
+Observaciones1: RESOLUCION SOBRE RECONOCIMIENTO DE ALTA
+Observaciones2: REGIMEN GENERAL
+Observaciones3: 
+Campo libre 1: RESOLUCION SOBRE RECONOCIMIENTO DE ALTA: REGIMEN GENERAL
+Campo libre 2: 18/01/2024

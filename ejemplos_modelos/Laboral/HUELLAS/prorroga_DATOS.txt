@@ -1,0 +1,13 @@
+Modelo: 992
+Tipo modelo: 00
+Codigo cuenta cotizacion: 46106090015
+CIF empresa: 
+NIF trabajador: 33569111J
+Ejercicio: 
+Periodo: 
+Fecha efecto: 06/12/2023
+Observaciones1: COMUNICACIÓN DE LA PRÓRROGA DEL CONTRATO DE TRABAJ
+Observaciones2: O TEMPORAL POR CIRCUNSTANCIAS DE LA PRODUCCIÓN TIE
+Observaciones3: MPO PARCIAL EN CENTRO ESPECIAL DE
+Campo libre 1: 
+Campo libre 2: 

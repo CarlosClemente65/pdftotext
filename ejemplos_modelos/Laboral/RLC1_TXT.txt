@@ -1,0 +1,76 @@
+363,01 CONTINGENCIAS COMUNES 1.282,73
+7,70 MECANISMO EQUIDAD INTERGENERACIONAL 1.282,73
+370,71 LIQUIDO CONTINGENCIAS COMUNES 
+8,34 IT DE ACCIDENTES DE TRABAJO 1.282,73
+12,83 IMS DE ACCIDENTES DE TRABAJO 1.282,73
+21,17 LIQUIDO DE ACCIDENTES DE TRABAJO 
+101,98 OTRAS COTIZACIONES 1.282,73
+101,98 LIQUIDO DE OTRAS COTIZACIONES 
+98,77 RECARGO (20,00%) 
+Período de Liquidación:
+À¬zZ*<;¦>!¦(5#NHh>¦*¦¦[:>AÈ
+Total
+05/2023 - 05/2023
+0111 08210346445
+L90 COMP. INCREM. BASES
+03/2023 - 03/2023
+9 0B67299842
+UNA MIRADA INFORMATIVA ESPECIAL
+Recibo de Liquidación de Cotizaciones
+Cuota a Liquidar
+Validación mecánica / Sello de las Entidades Financieras.
+C.C.C:
+Código Empresario:
+Huella Electrónica:
+Cal.Liquidación:
+Este recibo no implica el pago de las cuotas si no va  acompañado del correspondiente comprobante de ingreso, sello o validación mecánica de  la Entidad Financiera. Este documentorecoge 
+los cálculos realizados a la fecha de la  confirmación/cierre de la liquidación.
+Liquidación
+592,63 LIQUIDO DE TOTALES
+02827003001
+Datos de envío
+Datos identificativos de la liquidación
+Codificaciones informáticas:
+Total
+Importe
+Para la Entidad Financiera, únicamente cuando el ingreso se tramite en ventanilla.
+----------------------------------------------------------------------------------------------------------------------------------------------
+Código de Cuenta de Cotización:
+ 
+00002517
+UNA MIRADA INFORMATIVA ESPECIAL
+03/2023 - 03/2023
+0111 08210346445
+L90 COMP. INCREM. BASES
+08202300324164279
+9 0B67299842
+1
+151 - ASEPEYO
+Pago electrónico
+CRLC2305000001 18-05-2023 01:10:59 L9QBA8G0 Página 1 de 1
+0008210346407
+05/2023 - 05/2023 02827003001 0008210346407 230001 592,63
+L9QBA8G0
+Razón Social:
+Período de Liquidación:
+Calificador de Liquidación:
+Fecha de Control: Modalidad Pago:
+Entidad AT/EP:
+Número de trabajadores confirmados:
+Código de Empresario:
+Número de liquidación:
+Referencia: Fecha: Hora: Huella:
+Número de autorización:
+Base
+230001
+Descripción
+Período de pago
+592,63
+Num.Emisora
+Importe
+Num.Referencia
+Identificación
+Identificación
+Num.Referencia
+Importe
+Num.Emisora Período de pago

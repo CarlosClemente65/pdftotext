@@ -1,0 +1,13 @@
+Modelo: 991
+Tipo modelo: 01
+Codigo cuenta cotizacion: 46123824847
+CIF empresa: 
+NIF trabajador: 52688964N
+Ejercicio: 
+Periodo: 
+Fecha efecto: 29/03/2021
+Observaciones1: RESOLUCIÓN SOBRE RECONOCIMIENTO DE BAJA
+Observaciones2: REGIMEN GENERAL
+Observaciones3: 
+Campo libre 1: RESOLUCIÓN SOBRE RECONOCIMIENTO DE BAJA: REGIMEN GENERAL
+Campo libre 2: 29/03/2021

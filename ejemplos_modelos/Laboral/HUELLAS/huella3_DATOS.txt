@@ -1,0 +1,13 @@
+Modelo: 992
+Tipo modelo: 00
+Codigo cuenta cotizacion: 28203417074
+CIF empresa: 
+NIF trabajador: 45376905K
+Ejercicio: 
+Periodo: 
+Fecha efecto: 18/12/2023
+Observaciones1: COMUNICACIÓN DEL CONTRATO DE TRABAJO INDEFINIDO A 
+Observaciones2: TIEMPO COMPLETO CÓDIGO 100
+Observaciones3: 
+Campo libre 1: 
+Campo libre 2: 

@@ -1,0 +1,1 @@
+Error: Documento PDF no valido (revise si es una imagen)

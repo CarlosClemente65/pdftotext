@@ -1,0 +1,13 @@
+Modelo: 991
+Tipo modelo: 00
+Codigo cuenta cotizacion: 10109868951
+CIF empresa: 
+NIF trabajador: 44406252Z
+Ejercicio: 
+Periodo: 
+Fecha efecto: 15/06/2021
+Observaciones1: RESOLUCIÓN SOBRE RECONOCIMIENTO DE ALTA
+Observaciones2: REGIMEN GENERAL
+Observaciones3: 
+Campo libre 1: RESOLUCIÓN SOBRE RECONOCIMIENTO DE ALTA: REGIMEN GENERAL
+Campo libre 2: 15/06/2021

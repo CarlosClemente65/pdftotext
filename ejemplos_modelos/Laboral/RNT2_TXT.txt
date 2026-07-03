@@ -1,0 +1,61 @@
+Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+2
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+ 
+  
+18-05-2023 CRNT2305000001 01:11:06 P95LXQGO Página 1 de 1
+1
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+1.282,73
+Referencia      Fecha      Hora      Huella   Página 
+UNA MIRADA INFORMATIVA ESPECIAL
+03/2023-03/2023
+0111 08210346445
+9 0B67299842
+L90-COMP. INCREM. BASES
+08202300324164279
+1
+151 - ASEPEYO
+ 26 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+1.282,73
+BASE DE CONTINGENCIAS COMUNES 1.282,73
+BASE DE ACCIDENTES DE TRABAJO 1.282,73
+BAGAH
+Total
+26-03-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+1048003363V
+SUMA DE COMPENSACIONES     
+431028444915 01-03-2023

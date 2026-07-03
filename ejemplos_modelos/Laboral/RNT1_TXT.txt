@@ -1,0 +1,2073 @@
+Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+2
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+19 H
+  
+15-11-2023 CRNT2311000001 06:51:51 LEO09LHO Página 1 de 1
+1
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+192,04
+Referencia      Fecha      Hora      Huella   Página 
+6 DXABRIL ASSOCIATS SCP
+10/2023-10/2023
+0111 43115452396
+9 0J55682967
+L00-NORMAL
+43202300242059566
+1
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+ 9 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+192,04
+BASE DE CONTINGENCIAS COMUNES 192,04
+BASE DE ACCIDENTES DE TRABAJO 192,04
+MUCUL
+Total
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+1053663319H
+SUMA DE COMPENSACIONES     
+121015120156 23-10-2023Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+ 
+4
+6
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+86 H
+  
+ 
+  
+15-11-2023 CRNT2311000001 06:51:29 O54101OO Página 1 de 1
+3
+5
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+1.052,44
+2.101,86
+Referencia      Fecha      Hora      Huella   Página 
+A.R.B. CUPEL, S.L.
+10/2023-10/2023
+0111 08126238250
+9 0B43441898
+L00-NORMAL
+08202300480614569
+2
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+1.052,44
+2.101,86
+BASE DE CONTINGENCIAS COMUNES 3.154,30
+BASE DE ACCIDENTES DE TRABAJO 3.154,30
+MOFES
+Total
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+1038827093B
+BOCHJ 1039483615K
+SUMA DE COMPENSACIONES     
+081025686857
+081303364212
+01-10-2023
+01-10-2023Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+8
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+117 H
+  
+15-11-2023 CRNT2311000001 06:52:04 LQ3QPX8O Página 1 de 1
+7
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+1.169,87
+Referencia      Fecha      Hora      Huella   Página 
+ADAN                GOMEZ TORRENTE      MARIA LUISA
+10/2023-10/2023
+0111 43115521613
+1 039713477K
+L00-NORMAL
+43202300242058960
+1
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+1.169,87
+BASE DE CONTINGENCIAS COMUNES 1.169,87
+BASE DE ACCIDENTES DE TRABAJO 1.169,87
+GODOR
+Total
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+1039679382N
+SUMA DE COMPENSACIONES     
+430046585430 01-10-2023Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+10
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+ 
+  
+15-11-2023 CRNT2311000001 06:51:40 XB827RVO Página 1 de 1
+9
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+1.823,69
+Referencia      Fecha      Hora      Huella   Página 
+ADVISOR CONSULTING FOR CHINESE-SPANISH INVESTMENTS SL
+10/2023-10/2023
+0111 43118080187
+9 0B86386257
+L00-NORMAL
+43202300242055930
+1
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+1.823,69
+BASE DE CONTINGENCIAS COMUNES 1.823,69
+BASE DE ACCIDENTES DE TRABAJO 1.823,69
+LLMAA
+Total
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+1018996190F
+SUMA DE COMPENSACIONES     
+431000638853 01-10-2023Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+12
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+ 
+  
+15-11-2023 CRNT2311000001 06:50:03 1X0QNUAO Página 1 de 1
+11
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+1.445,04
+Referencia      Fecha      Hora      Huella   Página 
+ADVISOR NATURAL CHINESE HERBS SL
+10/2023-10/2023
+0111 28253156452
+9 0B12910501
+L00-NORMAL
+28202300528645839
+1
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+1.459,20
+BASE DE CONTINGENCIAS COMUNES 1.459,20
+BASE DE ACCIDENTES DE TRABAJO 1.445,04
+SUWUS
+Total
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+1047532329T
+SUMA DE COMPENSACIONES     
+281218319330 01-10-2023Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+ 
+ 
+14
+16
+18
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+177 H
+  
+ 
+  
+ 
+  
+15-11-2023 CRNT2311000001 06:51:06 YD3LL8XO Página 1 de 1
+13
+15
+17
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+2.129,92
+2.208,81
+2.156,21
+Referencia      Fecha      Hora      Huella   Página 
+AEROKRANE,S.L.
+10/2023-10/2023
+0111 50118756107
+9 0B61313821
+L00-NORMAL
+50202300249467784
+3
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+2.129,92
+2.208,81
+2.156,21
+BASE DE CONTINGENCIAS COMUNES 6.494,94
+BASE DE ACCIDENTES DE TRABAJO 6.494,94
+BEARF
+Total
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+1043703800M
+CHCUO
+LABEF
+1077221472F
+1073005673Q
+SUMA DE COMPENSACIONES     
+250046425974
+501023819010
+501025118204
+01-10-2023
+01-10-2023
+01-10-2023Este documento no será válido sin codificaciones informáticas
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+20
+22
+24
+26
+28
+30
+32
+33
+35
+37
+39
+41
+43
+45
+47
+49
+2
+4
+5
+7
+9
+11
+13
+15
+17
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+ 
+  
+177 H
+  
+ 
+  
+ 
+  
+ 
+  
+ 
+  
+ 
+  
+  
+171 H
+  
+ 
+  
+177 H
+  
+29 H
+  
+150 H
+  
+177 H
+  
+177 H
+  
+ 
+  
+177 H
+  
+ 
+  
+  
+ 
+  
+51 H
+  
+177 H
+  
+ 
+  
+177 H
+  
+ 
+  
+ 
+15-11-2023 CRNT2311000001 06:49:46 BDPHGHGO Página 1 de 2
+19
+21
+23
+25
+27
+29
+31
+34
+36
+38
+40
+42
+44
+46
+48
+1
+3
+6
+8
+10
+12
+14
+16
+18
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+3.172,17
+3.096,14
+3.481,85
+2.861,58
+2.860,93
+3.167,38
+1.662,53
+2.216,81
+2.382,49
+3.334,09
+2.832,27
+371,02
+2.655,97
+2.363,14
+2.421,78
+3.392,07
+3.081,49
+3.019,40
+4.025,66
+3.800,74
+617,54
+2.583,04
+1.953,01
+3.008,18
+2.546,86
+Referencia      Fecha      Hora      Huella   Página 
+AEROKRANE,S.L.
+10/2023-10/2023
+0111 08118142689
+9 0B61313821
+L00-NORMAL
+08202300480614367
+28
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ COMPENSACION I.T. ENFERMEDAD COMUN
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 5 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ COMPENSACION I.T. ENFERMEDAD COMUN
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 9 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+3.172,17
+3.096,14
+3.481,85
+2.861,58
+2.860,93
+3.167,38
+2.216,81
+2.382,49
+3.334,09
+2.832,27
+371,02
+2.655,97
+2.363,14
+2.421,78
+3.392,07
+3.081,49
+4.025,66
+3.800,74
+617,54
+2.583,04
+1.953,01
+3.008,18
+2.546,86
+4.086,29
+GIMOT
+Total
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+05-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+1035050788F
+GUMOA
+ORBAC
+GICAF
+JUBAR
+AZUAA
+TEGII
+CAMUL
+NOFEC
+HONOE
+RESAF
+GOSEM
+LAMIR
+CAHEF
+DICAA
+GONOE
+CEPOD
+AB  B
+CADOG
+ROSAD
+HEGOA
+BECHM
+CO  A
+PECAP
+1037373850T
+1037373373Y
+1052214055F
+1038138547Q
+1041013372W
+1046745427C
+1034763001L
+1038136942K
+1052465592Q
+1047604568L
+1052467533W
+1077629674M
+1046063122X
+1045636421M
+1046801269H
+1046455320N
+60X2916522F
+1043575558B
+1047806493G
+1039389816Q
+1054449590B
+60X5113590T
+1070515009E
+080383365244
+080428135390
+080455837378
+080472203302
+080545931584
+081001270038
+081002843357
+081004383637
+081005716173
+081014078886
+081019817650
+081023432417
+081035306227
+081051461777
+081054506769
+081060240580
+081064267902
+081123327057
+081136583018
+081137501282
+081290392177
+081353439450
+131012043422
+160022056236
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+02-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+23-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+ 
+ 
+ 
+ 
+21
+23
+24
+26
+28
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+ 
+ 
+  
+ 
+  
+  
+177 H
+  
+177 H
+  
+15-11-2023 CRNT2311000001 06:49:46 BDPHGHGO Página 2 de 2
+19
+20
+22
+25
+27
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+4.495,50
+2.677,47
+2.008,18
+2.304,50
+2.480,42
+Referencia      Fecha      Hora      Huella   Página 
+AEROKRANE,S.L.
+10/2023-10/2023
+0111 08118142689
+9 0B61313821
+L00-NORMAL
+08202300480614367
+28
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+  
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ COMPENSACION IT POR ACCID. TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+4.086,29
+4.495,50
+2.677,47
+2.304,50
+2.480,42
+BASE DE CONTINGENCIAS COMUNES 78.270,39
+BASE DE ACCIDENTES DE TRABAJO 78.270,39
+PECAP
+Total
+ BASE DE ACCIDENTES DE TRABAJO
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+1070515009E
+TOPAJ
+EL  A
+CRGOA
+COMPENSACION I.T. ENFERMEDAD COMUN 4.681,93
+COMPENSACION IT POR ACCID. TRABAJO 2.008,18
+1052602121V
+60X3998979S
+1078716419T
+SUMA DE COMPENSACIONES     
+160022056236
+430054456675
+431017395403
+471004137455
+ 
+ALSEN
+01-10-2023
+01-10-2023
+01-10-2023
+1070980175J 371001696758 01-10-2023Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+30
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+ 
+  
+15-11-2023 CRNT2311000001 06:49:25 BA15FQNO Página 1 de 1
+29
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+1.572,52
+Referencia      Fecha      Hora      Huella   Página 
+AEROKRANE,S.L.
+10/2023-10/2023
+0111 25109989064
+9 0B61313821
+L00-NORMAL
+25202300226097275
+1
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+1.572,52
+BASE DE CONTINGENCIAS COMUNES 1.572,52
+BASE DE ACCIDENTES DE TRABAJO 1.572,52
+CO  L
+Total
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+60X8065363E
+SUMA DE COMPENSACIONES     
+251016127629 01-10-2023Este documento no será válido sin codificaciones informáticas
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+32
+34
+36
+37
+39
+41
+43
+45
+47
+49
+2
+4
+6
+8
+10
+12
+14
+16
+18
+19
+20
+21
+22
+24
+26
+28
+30
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+ 
+  
+107 H
+  
+ 
+  
+  
+ 
+  
+ 
+  
+ 
+  
+111 H
+  
+ 
+  
+ 
+  
+ 
+  
+9 H
+  
+129 H
+  
+ 
+  
+ 
+  
+ 
+  
+9 H
+  
+ 
+  
+ 
+  
+ 2 D
+  
+ 19 D
+  
+ 
+  
+ 
+  
+ 
+  
+ 
+  
+15-11-2023 CRNT2311000001 06:51:32 SHJA3VRO Página 1 de 2
+31
+33
+35
+38
+40
+42
+44
+46
+48
+1
+3
+5
+7
+9
+11
+13
+15
+17
+23
+25
+27
+29
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+302,93
+3.190,45
+1.238,45
+1.651,06
+1.644,51
+1.429,86
+1.564,26
+967,40
+1.604,52
+1.494,96
+3.171,67
+75,82
+1.400,00
+1.807,86
+1.341,52
+1.679,02
+75,82
+1.712,49
+432,74
+89,44
+89,44
+822,22
+822,22
+1.385,97
+2.121,78
+3.696,51
+1.385,97
+Referencia      Fecha      Hora      Huella   Página 
+AGROPECUARIA VIGILPUJOL SL
+10/2023-10/2023
+0111 43110453866
+9 0B43992460
+L00-NORMAL
+43202300242059162
+31
+003 - UMIVALE ACTIVA
+ 7 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ COMPENSACION I.T. ENFERMEDAD COMUN
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 10 D
+ BASE DE ACCIDENTES DE TRABAJO
+12-10-2023 BASE DE CONTINGENCIAS COMUNES
+ BASE DE ACCIDENTES DE TRABAJO
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+302,93
+3.190,45
+1.651,06
+1.644,51
+1.429,86
+1.564,26
+967,40
+1.604,52
+1.494,96
+3.171,67
+75,82
+1.400,00
+1.807,86
+1.341,52
+1.679,02
+75,82
+1.712,49
+432,74
+1.385,97
+2.121,78
+3.696,51
+1.385,97
+ELDAA
+Total
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+10-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+11-10-2023
+ 
+13-10-2023
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+1055554284S
+PEINM
+IO  T
+ME  A
+TOROJ
+ROCIS
+FOCAJ
+BEALP
+ZAHEM
+CLGIJ
+FAGAJ
+BOSAN
+ALGUJ
+CULIJ
+TE  V
+GALLR
+FL  T
+LOBAJ
+CEOBA
+KA  R
+CI  V
+DU  M
+1018027409D
+60X5458357C
+60X5881613F
+60X5107991J
+1040916404W
+1040925522N
+1040933831H
+1052602586E
+1052600195T
+1052606441J
+1047624307R
+1047626951T
+1047620564F
+60X5341071B
+1047823877T
+60X5340318V
+1047857387E
+60X5108029M
+60X5134768H
+60X7369431R
+60X7464195M
+081233102765
+221001151382
+241014871190
+251013285024
+301040141109
+430042579936
+430050065407
+430053310661
+430054449706
+430055693326
+430056551875
+431008556578
+431009906393
+431010792632
+431016688616
+431017064387
+431018536969
+431018935881
+431021122223
+431022707464
+431024084157
+431025995057
+25-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+32
+34
+36
+38
+40
+42
+44
+46
+48
+49
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+ 
+  
+ 
+  
+9 H
+  
+ 
+  
+ 
+  
+ 
+  
+ 
+  
+ 
+  
+ 
+  
+  
+15-11-2023 CRNT2311000001 06:51:32 SHJA3VRO Página 2 de 2
+31
+33
+35
+37
+39
+41
+43
+45
+47
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+1.386,58
+629,82
+75,82
+2.311,91
+1.572,77
+1.686,06
+1.341,52
+1.443,29
+1.086,86
+1.448,94
+Referencia      Fecha      Hora      Huella   Página 
+AGROPECUARIA VIGILPUJOL SL
+10/2023-10/2023
+0111 43110453866
+9 0B43992460
+L00-NORMAL
+43202300242059162
+31
+003 - UMIVALE ACTIVA
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 13 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 31 D
+ COMPENSACION I.T. ENFERMEDAD COMUN
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+1.386,58
+629,82
+75,82
+2.311,91
+1.572,77
+1.686,06
+1.341,52
+1.443,29
+1.448,94
+BASE DE CONTINGENCIAS COMUNES 46.945,49
+BASE DE ACCIDENTES DE TRABAJO 46.945,49
+CLOLF
+Total
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+13-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+ 
+1047938870Q
+ARLOM
+FO  S
+MAAGO
+CAZUI
+SUROP
+VE  H
+PA  T
+BEALA
+COMPENSACION I.T. ENFERMEDAD COMUN 2.325,31
+1047936503H
+60X8741811V
+1047484660X
+1047484834T
+1049637403E
+60Y8134679F
+60Y9475877Y
+1073107433R
+SUMA DE COMPENSACIONES     
+431027529778
+431032057961
+431037373258
+431041332878
+431043923081
+431049273239
+431058363957
+431060651238
+441006176830
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+2
+3
+4
+5
+7
+9
+11
+13
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+ 
+  
+ 14 D
+  
+  
+64 H
+  
+ 
+  
+21 H
+  
+ 
+  
+15-11-2023 CRNT2311000001 06:51:48 IF9DI6AO Página 1 de 1
+1
+6
+8
+10
+12
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+912,31
+805,98
+805,98
+647,70
+591,85
+1.558,21
+336,77
+1.581,48
+Referencia      Fecha      Hora      Huella   Página 
+ALBERTO FUMADO PANISELLO SL
+10/2023-10/2023
+0111 43109371914
+9 0B43098193
+L00-NORMAL
+43202300242053506
+5
+003 - UMIVALE ACTIVA
+ 16 D
+ BASE DE ACCIDENTES DE TRABAJO
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ BASE DE ACCIDENTES DE TRABAJO
+ COMPENSACION IT POR ACCID. TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+912,31
+591,85
+1.558,21
+336,77
+1.581,48
+BASE DE CONTINGENCIAS COMUNES 5.786,60
+BASE DE ACCIDENTES DE TRABAJO 5.786,60
+BISEJ
+Total
+16-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+17-10-2023
+ 
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+1078578045V
+BANAJ
+FUMUJ
+COMOR
+ESMUP
+COMPENSACION IT POR ACCID. TRABAJO 647,70
+1040916485Z
+1052607903A
+1052608620F
+1047860722E
+SUMA DE COMPENSACIONES     
+430051082085
+430051855055
+431003235120
+431008993987
+431036777417
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+ 
+ 
+ 
+ 
+15
+17
+19
+21
+23
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+94 H
+  
+ 
+  
+94 H
+  
+ 
+  
+ 
+  
+15-11-2023 CRNT2311000001 06:51:16 PJ26C84O Página 1 de 1
+14
+16
+18
+20
+22
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+894,08
+1.404,28
+827,40
+1.778,35
+1.778,35
+Referencia      Fecha      Hora      Huella   Página 
+ALEGRE              ARIÑO               EMILIO
+10/2023-10/2023
+0111 43104070458
+1 040926430T
+L00-NORMAL
+43202300242054213
+5
+039 - MUTUA INTERCOMARCAL
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+894,08
+1.404,28
+827,40
+1.778,35
+1.778,35
+BASE DE CONTINGENCIAS COMUNES 6.682,46
+BASE DE ACCIDENTES DE TRABAJO 6.682,46
+GOCAI
+Total
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+1040932399N
+ALMOM
+MAANM
+PRGAY
+MAAUM
+1052604819R
+1078580287M
+1078582319J
+1047821110Q
+SUMA DE COMPENSACIONES     
+430054093230
+430056046061
+430058250082
+431009292768
+431012635632
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023
+01-10-2023Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+ 
+ 
+25
+27
+29
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+86 H
+  
+ 
+  
+ 
+  
+15-11-2023 CRNT2311000001 06:51:36 C285C84O Página 1 de 1
+24
+26
+28
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+801,71
+1.495,52
+3.383,85
+Referencia      Fecha      Hora      Huella   Página 
+ALEGRE              BLANCH              ALEX
+10/2023-10/2023
+0111 43116993484
+1 047936613J
+L00-NORMAL
+43202300242062293
+3
+010 - MUTUA UNIVERSAL MUGENAT
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+801,71
+1.495,52
+3.383,85
+BASE DE CONTINGENCIAS COMUNES 5.681,08
+BASE DE ACCIDENTES DE TRABAJO 5.681,08
+FEALJ
+Total
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+1047115385T
+SASOM
+CAPIN
+1040930728C
+1047824028J
+SUMA DE COMPENSACIONES     
+081299785417
+430054927733
+431025598973
+01-10-2023
+01-10-2023
+01-10-2023Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+ 
+31
+33
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+ 
+  
+ 
+  
+15-11-2023 CRNT2311000001 06:51:53 2LALEIMO Página 1 de 1
+30
+32
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+3.517,70
+1.798,71
+Referencia      Fecha      Hora      Huella   Página 
+ALERGO RES,S.L.
+10/2023-10/2023
+0111 43008216095
+9 0B43317239
+L00-NORMAL
+43202300242062192
+2
+003 - UMIVALE ACTIVA
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+3.517,70
+1.798,71
+BASE DE CONTINGENCIAS COMUNES 5.316,41
+BASE DE ACCIDENTES DE TRABAJO 5.316,41
+BEFAM
+Total
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+1046219355G
+AB  G 60X5174947Q
+SUMA DE COMPENSACIONES     
+430045507922
+431018846056
+01-10-2023
+01-10-2023Este documento no será válido sin codificaciones informáticas
+SUMA DE BASES     
+ 
+35
+RELACIÓN NOMINAL DE TRABAJADORES
+CODIFICACIONES INFORMÁTICAS
+Horas
+Compl
+.   
+00002517
+ 
+  
+15-11-2023 CRNT2311000001 06:51:26 H3RO28QO Página 1 de 1
+34
+Datos identificativos de la liquidación
+Número de autorización                                   
+Importe   Descripción    
+Bases y compensaciones    
+Horas
+Coti.   
+Días
+Coti.   
+Fechas
+Tramo
+Hasta   
+Fechas
+Tramo
+Desde      
+C.A.F.     I.P.F.    NAF     
+1.763,76
+Referencia      Fecha      Hora      Huella   Página 
+ALSINA              TARRAGO             JOSEP ORIOL
+10/2023-10/2023
+0111 17118817957
+1 041601179K
+L00-NORMAL
+17202300246704138
+1
+011 - MAZ, MUTUA DE ACCIDENTES DE ZARAGOZA
+ 30 D
+ BASE DE ACCIDENTES DE TRABAJO
+Razón social      
+Código cuenta cotización 
+Periodo de liquidación 
+Calificador de la liquidación 
+Fecha de control   
+Código de empresario           
+Número de la liquidación               
+Número de trabajadores 
+Liquidación
+Entidad de AT/EP            
+1.763,76
+BASE DE CONTINGENCIAS COMUNES 1.763,76
+BASE DE ACCIDENTES DE TRABAJO 1.763,76
+MACAP
+Total
+31-10-2023 BASE DE CONTINGENCIAS COMUNES
+ 
+1040359659H
+SUMA DE COMPENSACIONES     
+171033649193 01-10-2023
